@@ -20,17 +20,14 @@ public class Cliente {
     @Column
     private String correo;
     @Column
-    private String contraseña;
-    @Column
     private String residencia;
 
-    public Cliente(String DNI, String nombre, String apellidos, String telefono, String correo, String contraseña, String residencia) {
+    public Cliente(String DNI, String nombre, String apellidos, String telefono, String correo, String residencia) {
         this.DNI = DNI;
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.telefono = telefono;
         this.correo = correo;
-        this.contraseña = contraseña;
         this.residencia = residencia;
     }
 
@@ -75,14 +72,6 @@ public class Cliente {
 
     public void setCorreo(String correo) {
         this.correo = correo;
-    }
-
-    public String getContraseña() {
-        return contraseña;
-    }
-
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
     }
 
     public String getResidencia() {

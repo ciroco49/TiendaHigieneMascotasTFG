@@ -25,7 +25,7 @@ private RepoEspecialista repoEspecialista;
         return "Especialista guardado";
     }
 
-    @PutMapping(value = "/update/{DNI}")
+    @PutMapping(value = "/updateEspecialista/{DNI}")
     public String updateEspecialista(@PathVariable String DNI, @RequestBody Especialista especialista) {
         Especialista updatedEspecialista = repoEspecialista.findById(DNI).get();
 
@@ -41,7 +41,7 @@ private RepoEspecialista repoEspecialista;
         return "Especialista actualizado";
     }
 
-    @DeleteMapping(value = "delete/{DNI}")
+    @DeleteMapping(value = "/deleteEspecialista/{DNI}")
     public String deleteEspecialista(@PathVariable String DNI) {
         Especialista deletedEspecialista = repoEspecialista.findById(DNI).get();
 

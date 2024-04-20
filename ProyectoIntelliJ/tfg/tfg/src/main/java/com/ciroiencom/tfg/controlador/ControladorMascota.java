@@ -26,7 +26,7 @@ private RepoMascota repoMascota;
         return "Mascota guardada";
     }
 
-    @PutMapping(value = "/update/{DNI}")
+    @PutMapping(value = "/updateMascota/{DNI}")
     public String updateMascota(@PathVariable String DNI, @RequestBody Mascota mascota) {
         Mascota updatedMascota = repoMascota.findById(DNI).get();
 
@@ -42,7 +42,7 @@ private RepoMascota repoMascota;
         return "Mascota actualizada";
     }
 
-    @DeleteMapping(value = "delete/{DNI}")
+    @DeleteMapping(value = "/deleteMascota/{DNI}")
     public String deleteMascota(@PathVariable String DNI) {
         Mascota deletedMascota = repoMascota.findById(DNI).get();
 

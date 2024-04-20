@@ -3,7 +3,7 @@ package com.ciroiencom.tfg.modelo;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "Cliente")
+@Table(name = "Tener")
 @IdClass(TenerID.class)
 public class Tener {
 

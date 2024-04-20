@@ -19,13 +19,13 @@ public class ControladorTener {
         return repoTener.findAll();
     }
 
-    @PostMapping(value = "/tener/save")
+    @PostMapping(value = "/saveTener")
     public String saveTener(@RequestBody Tener tener) {
         repoTener.save(tener);
         return "Relación Tener guardada";
     }
 
-    @PutMapping(value = "/tener/update/{DNI_Cliente}/{DNI_Mascota}")
+    @PutMapping(value = "/updateTener/{DNI_Cliente}/{DNI_Mascota}")
     public String updateTener(@PathVariable String DNI_Cliente, @PathVariable String DNI_Mascota, @RequestBody Tener tener) {
         Tener updatedTener = repoTener.findById(new TenerID(DNI_Cliente, DNI_Mascota)).get();
 
@@ -37,7 +37,7 @@ public class ControladorTener {
         return "Relación Tener actualizada";
     }
 
-    @DeleteMapping(value = "/tener/delete/{DNI_Cliente}/{DNI_Mascota}")
+    @DeleteMapping(value = "/deleteTener/{DNI_Cliente}/{DNI_Mascota}")
     public String deleteTener(@PathVariable String DNI_Cliente, @PathVariable String DNI_Mascota) {
         Tener deletedTener = repoTener.findById(new TenerID(DNI_Cliente, DNI_Mascota)).get();
 

@@ -24,7 +24,7 @@ private RepoCliente repoCliente;
         return "Cliente guardado";
     }
 
-    @PutMapping(value = "/update/{DNI}")
+    @PutMapping(value = "/updateCliente/{DNI}")
     public String updateCliente(@PathVariable String DNI, @RequestBody Cliente cliente) {
         Cliente updatedCliente = repoCliente.findById(DNI).get();
 
@@ -32,7 +32,6 @@ private RepoCliente repoCliente;
         updatedCliente.setApellidos(cliente.getApellidos());
         updatedCliente.setTelefono(cliente.getTelefono());
         updatedCliente.setCorreo(cliente.getCorreo());
-        updatedCliente.setContraseña(cliente.getContraseña());
         updatedCliente.setResidencia(cliente.getResidencia());
 
         repoCliente.save(updatedCliente);
@@ -40,7 +39,7 @@ private RepoCliente repoCliente;
         return "Cliente actualizado";
     }
 
-    @DeleteMapping(value = "delete/{DNI}")
+    @DeleteMapping(value = "/deleteCliente/{DNI}")
     public String deleteCliente(@PathVariable String DNI) {
         Cliente deletedCliente = repoCliente.findById(DNI).get();
 
