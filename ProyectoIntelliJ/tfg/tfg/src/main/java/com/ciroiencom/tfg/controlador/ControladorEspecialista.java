@@ -35,6 +35,7 @@ private RepoEspecialista repoEspecialista;
         updatedEspecialista.setCorreo(especialista.getCorreo());
         updatedEspecialista.setResidencia(especialista.getResidencia());
         updatedEspecialista.setSueldo(especialista.getSueldo());
+        updatedEspecialista.setMascotasList(especialista.getMascotasList());
 
         repoEspecialista.save(updatedEspecialista);
 

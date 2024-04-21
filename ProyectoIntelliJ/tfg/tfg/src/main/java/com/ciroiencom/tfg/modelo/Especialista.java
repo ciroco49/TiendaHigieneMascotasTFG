@@ -1,5 +1,6 @@
 package com.ciroiencom.tfg.modelo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -7,7 +8,6 @@ import java.util.List;
 @Entity
 @Table(name = "Especialista",
         uniqueConstraints = @UniqueConstraint(name = "correo_unico", columnNames = "correo"))
-
 public class Especialista {
     @Id
     private String DNI;
@@ -24,9 +24,10 @@ public class Especialista {
     @Column
     private Double sueldo;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "DNI_especialista")
+    @JsonIgnore
     private List<Mascota> mascotasList;
 
-    public Especialista(String DNI, String nombre, String apellidos, String telefono, String correo, String residencia, Double sueldo) {
+    public Especialista(String DNI, String nombre, String apellidos, String telefono, String correo, String residencia, Double sueldo, List<Mascota> listaMascotas) {
         this.DNI = DNI;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -34,6 +35,7 @@ public class Especialista {
         this.correo = correo;
         this.residencia = residencia;
         this.sueldo = sueldo;
+        this.mascotasList = listaMascotas;
     }
 
     public Especialista() {
@@ -94,4 +96,8 @@ public class Especialista {
     public void setSueldo(Double sueldo) {
         this.sueldo = sueldo;
     }
+
+    public List<Mascota> getMascotasList() { return mascotasList; }
+
+    public void setMascotasList(List<Mascota> mascotasList) { this.mascotasList = mascotasList; }
 }
