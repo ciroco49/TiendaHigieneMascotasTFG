@@ -6,8 +6,7 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "Especialista",
-        uniqueConstraints = @UniqueConstraint(name = "correo_unico", columnNames = "correo"))
+@Table(name = "Especialista")
 public class Especialista {
     @Id
     private String DNI;

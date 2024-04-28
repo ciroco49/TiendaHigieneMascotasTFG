@@ -1,7 +1,11 @@
 package com.ciroiencom.tfg.modelo;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "Mascota")
@@ -21,7 +25,6 @@ public class Mascota {
     private String raza;
     @JoinColumn(name = "DNI_especialista", referencedColumnName = "DNI")
     @ManyToOne(optional = false)
-    @JsonIgnore
     private Especialista DNI_especialista;
 
     public Mascota(String DNI, String nombre, int edad, char sexo, String especie, String raza, Especialista DNI_especialista) {

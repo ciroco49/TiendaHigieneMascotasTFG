@@ -8,11 +8,15 @@ import jakarta.persistence.*;
 public class Tener {
 
     @Id
-    private String DNI_Cliente;
+    @ManyToOne
+    @JoinColumn(name = "Cliente_DNI", referencedColumnName = "DNI")
+    private Cliente DNI_Cliente;
     @Id
-    private String DNI_Mascota;
+    @ManyToOne
+    @JoinColumn(name = "Mascota_DNI", referencedColumnName = "DNI")
+    private Mascota DNI_Mascota;
 
-    public Tener(String DNI_Cliente, String DNI_Mascota) {
+    public Tener(Cliente DNI_Cliente, Mascota DNI_Mascota) {
         this.DNI_Cliente = DNI_Cliente;
         this.DNI_Mascota = DNI_Mascota;
     }
@@ -20,19 +24,19 @@ public class Tener {
     public Tener() {
     }
 
-    public String getDNI_Cliente() {
+    public Cliente getDNI_Cliente() {
         return DNI_Cliente;
     }
 
-    public void setDNI_Cliente(String DNI_Cliente) {
+    public void setDNI_Cliente(Cliente DNI_Cliente) {
         this.DNI_Cliente = DNI_Cliente;
     }
 
-    public String getDNI_Mascota() {
+    public Mascota getDNI_Mascota() {
         return DNI_Mascota;
     }
 
-    public void setDNI_Mascota(String DNI_Mascota) {
+    public void setDNI_Mascota(Mascota DNI_Mascota) {
         this.DNI_Mascota = DNI_Mascota;
     }
 
