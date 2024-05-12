@@ -6,7 +6,7 @@ CREATE TABLE Cliente (
 	DNI VARCHAR(9) PRIMARY KEY,
     nombre VARCHAR(50),
     apellidos VARCHAR(75),
-    telefono VARCHAR(15),
+    telefono VARCHAR(14),
     correo VARCHAR(125),
     residencia VARCHAR(125));
 
@@ -14,7 +14,7 @@ CREATE TABLE Especialista (
     DNI VARCHAR(9) PRIMARY KEY,
     nombre VARCHAR(50),
     apellidos VARCHAR(75),
-    telefono VARCHAR(15),
+    telefono VARCHAR(14),
     correo VARCHAR(125),
     residencia VARCHAR(125),
     sueldo DECIMAL(10, 2));
