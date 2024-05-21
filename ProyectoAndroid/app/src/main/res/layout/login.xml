@@ -56,7 +56,8 @@
             app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ETLoginContraseña"
-            tools:ignore="MissingConstraints,TouchTargetSizeCheck" />
+            tools:ignore="MissingConstraints,TouchTargetSizeCheck"
+            android:onClick="logear"/>
 
         <TextView
             android:id="@+id/notienecuenta"
@@ -88,8 +89,8 @@
 
         <EditText
             android:id="@+id/ETLoginContraseña"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="411dp"
+            android:layout_height="46dp"
             android:layout_marginTop="20dp"
             android:autoSizeTextType="uniform"
             android:ems="10"
