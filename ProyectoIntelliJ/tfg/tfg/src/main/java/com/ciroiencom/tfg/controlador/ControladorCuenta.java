@@ -5,6 +5,8 @@ import com.ciroiencom.tfg.modelo.Cuenta;
 import com.ciroiencom.tfg.repositorio.RepoCliente;
 import com.ciroiencom.tfg.repositorio.RepoCuenta;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,6 +20,11 @@ public class ControladorCuenta {
     @GetMapping(value = "/cuentas")
     public List<Cuenta> getCuentas() {
         return repoCuenta.findAll();
+    }
+
+    @PostMapping("/login")
+    public Cuenta getCuenta(@RequestBody Cuenta cuenta) {
+        return repoCuenta.findByCorreo(cuenta.getCorreo());
     }
 
     @PostMapping(value = "/saveCuentas")
