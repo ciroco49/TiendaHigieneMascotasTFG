@@ -1,15 +1,19 @@
 package com.example.tiendahigienemascotas.Modelos;
 
+import java.util.Base64;
+
 public class Cuenta {
     private String correo;
     private String contrasenha;
+    private byte[] imagen;
 
     public Cuenta() {
     }
 
-    public Cuenta(String correo, String contrasenha) {
+    public Cuenta(String correo, String contrasenha, byte[] imagen) {
         this.correo = correo;
         this.contrasenha = contrasenha;
+        this.imagen = imagen;
     }
 
     public String getCorreo() {
@@ -28,11 +32,21 @@ public class Cuenta {
         this.contrasenha = contrasenha;
     }
 
+    public byte[] getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(byte[] imagen) {
+        this.imagen = imagen;
+    }
+
     @Override
     public String toString() {
-        return "Cuenta{" +
-                "correo='" + correo + '\'' +
-                ", contrasenha='" + contrasenha + '\'' +
+        String base64Image = imagen != null ? Base64.getEncoder().encodeToString(imagen) : null;
+        return "{" +
+                "\"correo\":\"" + correo + "\"," +
+                "\"contrasenha\":\"" + contrasenha + "\"," +
+                "\"imagen\":\"" + base64Image + "\"" +
                 '}';
     }
 

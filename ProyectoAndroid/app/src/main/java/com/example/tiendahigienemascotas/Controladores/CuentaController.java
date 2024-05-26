@@ -26,7 +26,7 @@ import java.util.Map;
 
 public class CuentaController {
 
-    public static void login(String correo, String contrasenha, Context contexto, LoginCallBack callBack) {
+    public static void login(String correo, Context contexto, LoginCallBack callBack) {
         try {
 
             StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://192.168.68.101:8080/login",
