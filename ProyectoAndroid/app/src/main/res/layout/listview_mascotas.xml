@@ -11,7 +11,7 @@
         android:id="@+id/imageView"
         android:layout_width="75dp"
         android:layout_height="75dp"
-        app:srcCompat="@drawable/logo_cliente_default"
+        app:srcCompat="@drawable/logo_perro_default"
         android:scaleType="centerCrop"/>
 
     <LinearLayout
@@ -22,13 +22,13 @@
         android:layout_marginLeft="10dp">
 
         <TextView
-            android:id="@+id/dniCliente"
+            android:id="@+id/dniMascota"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="DNI"
             android:textStyle="bold"/>
         <TextView
-            android:id="@+id/nombreCliente"
+            android:id="@+id/nombreMascota"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Nombre"
