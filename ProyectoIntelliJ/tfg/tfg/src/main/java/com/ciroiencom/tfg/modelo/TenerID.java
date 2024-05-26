@@ -5,31 +5,31 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.io.Serializable;
 
 public class TenerID implements Serializable {
-    private String DNI_Cliente;
-    private String DNI_Mascota;
+    private String DNICliente;
+    private String DNIMascota;
 
-    public TenerID(String DNI_Cliente, String DNI_Mascota) {
-        this.DNI_Cliente = DNI_Cliente;
-        this.DNI_Mascota = DNI_Mascota;
+    public TenerID(String DNICliente, String DNI_Mascota) {
+        this.DNICliente = DNICliente;
+        this.DNIMascota = DNI_Mascota;
     }
 
     public TenerID() {
     }
 
-    public String getDNI_Cliente() {
-        return DNI_Cliente;
+    public String getDNICliente() {
+        return DNICliente;
     }
 
-    public void setDNI_Cliente(String DNI_Cliente) {
-        this.DNI_Cliente = DNI_Cliente;
+    public void setDNICliente(String DNICliente) {
+        this.DNICliente = DNICliente;
     }
 
     public String getDNI_Mascota() {
-        return DNI_Mascota;
+        return DNIMascota;
     }
 
     public void setDNI_Mascota(String DNI_Mascota) {
-        this.DNI_Mascota = DNI_Mascota;
+        this.DNIMascota = DNI_Mascota;
     }
 
 }

@@ -21,8 +21,8 @@ public class Cliente {
     @Column
     private String residencia;
 
-    public Cliente(String DNI, String nombre, String apellidos, String telefono, String correo, String residencia) {
-        this.DNI = DNI;
+    public Cliente(String ClienteDNI, String nombre, String apellidos, String telefono, String correo, String residencia) {
+        this.DNI = ClienteDNI;
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.telefono = telefono;
@@ -79,5 +79,10 @@ public class Cliente {
 
     public void setResidencia(String residencia) {
         this.residencia = residencia;
+    }
+
+    @Override
+    public String toString() {
+        return "DNI: " + DNI + "||| Nombre: " + nombre;
     }
 }
