@@ -15,12 +15,12 @@ public class EspecialistaDTO {
     private String correo;
     private String residencia;
     private Double sueldo;
-    private List<MascotaDTO> mascotasList;
+    private List<String> dniMascotaList;
 
     public EspecialistaDTO() {
     }
 
-    public EspecialistaDTO(String DNI, String nombre, String apellidos, String telefono, String correo, String residencia, Double sueldo, List<MascotaDTO> mascotasList) {
+    public EspecialistaDTO(String DNI, String nombre, String apellidos, String telefono, String correo, String residencia, Double sueldo, List<String> mascotasList) {
         this.DNI = DNI;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -28,12 +28,12 @@ public class EspecialistaDTO {
         this.correo = correo;
         this.residencia = residencia;
         this.sueldo = sueldo;
-        this.mascotasList = mascotasList;
+        this.dniMascotaList = mascotasList;
     }
 
     public static EspecialistaDTO especialistaAEspecialistaDTO(Especialista especialista) {
         EspecialistaDTO especialistaDTO = new EspecialistaDTO();
-        List<MascotaDTO> mascotaDTOList = new ArrayList<>();
+        List<String> listaDNIMascotas = new ArrayList<>();
             especialistaDTO.setDNI(especialista.getDNI());
             especialistaDTO.setNombre(especialista.getNombre());
             especialistaDTO.setApellidos(especialista.getApellidos());
@@ -42,12 +42,13 @@ public class EspecialistaDTO {
             especialistaDTO.setResidencia(especialista.getResidencia());
             especialistaDTO.setSueldo(especialista.getSueldo());
 
-        //Le añado a la lista de mascotasDTO la lista original de mascotas pero convertidas
+        //Le añado a la lista de DNI de mascotas los DNI de las mascotas que había en la lista original
             for(Mascota masc: especialista.getMascotasList()) {
-                mascotaDTOList.add(MascotaDTO.mascotaAMascotaDTO(masc));
+                listaDNIMascotas.add(masc.getDNI());
             }
 
-            especialistaDTO.setMascotasList(mascotaDTOList);
+            especialistaDTO.setDNIMascotaList(listaDNIMascotas);
+
         return especialistaDTO;
     }
 
@@ -107,11 +108,11 @@ public class EspecialistaDTO {
         this.sueldo = sueldo;
     }
 
-    public List<MascotaDTO> getMascotasList() {
-        return mascotasList;
+    public List<String> getDNIMascotaList() {
+        return dniMascotaList;
     }
 
-    public void setMascotasList(List<MascotaDTO> mascotasList) {
-        this.mascotasList = mascotasList;
+    public void setDNIMascotaList(List<String> mascotasList) {
+        this.dniMascotaList = mascotasList;
     }
 }

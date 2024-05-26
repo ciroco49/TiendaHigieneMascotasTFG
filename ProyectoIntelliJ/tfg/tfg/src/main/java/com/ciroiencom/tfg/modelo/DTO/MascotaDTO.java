@@ -12,12 +12,12 @@ public class MascotaDTO {
     private char sexo;
     private String especie;
     private String raza;
-    private EspecialistaDTO DNI_especialista;
+    private String DNI_especialista;
 
     public MascotaDTO() {
     }
 
-    public MascotaDTO(String DNI, String nombre, int edad, char sexo, String especie, String raza, EspecialistaDTO DNI_especialista) {
+    public MascotaDTO(String DNI, String nombre, int edad, char sexo, String especie, String raza, String DNI_especialista) {
         this.DNI = DNI;
         this.nombre = nombre;
         this.edad = edad;
@@ -35,8 +35,8 @@ public class MascotaDTO {
             mascotaDTO.setSexo(mascota.getSexo());
             mascotaDTO.setEspecie(mascota.getEspecie());
             mascotaDTO.setRaza(mascota.getRaza());
-            //Convierto el especialista que tiene la mascota a especialistaDTO
-            mascotaDTO.setDNI_especialista(EspecialistaDTO.especialistaAEspecialistaDTO(mascota.getDNI_especialista()));
+            //Convierto el especialista que tiene la mascota a el DNI de dicho especialista
+            mascotaDTO.setDNI_especialista(mascota.getDNI_especialista().getDNI());
         return mascotaDTO;
     }
 
@@ -88,11 +88,11 @@ public class MascotaDTO {
         this.raza = raza;
     }
 
-    public EspecialistaDTO getDNI_especialista() {
+    public String getDNI_especialista() {
         return DNI_especialista;
     }
 
-    public void setDNI_especialista(EspecialistaDTO DNI_especialista) {
+    public void setDNI_especialista(String DNI_especialista) {
         this.DNI_especialista = DNI_especialista;
     }
 }
