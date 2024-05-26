@@ -74,6 +74,7 @@
                 android:layout_weight="1"/>
 
             <TextView
+                android:id="@+id/dni_infocliente"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="dni"
@@ -102,6 +103,7 @@
                 android:layout_weight="1"/>
 
             <TextView
+                android:id="@+id/nombre_infocliente"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="nombre"
@@ -130,6 +132,7 @@
                 android:layout_weight="1"/>
 
             <TextView
+                android:id="@+id/apellidos_infocliente"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="apellidos"
@@ -158,6 +161,7 @@
                 android:layout_weight="1"/>
 
             <TextView
+                android:id="@+id/telefono_infocliente"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="teléfono"
@@ -186,6 +190,7 @@
                 android:layout_weight="1"/>
 
             <TextView
+                android:id="@+id/correo_infocliente"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="correo"
@@ -214,6 +219,7 @@
                 android:layout_weight="1"/>
 
             <TextView
+                android:id="@+id/residencia_infocliente"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="residencia"
