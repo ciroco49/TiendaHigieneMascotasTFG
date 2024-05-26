@@ -21,19 +21,21 @@
         android:gravity="center_horizontal">
 
         <Button
-            android:id="@+id/btnOption1"
+            android:id="@+id/btnConsultarEspecialistas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Consultar"
             android:layout_marginRight="30dp"
-            android:background="@drawable/boton_redondeado"/>
+            android:background="@drawable/boton_redondeado"
+            android:onClick="consultarEspecialistas"/>
 
         <Button
-            android:id="@+id/btnOption2"
+            android:id="@+id/btnModificarEspecialistas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Modificar"
-            android:background="@drawable/boton_redondeado"/>
+            android:background="@drawable/boton_redondeado"
+            android:onClick="modificarEspecialistas"/>
 
     </LinearLayout>
 
