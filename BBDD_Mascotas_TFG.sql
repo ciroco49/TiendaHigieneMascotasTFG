@@ -38,7 +38,8 @@ CREATE TABLE tener (
 
 CREATE TABLE Cuentas (
 	correo VARCHAR(125) PRIMARY KEY,
-    contrasenha VARCHAR(50));
+    contrasenha VARCHAR(50),
+    imagen BLOB DEFAULT NULL);
 
 --  _________________________________________________________________
 
