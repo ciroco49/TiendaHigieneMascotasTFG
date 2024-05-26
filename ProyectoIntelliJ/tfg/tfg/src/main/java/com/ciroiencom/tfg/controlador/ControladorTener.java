@@ -1,11 +1,14 @@
 package com.ciroiencom.tfg.controlador;
 
+import com.ciroiencom.tfg.modelo.Cliente;
+import com.ciroiencom.tfg.modelo.DTO.TenerDTO;
 import com.ciroiencom.tfg.modelo.Tener;
 import com.ciroiencom.tfg.modelo.TenerID;
 import com.ciroiencom.tfg.repositorio.RepoTener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -18,6 +21,19 @@ public class ControladorTener {
     public List<Tener> getTener() {
         return repoTener.findAll();
     }
+
+    @PostMapping(value= "/tenerPorDNICliente")
+    public List<TenerDTO> getTenerPorDNICliente(@RequestBody Cliente cliente) {
+        List<Tener> listTener = repoTener.findByDNICliente(cliente);
+        List<TenerDTO> listTenerDTO = new ArrayList<>();
+
+        for(Tener tener: listTener) {
+            listTenerDTO.add(TenerDTO.tenerATenerDTO(tener));
+        }
+
+        return listTenerDTO;
+    }
+
 
     @PostMapping(value = "/saveTener")
     public String saveTener(@RequestBody Tener tener) {

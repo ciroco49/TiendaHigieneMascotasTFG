@@ -38,6 +38,7 @@ public class ControladorCuenta {
         Cuenta updatedCuenta = repoCuenta.findById(correo).get();
 
         updatedCuenta.setContrasenha(Cuenta.getContrasenha());
+        updatedCuenta.setImagen(Cuenta.getImagen());
 
         repoCuenta.save(updatedCuenta);
 

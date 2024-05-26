@@ -18,6 +18,16 @@ private RepoCliente repoCliente;
         return repoCliente.findAll();
     }
 
+    @PostMapping(value="/clientePorDni")
+    public Cliente getClientePorDni(@RequestBody Cliente cliente){
+        return repoCliente.findById(cliente.getDNI()).get();
+    }
+
+    @PostMapping(value="/clientePorNombre")
+    public List<Cliente> getClientePorNombre(@RequestBody Cliente cliente){
+        return repoCliente.findByNombre(cliente.getNombre());
+    }
+
     @PostMapping(value = "/saveClientes")
     public String saveCliente(@RequestBody Cliente cliente) {
         repoCliente.save(cliente);
