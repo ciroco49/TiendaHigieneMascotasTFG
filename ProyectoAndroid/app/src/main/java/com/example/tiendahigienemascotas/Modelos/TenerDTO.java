@@ -1,30 +1,30 @@
 package com.example.tiendahigienemascotas.Modelos;
 
 public class TenerDTO {
-    private Cliente DNICliente;
-    private MascotaDTO DNIMascota;
+    private Cliente cliente;
+    private MascotaDTO mascota;
 
-    public TenerDTO(Cliente DNICliente, MascotaDTO DNIMascota) {
-        this.DNICliente = DNICliente;
-        this.DNIMascota = DNIMascota;
+    public TenerDTO(Cliente cliente, MascotaDTO mascota) {
+        this.cliente = cliente;
+        this.mascota = mascota;
     }
 
     public TenerDTO() {
     }
 
-    public Cliente getDNICliente() {
-        return DNICliente;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setDNICliente(Cliente DNICliente) {
-        this.DNICliente = DNICliente;
+    public void setCliente(Cliente DNICliente) {
+        this.cliente = DNICliente;
     }
 
-    public MascotaDTO getDNIMascota() {
-        return DNIMascota;
+    public MascotaDTO getMascota() {
+        return mascota;
     }
 
-    public void setDNIMascota(MascotaDTO DNIMascota) {
-        this.DNIMascota = DNIMascota;
+    public void setMascota(MascotaDTO DNIMascota) {
+        this.mascota = mascota;
     }
 }

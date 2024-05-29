@@ -1,33 +1,33 @@
 package com.example.tiendahigienemascotas.Modelos;
 
 public class MascotaDTO {
-    private String DNI;
+    private String dni;
     private String nombre;
     private int edad;
     private char sexo;
     private String especie;
     private String raza;
-    private String DNI_especialista;
+    private String dni_especialista;
 
     public MascotaDTO() {
     }
 
-    public MascotaDTO(String DNI, String nombre, int edad, char sexo, String especie, String raza, String DNI_especialista) {
-        this.DNI = DNI;
+    public MascotaDTO(String dni, String nombre, int edad, char sexo, String especie, String raza, String dni_especialista) {
+        this.dni = dni;
         this.nombre = nombre;
         this.edad = edad;
         this.sexo = sexo;
         this.especie = especie;
         this.raza = raza;
-        this.DNI_especialista = DNI_especialista;
+        this.dni_especialista = dni_especialista;
     }
 
     public String getDNI() {
-        return DNI;
+        return dni;
     }
 
     public void setDNI(String DNI) {
-        this.DNI = DNI;
+        this.dni = dni;
     }
 
     public String getNombre() {
@@ -71,11 +71,11 @@ public class MascotaDTO {
     }
 
     public String getDNI_especialista() {
-        return DNI_especialista;
+        return dni_especialista;
     }
 
     public void setDNI_especialista(String DNI_especialista) {
-        this.DNI_especialista = DNI_especialista;
+        this.dni_especialista = DNI_especialista;
     }
 
 
