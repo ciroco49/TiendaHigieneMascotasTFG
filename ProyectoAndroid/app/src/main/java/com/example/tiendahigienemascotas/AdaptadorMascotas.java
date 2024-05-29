@@ -1,6 +1,7 @@
 package com.example.tiendahigienemascotas;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,26 +16,41 @@ import com.example.tiendahigienemascotas.Modelos.MascotaDTO;
 
 import java.util.List;
 
-public class AdaptadorMascotas extends ArrayAdapter<Cliente> {
+public class AdaptadorMascotas extends ArrayAdapter<MascotaDTO> {
     private List<MascotaDTO> array_mascotas;
 
     public AdaptadorMascotas(Context contexto, List<MascotaDTO> array_mascotas) {
-        super(contexto, R.layout.listview_mascotas);
+        super(contexto, R.layout.listview_mascotas, array_mascotas);
         this.array_mascotas = array_mascotas;
+    }
+
+    private static class ViewHolder {
+        TextView DNI;
+        TextView nombre;
     }
 
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        LayoutInflater inflater = LayoutInflater.from(getContext());
-        View vista = inflater.inflate(R.layout.listview_mascotas, parent, false);
+        ViewHolder holder;
+        if (convertView == null) {
+            LayoutInflater inflater = LayoutInflater.from(getContext());
+            convertView = inflater.inflate(R.layout.listview_mascotas, parent, false);
+            holder = new ViewHolder();
+            holder.DNI = convertView.findViewById(R.id.dniMascota);
+            holder.nombre = convertView.findViewById(R.id.nombreMascota);
+            convertView.setTag(holder);
+        } else {
+            holder = (ViewHolder) convertView.getTag();
+        }
 
-        TextView DNI = vista.findViewById(R.id.dniMascota);
-            DNI.setText(array_mascotas.get(position).getDNI());
-        TextView nombre = vista.findViewById(R.id.nombreMascota);
-            nombre.setText(array_mascotas.get(position).getNombre());
+        MascotaDTO mascota = array_mascotas.get(position);
+        holder.DNI.setText(mascota.getDNI());
+        holder.nombre.setText(mascota.getNombre());
 
-        return vista;
+        Log.d("getView DNI_Mascota", mascota.getDNI());
+        Log.d("getView Nombre_Mascota", mascota.getNombre());
 
+        return convertView;
     }
 }
