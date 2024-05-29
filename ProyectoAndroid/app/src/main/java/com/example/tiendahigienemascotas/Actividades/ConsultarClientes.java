@@ -71,8 +71,11 @@ EditText filtroNombre_cliente;
     }
 
     @Override
+    public void onSuccessModCliente(String mensaje) {}
+
+    @Override
     public void onError(String mensaje) {
-        Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, mensaje, Toast.LENGTH_LONG).show();
     }
 
     public void filtrarClientesDNI(View view) {
