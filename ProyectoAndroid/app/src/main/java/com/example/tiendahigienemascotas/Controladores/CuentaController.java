@@ -3,7 +3,9 @@ package com.example.tiendahigienemascotas.Controladores;
 import android.content.Context;
 import android.util.Log;
 import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkResponse;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.example.tiendahigienemascotas.CallBacks.LoginCallBack;
 import com.example.tiendahigienemascotas.Modelos.Cuenta;
@@ -72,6 +74,13 @@ public class CuentaController {
                     headers.put("Content-Type", "application/json; charset=utf-8");
                     return headers;
                 }
+
+                @Override
+                protected Response<String> parseNetworkResponse(NetworkResponse response) {
+                    String parsed = new String(response.data, StandardCharsets.UTF_8);
+                    return Response.success(parsed, HttpHeaderParser.parseCacheHeaders(response));
+                }
+
             };
 
             RequestQueue queue = Volley.newRequestQueue(contexto);
