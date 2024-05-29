@@ -1,6 +1,8 @@
 package com.example.tiendahigienemascotas.Actividades;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,9 +22,9 @@ import com.example.tiendahigienemascotas.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class InfoCliente extends AppCompatActivity implements ClientesCallBack, TenerCallBack {
+public class InfoCliente extends AppCompatActivity implements ClientesCallBack {
 TextView dni, nombre, apellidos, telefono, correo, residencia;
-ListView listView_Mascotas;
+ListView listView_mascotas;
 AdaptadorMascotas adaptador;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +41,7 @@ AdaptadorMascotas adaptador;
         correo = findViewById(R.id.correo_infocliente);
         residencia = findViewById(R.id.residencia_infocliente);
 
-        listView_Mascotas = findViewById(R.id.listView_mascotas);
+        listView_mascotas = findViewById(R.id.listView_mascotas);
 
 
         //Realizo la petición para obtener el cliente con dicho DNI
@@ -61,40 +63,44 @@ AdaptadorMascotas adaptador;
         correo.setText(cliente.getCorreo());
         residencia.setText(cliente.getResidencia());
 
-//        this.cliente.setDNI(cliente.getDNI());
-//        this.cliente.setNombre(cliente.getNombre());
-//        this.cliente.setApellidos(cliente.getApellidos());
-//        this.cliente.setTelefono(cliente.getTelefono());
-//        this.cliente.setCorreo(cliente.getCorreo());
-//        this.cliente.setResidencia(cliente.getResidencia());
-
         //Realizo la petición para obtener las mascotas del cliente
-        TenerController.getTenerPorDNI_Cliente(cliente, this, this);
+        TenerController.getTenerPorDNI_Cliente(cliente, InfoCliente.this, new TenerCallBack() {
+            @Override
+            public void onSuccess(List<TenerDTO> listaTener) {
+                List<MascotaDTO> listMascotas = new ArrayList<>();
+
+                for(TenerDTO tener: listaTener) {
+                    listMascotas.add(tener.getMascota());
+                }
+
+                if(listView_mascotas.getAdapter() == null) {
+                    adaptador = new AdaptadorMascotas(InfoCliente.this, listMascotas);
+                    listView_mascotas.setAdapter(adaptador);
+                    adaptador.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onError(String mensaje) {
+                Toast.makeText(InfoCliente.this, mensaje, Toast.LENGTH_LONG).show();
+            }
+        });
 
     }
-
 
     @Override
-    public void onSuccess(List<TenerDTO> listaTener) {
-        List<MascotaDTO> listMascotas = new ArrayList<>();
-
-        for(TenerDTO tener: listaTener) {
-            listMascotas.add(tener.getDNIMascota());
-        }
-
-        if(listView_Mascotas.getAdapter() == null) {
-            adaptador = new AdaptadorMascotas(this, listMascotas);
-            listView_Mascotas.setAdapter(adaptador);
-            adaptador.notifyDataSetChanged();
-        }
-
-    }
+    public void onSuccessModCliente(String mensaje) {}
 
     @Override
     public void onError(String mensaje) {
-        Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show();
+        Toast.makeText(InfoCliente.this, mensaje, Toast.LENGTH_LONG).show();
     }
 
-
-
+    public void ruedaAjustes(View view) {
+        Intent ajustes = new Intent(this, Ajustes.class);
+        startActivity(ajustes);
+    }
 }
+
+
+
