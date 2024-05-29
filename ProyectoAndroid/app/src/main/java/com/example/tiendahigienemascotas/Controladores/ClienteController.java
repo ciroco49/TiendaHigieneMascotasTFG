@@ -4,10 +4,12 @@ import android.content.Context;
 import android.util.Log;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.tiendahigienemascotas.CallBacks.ClientesCallBack;
@@ -20,6 +22,7 @@ import com.google.gson.reflect.TypeToken;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
@@ -55,8 +58,16 @@ public class ClienteController {
                         Log.e("GetClientes Error", "Error en la petición: " + error.toString());
                         callBack.onError("Error en la petición: " + error.toString());
                     }
+
+                })
+
+            {
+                @Override
+                protected Response<String> parseNetworkResponse(NetworkResponse response) {
+                    String parsed = new String(response.data, StandardCharsets.UTF_8);
+                    return Response.success(parsed, HttpHeaderParser.parseCacheHeaders(response));
                 }
-        );
+            };
 
         queue.add(stringRequest);
     }
@@ -85,7 +96,7 @@ public class ClienteController {
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     Log.e("GetClientePorDNI Error", "Error en la petición: " + error.toString());
-                    callBack.onError(error.toString());
+                    callBack.onError("Error en la petición: " + error.toString());
                 }
             }) {
                 @Override
@@ -106,6 +117,12 @@ public class ClienteController {
                     Map<String, String> headers = new HashMap<>();
                     headers.put("Content-Type", "application/json; charset=utf-8");
                     return headers;
+                }
+
+                @Override
+                protected Response<String> parseNetworkResponse(NetworkResponse response) {
+                    String parsed = new String(response.data, StandardCharsets.UTF_8);
+                    return Response.success(parsed, HttpHeaderParser.parseCacheHeaders(response));
                 }
             };
 
@@ -164,11 +181,82 @@ public class ClienteController {
                 headers.put("Content-Type", "application/json; charset=utf-8");
                 return headers;
             }
+
+            @Override
+            protected Response<String> parseNetworkResponse(NetworkResponse response) {
+                String parsed = new String(response.data, StandardCharsets.UTF_8);
+                return Response.success(parsed, HttpHeaderParser.parseCacheHeaders(response));
+            }
+
         };
 
         RequestQueue queue = Volley.newRequestQueue(contexto);
         queue.add(stringRequest);
 
+    }
+
+    public static void actualizarClientePorDNI(String DNI, Cliente cliente, Context contexto, ClientesCallBack callBack) {
+
+        StringRequest stringRequest = new StringRequest(Request.Method.PUT, "http://192.168.68.101:8080/updateCliente/" + DNI,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        if(response == null || response.isEmpty()) {
+                            Log.e("ActualizarClientePorDNI Error: ", "Respuesta vacía o nula");
+                            callBack.onError("No se ha podido modificar el cliente");
+                        }
+
+                        callBack.onSuccessModCliente(response);
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("ActualizarClientePorDNI Error", "Error en la petición: " + error.toString());
+                        callBack.onError("Error en la petición: " + error.toString());
+                    }
+                }) {
+            @Override
+            public byte[] getBody() throws AuthFailureError {
+                try {
+                    JSONObject jsonBody = new JSONObject();
+                    jsonBody.put("nombre", cliente.getNombre());
+                    jsonBody.put("apellidos", cliente.getApellidos());
+                    jsonBody.put("telefono", cliente.getTelefono());
+                    jsonBody.put("correo", cliente.getCorreo());
+                    jsonBody.put("residencia", cliente.getResidencia());
+                    String requestBody = jsonBody.toString();
+                    return requestBody.getBytes(StandardCharsets.UTF_8);
+                } catch (JSONException e) {
+                    Log.e("Body error: ", e.toString());
+                    return null;
+                }
+            }
+
+            @Override
+            public String getBodyContentType() {
+                return "application/json; charset=utf-8";
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<>();
+                headers.put("Content-Type", "application/json; charset=utf-8");
+                return headers;
+            }
+
+            @Override
+            protected Response<String> parseNetworkResponse(NetworkResponse response) {
+                String parsed = new String(response.data, StandardCharsets.UTF_8);
+                return Response.success(parsed, HttpHeaderParser.parseCacheHeaders(response));
+            }
+
+        };
+
+        // Agregar la petición a la cola de Volley
+        RequestQueue queue = Volley.newRequestQueue(contexto);
+        queue.add(stringRequest);
     }
 
 

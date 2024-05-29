@@ -7,5 +7,6 @@ import java.util.List;
 public interface ClientesCallBack {
     void onSuccessClientes(List<Cliente> array_clientes);
     void onSuccess(Cliente cliente);
+    void onSuccessModCliente(String mensaje);
     void onError(String mensaje);
 }

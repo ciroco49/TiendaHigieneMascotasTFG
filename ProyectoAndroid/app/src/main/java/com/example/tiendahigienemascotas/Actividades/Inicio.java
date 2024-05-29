@@ -52,7 +52,8 @@ public class Inicio extends AppCompatActivity {
         }
 
         public void modificarClientes(View view) {
-            //Intent para modificar
+            Intent modificarClientes = new Intent(this, ModificarCliente.class);
+            startActivity(modificarClientes);
         }
 
         public void popUpClientes(View view) {
