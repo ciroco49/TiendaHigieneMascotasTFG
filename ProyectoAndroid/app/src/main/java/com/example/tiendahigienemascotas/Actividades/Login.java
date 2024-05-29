@@ -38,7 +38,48 @@ public class Login extends AppCompatActivity implements LoginCallBack {
     }
 
     public void registrar(View view) {
+        // Compruebo que me proporcionen todos los campos y que el correo cumpla el formato regex
+        if (ETcorreo.getText().toString().isEmpty() || ETContraseña.getText().toString().isEmpty()) {
+            Toast.makeText(this, "Es obligatorio proporcionar un correo y contraseña", Toast.LENGTH_LONG).show();
+        } else if (!Regex.validarCorreo(ETcorreo.getText().toString())) {
+            Toast.makeText(this, "El correo proporcionado no cumple el formato requerido", Toast.LENGTH_LONG).show();
+        } else {
+            //Compruebo que el correo no exista ya en la BD porque los correos son únicos para cada cuenta
+            CuentaController.login(ETcorreo.getText().toString(), this, new LoginCallBack() {
+                @Override
+                public void onSuccess(Cuenta cuenta) {
+                    //Si entra al onSuccess es porque la cuenta ya existe en la BD y aviso al usuario
+                    Toast.makeText(Login.this, "Ya existe una cuenta con el correo proporcionado", Toast.LENGTH_LONG).show();
+                }
 
+                @Override
+                public void onError(String mensaje) {
+                    //Si entra al onError es porque la cuenta aún no existe en la BD y la registro
+                    CuentaController.registrar(ETcorreo.getText().toString(), ETContraseña.getText().toString(),
+                            Login.this, new LoginCallBack() {
+                                @Override
+                                public void onSuccess(Cuenta cuenta) {}
+
+                                @Override
+                                public void onSuccessRegistro(String mensaje) {
+                                    //Muestro un mensaje de cuenta registrada
+                                    Toast.makeText(Login.this, mensaje, Toast.LENGTH_LONG).show();
+                                }
+
+                                @Override
+                                public void onError(String mensaje) {
+                                    //Muestro un mensaje de que no se ha podido registrar la cuenta
+                                    Toast.makeText(Login.this, mensaje, Toast.LENGTH_LONG).show();
+                                }
+                            });
+                }
+
+                @Override
+                public void onSuccessRegistro(String mensaje) {}
+
+            });
+            CuentaController.login(ETcorreo.getText().toString(), this, this);
+        }
     }
 
     public void logear(View view) {
@@ -68,6 +109,9 @@ public class Login extends AppCompatActivity implements LoginCallBack {
             Toast.makeText(this, "La contraseña introducida no es correcta", Toast.LENGTH_LONG).show();
         }
     }
+
+    @Override
+    public void onSuccessRegistro(String mensaje) {}
 
     @Override
     public void onError(String mensaje) {

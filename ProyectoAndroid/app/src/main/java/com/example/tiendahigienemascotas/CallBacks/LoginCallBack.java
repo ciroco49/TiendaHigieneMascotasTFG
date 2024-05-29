@@ -4,5 +4,6 @@ import com.example.tiendahigienemascotas.Modelos.Cuenta;
 
 public interface LoginCallBack {
     void onSuccess(Cuenta cuenta);
+    void onSuccessRegistro(String mensaje);
     void onError(String mensaje);
 }

@@ -8,6 +8,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.example.tiendahigienemascotas.CallBacks.LoginCallBack;
+import com.example.tiendahigienemascotas.Modelos.Cliente;
 import com.example.tiendahigienemascotas.Modelos.Cuenta;
 import com.google.gson.Gson;
 import com.android.volley.RequestQueue;
@@ -15,14 +16,17 @@ import com.android.volley.toolbox.Volley;
 import com.android.volley.Response;
 import com.android.volley.Request;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -90,4 +94,59 @@ public class CuentaController {
             Log.d("Error login: ", ex.getMessage());
         }
     }
+
+    public static void registrar(String correo, String contrasenha, Context contexto, LoginCallBack callBack) {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST,"http://192.168.68.101:8080/saveCuentas",
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                            if(response == null || response.isEmpty()) {
+                                Log.e("Registrar Error: ", "Respuesta vacía o nula");
+                                callBack.onError("No se ha podido registrar la cuenta");
+                            }
+
+                            callBack.onSuccessRegistro(response);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("Registrar Error", "Error en la petición: " + error.toString());
+                        callBack.onError("Error en la petición: " + error.toString());
+                    }
+                })  {
+            @Override
+            public byte[] getBody() throws AuthFailureError {
+                try {
+                    JSONObject jsonBody = new JSONObject();
+                    jsonBody.put("correo", correo);
+                    jsonBody.put("contrasenha", contrasenha);
+                    String requestBody = jsonBody.toString();
+                    return requestBody.getBytes(StandardCharsets.UTF_8);
+                } catch (JSONException e) {
+                    Log.e("Body error: ", e.toString());
+                    return null;
+                }
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<>();
+                headers.put("Content-Type", "application/json; charset=utf-8");
+                return headers;
+            }
+
+            @Override
+            protected Response<String> parseNetworkResponse(NetworkResponse response) {
+                String parsed = new String(response.data, StandardCharsets.UTF_8);
+                return Response.success(parsed, HttpHeaderParser.parseCacheHeaders(response));
+            }
+
+        };
+
+        RequestQueue queue = Volley.newRequestQueue(contexto);
+        queue.add(stringRequest);
+
+    }
+
 }

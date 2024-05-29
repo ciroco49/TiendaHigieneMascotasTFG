@@ -30,7 +30,7 @@ public class ControladorCuenta {
     @PostMapping(value = "/saveCuentas")
     public String saveCuenta(@RequestBody Cuenta cuenta) {
         repoCuenta.save(cuenta);
-        return "Cuenta guardada";
+        return "Cuenta registrada";
     }
 
     @PutMapping(value = "/updateCuenta/{correo}")
