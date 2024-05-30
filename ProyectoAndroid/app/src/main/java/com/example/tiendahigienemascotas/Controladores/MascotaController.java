@@ -256,5 +256,70 @@ public class MascotaController {
 
     }
 
+    public static void actualizarMascotaPorDNI(String DNI, MascotaDTO mascotaDTOActualizada, Context contexto, MascotasCallBack callBack) {
+
+        StringRequest stringRequest = new StringRequest(Request.Method.PUT, "http://192.168.68.101:8080/updateMascota/" + DNI,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        if(response == null || response.isEmpty()) {
+                            Log.e("ActualizarMascotaPorDNI Error: ", "Respuesta vacía o nula");
+                            callBack.onError("No se ha podido modificar la mascota");
+                        }
+
+                        callBack.onSuccessModMascota(response);
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("ActualizarMascotaPorDNI Error", "Error en la petición: " + error.toString());
+                        callBack.onError("Error en la petición: " + error.toString());
+                    }
+                }) {
+            @Override
+            public byte[] getBody() throws AuthFailureError {
+                try {
+                    JSONObject jsonBody = new JSONObject();
+                    jsonBody.put("nombre", mascotaDTOActualizada.getNombre());
+                    jsonBody.put("edad", mascotaDTOActualizada.getEdad());
+                    jsonBody.put("sexo", mascotaDTOActualizada.getSexo());
+                    jsonBody.put("especie", mascotaDTOActualizada.getEspecie());
+                    jsonBody.put("raza", mascotaDTOActualizada.getRaza());
+                    jsonBody.put("dni_especialista", mascotaDTOActualizada.getDNI_especialista());
+                    String requestBody = jsonBody.toString();
+                    return requestBody.getBytes(StandardCharsets.UTF_8);
+                } catch (JSONException e) {
+                    Log.e("Body error: ", e.toString());
+                    return null;
+                }
+            }
+
+            @Override
+            public String getBodyContentType() {
+                return "application/json; charset=utf-8";
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<>();
+                headers.put("Content-Type", "application/json; charset=utf-8");
+                return headers;
+            }
+
+            @Override
+            protected Response<String> parseNetworkResponse(NetworkResponse response) {
+                String parsed = new String(response.data, StandardCharsets.UTF_8);
+                return Response.success(parsed, HttpHeaderParser.parseCacheHeaders(response));
+            }
+
+        };
+
+        // Agregar la petición a la cola de Volley
+        RequestQueue queue = Volley.newRequestQueue(contexto);
+        queue.add(stringRequest);
+    }
+
 
 }

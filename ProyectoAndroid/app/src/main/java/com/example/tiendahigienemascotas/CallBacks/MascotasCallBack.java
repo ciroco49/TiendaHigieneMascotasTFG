@@ -7,5 +7,6 @@ import java.util.List;
 public interface MascotasCallBack {
     void onSuccessMascotas(List<MascotaDTO> listaMascotasDTO);
     void onSuccessMascota(MascotaDTO mascotaDTO);
+    void onSuccessModMascota(String mensaje);
     void onError(String mensaje);
 }

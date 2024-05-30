@@ -74,7 +74,8 @@ public class Inicio extends AppCompatActivity {
         }
 
         public void modificarMascotas(View view) {
-            //Intent para modificar
+            Intent modificarMascotas = new Intent(this, ModificarMascota.class);
+            startActivity(modificarMascotas);
         }
 
         public void popUpMascotas(View view) {
