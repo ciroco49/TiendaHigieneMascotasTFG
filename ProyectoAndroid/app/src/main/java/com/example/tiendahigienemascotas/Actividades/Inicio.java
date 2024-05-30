@@ -14,6 +14,9 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.tiendahigienemascotas.CallBacks.LoginCallBack;
+import com.example.tiendahigienemascotas.Controladores.CuentaController;
+import com.example.tiendahigienemascotas.Modelos.Cuenta;
 import com.example.tiendahigienemascotas.PreferenciasCompartidas;
 import com.example.tiendahigienemascotas.R;
 
@@ -26,6 +29,9 @@ public class Inicio extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.inicio);
+
+        //Compruebo si hay una cuenta loggeada y si existe. Si no se cumple alguna llevo al usuario al Login
+        new Login().comprobarCuentaLoggeada(this);
 
         //Creo el popup de clientes
         popup_Clientes = new Dialog(Inicio.this);
@@ -45,6 +51,8 @@ public class Inicio extends AppCompatActivity {
         popup_Especialistas.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         btnConsultarEspecialistas = popup_Especialistas.findViewById(R.id.btnConsultarEspecialistas);
         btnModificarEspecialistas = popup_Especialistas.findViewById(R.id.btnModificarEspecialistas);
+
+
     }
         public void consultarClientes(View view) {
             Intent clientes = new Intent(this, ConsultarClientes.class);

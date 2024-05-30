@@ -1,5 +1,6 @@
 package com.example.tiendahigienemascotas.Actividades;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -26,14 +27,15 @@ public class Login extends AppCompatActivity implements LoginCallBack {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
 
+        //Compruebo si hay una cuenta loggeada y si existe. Si se cumplen ambas, loggeo al usuario
+        CuentaController.existeCuentaLoggeada(this, this);
+
         ETcorreo = findViewById(R.id.ETLoginCorreo);
         ETContraseña = findViewById(R.id.ETLoginContraseña);
 
-        //Si ya hay un logeo activo en la cuenta
-        if(PreferenciasCompartidas.obtenerCorreoDesencriptado(this) != null) {
-            Intent inicio = new Intent(this, Inicio.class);
-            startActivity(inicio);
-        }
+        //Limpio los 2 campos
+        ETcorreo.setText("");
+        ETContraseña.setText("");
 
     }
 
@@ -67,6 +69,9 @@ public class Login extends AppCompatActivity implements LoginCallBack {
                                 }
 
                                 @Override
+                                public void existeCuentaLoggeada(boolean existe) {}
+
+                                @Override
                                 public void onError(String mensaje) {
                                     //Muestro un mensaje de que no se ha podido registrar la cuenta
                                     Toast.makeText(Login.this, mensaje, Toast.LENGTH_LONG).show();
@@ -76,6 +81,9 @@ public class Login extends AppCompatActivity implements LoginCallBack {
 
                 @Override
                 public void onSuccessRegistro(String mensaje) {}
+
+                @Override
+                public void existeCuentaLoggeada(boolean existe) {}
 
             });
             CuentaController.login(ETcorreo.getText().toString(), this, this);
@@ -114,8 +122,37 @@ public class Login extends AppCompatActivity implements LoginCallBack {
     public void onSuccessRegistro(String mensaje) {}
 
     @Override
+    public void existeCuentaLoggeada(boolean existe) {
+        if(existe) {
+            Intent inicio = new Intent(this, Inicio.class);
+            startActivity(inicio);
+        }
+    }
+
+    @Override
     public void onError(String mensaje) {
         Toast.makeText(this, mensaje, Toast.LENGTH_LONG).show();
+    }
+
+    public void comprobarCuentaLoggeada(Context contexto) {
+        CuentaController.existeCuentaLoggeada(contexto, new LoginCallBack() {
+            @Override
+            public void existeCuentaLoggeada(boolean existe) {
+                if(!existe) {
+                    PreferenciasCompartidas.limpiarPreferenciasCompartidas(contexto);
+                    Intent login = new Intent(contexto, Login.class);
+                    startActivity(login);
+                }
+            }
+            @Override
+            public void onSuccess(Cuenta cuenta) {}
+
+            @Override
+            public void onSuccessRegistro(String mensaje) {}
+
+            @Override
+            public void onError(String mensaje) {}
+        });
     }
 
 }

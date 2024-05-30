@@ -11,12 +11,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.tiendahigienemascotas.AdaptadorMascotas;
 import com.example.tiendahigienemascotas.CallBacks.ClientesCallBack;
+import com.example.tiendahigienemascotas.CallBacks.LoginCallBack;
 import com.example.tiendahigienemascotas.CallBacks.TenerCallBack;
 import com.example.tiendahigienemascotas.Controladores.ClienteController;
+import com.example.tiendahigienemascotas.Controladores.CuentaController;
 import com.example.tiendahigienemascotas.Controladores.TenerController;
 import com.example.tiendahigienemascotas.Modelos.Cliente;
+import com.example.tiendahigienemascotas.Modelos.Cuenta;
 import com.example.tiendahigienemascotas.Modelos.MascotaDTO;
 import com.example.tiendahigienemascotas.Modelos.TenerDTO;
+import com.example.tiendahigienemascotas.PreferenciasCompartidas;
 import com.example.tiendahigienemascotas.R;
 
 import java.util.ArrayList;
@@ -30,6 +34,9 @@ AdaptadorMascotas adaptador;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.info_clientes);
+
+        //Compruebo si hay una cuenta loggeada y si existe. Si no se cumple alguna llevo al usuario al Login
+        new Login().comprobarCuentaLoggeada(this);
 
         String DNI = getIntent().getStringExtra("DNI");
 
@@ -46,6 +53,7 @@ AdaptadorMascotas adaptador;
 
         //Realizo la petición para obtener el cliente con dicho DNI
         ClienteController.getClientePorDNI(DNI, this, this);
+
 
     }
 
@@ -100,6 +108,15 @@ AdaptadorMascotas adaptador;
         Intent ajustes = new Intent(this, Ajustes.class);
         startActivity(ajustes);
     }
+
+    @Override
+    public void onBackPressed() {
+        //Compruebo si hay una cuenta loggeada y si existe. Si no se cumple alguna llevo al usuario al Login
+        new Login().comprobarCuentaLoggeada(this);
+
+        super.onBackPressed();
+    }
+
 }
 
 

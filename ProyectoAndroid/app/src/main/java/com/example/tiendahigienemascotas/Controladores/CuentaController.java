@@ -1,15 +1,21 @@
 package com.example.tiendahigienemascotas.Controladores;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
+import android.widget.Toast;
+
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
+import com.example.tiendahigienemascotas.Actividades.Inicio;
+import com.example.tiendahigienemascotas.Actividades.Login;
 import com.example.tiendahigienemascotas.CallBacks.LoginCallBack;
 import com.example.tiendahigienemascotas.Modelos.Cliente;
 import com.example.tiendahigienemascotas.Modelos.Cuenta;
+import com.example.tiendahigienemascotas.PreferenciasCompartidas;
 import com.google.gson.Gson;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
@@ -146,6 +152,37 @@ public class CuentaController {
 
         RequestQueue queue = Volley.newRequestQueue(contexto);
         queue.add(stringRequest);
+
+    }
+
+    public static void existeCuentaLoggeada(Context contexto, LoginCallBack callBack) {
+
+        String correoLoggeado = PreferenciasCompartidas.obtenerCorreoDesencriptado(contexto);
+
+        if(correoLoggeado != null) {
+            login(correoLoggeado, contexto, new LoginCallBack() {
+                @Override
+                public void onSuccess(Cuenta cuenta) {
+                    //Si existe la cuenta, devuelvo true al callBack pasado como parámetro desde la Activity
+                    callBack.existeCuentaLoggeada(true);
+                }
+
+                @Override
+                public void onSuccessRegistro(String mensaje) {}
+
+                @Override
+                public void existeCuentaLoggeada(boolean existe) {}
+
+                @Override
+                public void onError(String mensaje) {
+                    //Si la cuenta no existe, devuelvo false al callBack pasado como parámetro desde la Activity
+                    PreferenciasCompartidas.limpiarPreferenciasCompartidas(contexto);
+                    callBack.existeCuentaLoggeada(false);
+                }
+            });
+        } else {
+            callBack.existeCuentaLoggeada(false);
+        }
 
     }
 

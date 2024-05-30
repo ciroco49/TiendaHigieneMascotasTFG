@@ -12,8 +12,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.tiendahigienemascotas.AdaptadorClientes;
 import com.example.tiendahigienemascotas.CallBacks.ClientesCallBack;
+import com.example.tiendahigienemascotas.CallBacks.LoginCallBack;
 import com.example.tiendahigienemascotas.Controladores.ClienteController;
+import com.example.tiendahigienemascotas.Controladores.CuentaController;
 import com.example.tiendahigienemascotas.Modelos.Cliente;
+import com.example.tiendahigienemascotas.Modelos.Cuenta;
+import com.example.tiendahigienemascotas.PreferenciasCompartidas;
 import com.example.tiendahigienemascotas.R;
 import com.example.tiendahigienemascotas.Regex;
 
@@ -30,6 +34,9 @@ EditText filtroNombre_cliente;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.consultar_clientes);
+
+        //Compruebo si hay una cuenta loggeada y si existe. Si no se cumple alguna llevo al usuario al Login
+        new Login().comprobarCuentaLoggeada(this);
 
         listview_clientes = findViewById(R.id.listView_consultarClientes);
         filtroDNI_cliente = findViewById(R.id.filtroDNICliente);
@@ -105,4 +112,14 @@ EditText filtroNombre_cliente;
         Intent ajustes = new Intent(this, Ajustes.class);
         startActivity(ajustes);
     }
+
+    @Override
+    public void onBackPressed() {
+        //Compruebo si hay una cuenta loggeada y si existe. Si no se cumple alguna llevo al usuario al Login
+        new Login().comprobarCuentaLoggeada(this);
+
+        //Si no se realizó el intent porque sí existe la cuenta loggeada
+        super.onBackPressed();
+    }
+
 }

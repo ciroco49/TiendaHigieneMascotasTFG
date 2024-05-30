@@ -1,5 +1,6 @@
 package com.example.tiendahigienemascotas.Actividades;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -17,8 +18,12 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.tiendahigienemascotas.AdaptadorClientes;
 import com.example.tiendahigienemascotas.AdaptadorMascotas;
 import com.example.tiendahigienemascotas.CallBacks.ClientesCallBack;
+import com.example.tiendahigienemascotas.CallBacks.LoginCallBack;
 import com.example.tiendahigienemascotas.Controladores.ClienteController;
+import com.example.tiendahigienemascotas.Controladores.CuentaController;
 import com.example.tiendahigienemascotas.Modelos.Cliente;
+import com.example.tiendahigienemascotas.Modelos.Cuenta;
+import com.example.tiendahigienemascotas.PreferenciasCompartidas;
 import com.example.tiendahigienemascotas.R;
 
 import java.util.List;
@@ -33,6 +38,9 @@ public class ModificarCliente extends AppCompatActivity implements ClientesCallB
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.modificar_clientes);
+
+        //Compruebo si hay una cuenta loggeada y si existe. Si no se cumple alguna llevo al usuario al Login
+        new Login().comprobarCuentaLoggeada(this);
 
         //Inicializo los elementos
         listview_clientes = findViewById(R.id.listView);
@@ -105,4 +113,13 @@ public class ModificarCliente extends AppCompatActivity implements ClientesCallB
         ClienteController.actualizarClientePorDNI(DNI_seleccionado, clienteActualizado, this, this);
 
     }
+
+    @Override
+    public void onBackPressed() {
+        //Compruebo si hay una cuenta loggeada y si existe. Si no se cumple alguna llevo al usuario al Login
+        new Login().comprobarCuentaLoggeada(this);
+
+        super.onBackPressed();
+    }
+
 }
