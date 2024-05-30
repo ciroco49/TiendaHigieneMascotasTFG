@@ -1,5 +1,7 @@
 package com.ciroiencom.tfg.controlador;
 
+import com.ciroiencom.tfg.modelo.Cliente;
+import com.ciroiencom.tfg.modelo.DTO.MascotaDTO;
 import com.ciroiencom.tfg.modelo.Especialista;
 import com.ciroiencom.tfg.modelo.Mascota;
 import com.ciroiencom.tfg.repositorio.RepoEspecialista;
@@ -7,6 +9,7 @@ import com.ciroiencom.tfg.repositorio.RepoMascota;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -16,8 +19,38 @@ public class ControladorMascota {
 private RepoMascota repoMascota;
 
     @GetMapping(value = "/mascotas")
-    public List<Mascota> getEspecialistas() {
-        return repoMascota.findAll();
+    public List<MascotaDTO> getEspecialistas() {
+        List<Mascota> listMascotas = repoMascota.findAll();
+
+        List <MascotaDTO> listMascotasDTO = new ArrayList<>();
+        //Cada mascota del repositorio la convierta a MascotaDTO
+        for(Mascota masc: listMascotas) {
+            listMascotasDTO.add(MascotaDTO.mascotaAMascotaDTO(masc));
+        }
+
+        return listMascotasDTO;
+    }
+
+    @PostMapping(value="/mascotaPorDni")
+    public MascotaDTO getMascotaPorDni(@RequestBody MascotaDTO mascotaDTO){
+        Mascota masc = repoMascota.findByDNI(mascotaDTO.getDNI());
+
+        MascotaDTO mascDTO = MascotaDTO.mascotaAMascotaDTO(masc);
+
+        return mascDTO;
+    }
+
+    @PostMapping(value="/mascotaPorNombre")
+    public List<MascotaDTO> getMascotaPorNombre(@RequestBody MascotaDTO mascotaDTO){
+        List<Mascota> listaMascotas = repoMascota.findByNombre(mascotaDTO.getNombre());
+
+        List<MascotaDTO> listaMascotasDTO = new ArrayList<>();
+        //Cada mascota obtenida la convierta a MascotaDTO
+        for(Mascota masc: listaMascotas) {
+            listaMascotasDTO.add(MascotaDTO.mascotaAMascotaDTO(masc));
+        }
+
+        return listaMascotasDTO;
     }
 
     @PostMapping(value = "/saveMascotas")

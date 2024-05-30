@@ -20,7 +20,7 @@ private RepoCliente repoCliente;
 
     @PostMapping(value="/clientePorDni")
     public Cliente getClientePorDni(@RequestBody Cliente cliente){
-        return repoCliente.findById(cliente.getDNI()).get();
+        return repoCliente.findByDNI(cliente.getDNI());
     }
 
     @PostMapping(value="/clientePorNombre")
