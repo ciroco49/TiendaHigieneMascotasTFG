@@ -35,9 +35,12 @@ private RepoMascota repoMascota;
     public MascotaDTO getMascotaPorDni(@RequestBody MascotaDTO mascotaDTO){
         Mascota masc = repoMascota.findByDNI(mascotaDTO.getDNI());
 
-        MascotaDTO mascDTO = MascotaDTO.mascotaAMascotaDTO(masc);
+        if(masc != null) {
+            MascotaDTO mascDTO = MascotaDTO.mascotaAMascotaDTO(masc);
+            return mascDTO;
+        }
 
-        return mascDTO;
+        return null;
     }
 
     @PostMapping(value="/mascotaPorNombre")
