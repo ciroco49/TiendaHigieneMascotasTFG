@@ -10,8 +10,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface RepoMascota extends JpaRepository<Mascota, String> {
-    List<Mascota> findByNombre(String nombre);
     Mascota findByDNI(String DNI);
-
     List<Mascota> findByEspecie(String especie);
+    List<Mascota> findByRaza(String raza);
 }

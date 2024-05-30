@@ -55,7 +55,7 @@
 
 
         <ListView
-            android:id="@+id/listView_mascotas"
+            android:id="@+id/listView_consultarMascotas"
             android:layout_width="0dp"
             android:layout_height="225dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -71,7 +71,7 @@
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/listView_mascotas">
+            app:layout_constraintTop_toBottomOf="@id/listView_consultarMascotas">
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -81,6 +81,7 @@
                 android:layout_weight="1">
 
                 <EditText
+                    android:id="@+id/filtroDNIMascota"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Introduzca un DNI" />
@@ -88,7 +89,8 @@
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Filtrar por DNI" />
+                    android:text="Filtrar por DNI"
+                    android:onClick="filtrarMascotasDNI"/>
 
             </LinearLayout>
 
@@ -101,6 +103,7 @@
                 android:layout_marginRight="10dp">
 
                 <EditText
+                    android:id="@+id/filtroEspecieMascota"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Introduzca una especie" />
@@ -108,7 +111,8 @@
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Filtrar por especie" />
+                    android:text="Filtrar por especie"
+                    android:onClick="filtrarMascotasEspecie"/>
 
             </LinearLayout>
 
@@ -126,6 +130,7 @@
             android:layout_marginTop="15dp">
 
             <EditText
+                android:id="@+id/filtroRazaMascota"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Introduzca una raza" />
@@ -133,7 +138,8 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Filtrar por raza" />
+                android:text="Filtrar por raza"
+                android:onClick="filtrarMascotasRaza"/>
 
         </LinearLayout>
 

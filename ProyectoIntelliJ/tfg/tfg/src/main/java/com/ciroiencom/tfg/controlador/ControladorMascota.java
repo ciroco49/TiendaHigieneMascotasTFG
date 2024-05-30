@@ -59,6 +59,22 @@ private RepoMascota repoMascota;
         return null;
     }
 
+    @PostMapping(value="/mascotaPorRaza")
+    public List<MascotaDTO> getMascotaPorRaza(@RequestBody MascotaDTO mascotaDTO){
+        List<Mascota> listaMascotas = repoMascota.findByRaza(mascotaDTO.getRaza());
+
+        if(!listaMascotas.isEmpty()) {
+            List<MascotaDTO> listaMascotasDTO = new ArrayList<>();
+            //Cada mascota obtenida la convierta a MascotaDTO
+            for(Mascota masc: listaMascotas) {
+                listaMascotasDTO.add(MascotaDTO.mascotaAMascotaDTO(masc));
+            }
+            return listaMascotasDTO;
+        }
+
+        return null;
+    }
+
     @PostMapping(value = "/saveMascotas")
     public String saveMascotas(@RequestBody Mascota mascota) {
         repoMascota.save(mascota);

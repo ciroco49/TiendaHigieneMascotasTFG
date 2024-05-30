@@ -69,7 +69,8 @@ public class Inicio extends AppCompatActivity {
         }
 
         public void consultarMascotas(View view) {
-            //Intent para consultar
+            Intent mascotas = new Intent(this, ConsultarMascotas.class);
+            startActivity(mascotas);
         }
 
         public void modificarMascotas(View view) {
