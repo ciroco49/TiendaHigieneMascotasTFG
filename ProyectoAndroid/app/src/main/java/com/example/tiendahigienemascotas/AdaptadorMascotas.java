@@ -53,4 +53,19 @@ public class AdaptadorMascotas extends ArrayAdapter<MascotaDTO> {
 
         return convertView;
     }
+
+    //Vacío el listview de mascotas para rellenarlo de nuevo con las que proporciono
+    public void actualizarMascotas(List<MascotaDTO> nuevasMascotasDTO) {
+        array_mascotas.clear();
+        array_mascotas.addAll(nuevasMascotasDTO);
+        notifyDataSetChanged();
+    }
+
+    //Vacío el listview de mascotas para rellenarlo de nuevo con la que proporciono
+    public void actualizarMascota(MascotaDTO mascotaDTO) {
+        array_mascotas.clear();
+        array_mascotas.add(mascotaDTO);
+        notifyDataSetChanged();
+    }
+
 }

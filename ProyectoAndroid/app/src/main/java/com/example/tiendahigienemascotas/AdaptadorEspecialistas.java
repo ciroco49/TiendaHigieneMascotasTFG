@@ -37,4 +37,19 @@ public class AdaptadorEspecialistas extends ArrayAdapter<Cliente> {
         return vista;
 
     }
+
+    //Vacío el listview de especialistas para rellenarlo de nuevo con los que proporciono
+    public void actualizarEspecialistas(List<EspecialistaDTO> nuevosEspecialistasDTO) {
+        array_especialistas.clear();
+        array_especialistas.addAll(nuevosEspecialistasDTO);
+        notifyDataSetChanged();
+    }
+
+    //Vacío el listview de especialistas para rellenarlo de nuevo con el que proporciono
+    public void actualizarEspecialista(EspecialistaDTO especialistaDTO) {
+        array_especialistas.clear();
+        array_especialistas.add(especialistaDTO);
+        notifyDataSetChanged();
+    }
+
 }
