@@ -1,7 +1,6 @@
 package com.example.tiendahigienemascotas;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,10 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.example.tiendahigienemascotas.Modelos.Cliente;
-import com.example.tiendahigienemascotas.Modelos.MascotaDTO;
-
 import java.util.List;
+import com.example.tiendahigienemascotas.Modelos.MascotaDTO;
 
 public class AdaptadorMascotas extends ArrayAdapter<MascotaDTO> {
     private List<MascotaDTO> array_mascotas;
@@ -24,32 +21,18 @@ public class AdaptadorMascotas extends ArrayAdapter<MascotaDTO> {
         this.array_mascotas = array_mascotas;
     }
 
-    private static class ViewHolder {
-        TextView DNI;
-        TextView nombre;
-    }
-
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        ViewHolder holder;
-        if (convertView == null) {
-            LayoutInflater inflater = LayoutInflater.from(getContext());
-            convertView = inflater.inflate(R.layout.listview_mascotas, parent, false);
-            holder = new ViewHolder();
-            holder.DNI = convertView.findViewById(R.id.dniMascota);
-            holder.nombre = convertView.findViewById(R.id.nombreMascota);
-            convertView.setTag(holder);
-        } else {
-            holder = (ViewHolder) convertView.getTag();
-        }
+        LayoutInflater inflater = LayoutInflater.from(getContext());
+        convertView = inflater.inflate(R.layout.listview_mascotas, parent, false);
 
         MascotaDTO mascota = array_mascotas.get(position);
-        holder.DNI.setText(mascota.getDNI());
-        holder.nombre.setText(mascota.getNombre());
 
-        Log.d("getView DNI_Mascota", mascota.getDNI());
-        Log.d("getView Nombre_Mascota", mascota.getNombre());
+        TextView dni = convertView.findViewById(R.id.dniMascota);
+            dni.setText(mascota.getDNI());
+        TextView nombre = convertView.findViewById(R.id.nombreMascota);
+            nombre.setText(mascota.getNombre());
 
         return convertView;
     }
@@ -67,5 +50,7 @@ public class AdaptadorMascotas extends ArrayAdapter<MascotaDTO> {
         array_mascotas.add(mascotaDTO);
         notifyDataSetChanged();
     }
+
+
 
 }
