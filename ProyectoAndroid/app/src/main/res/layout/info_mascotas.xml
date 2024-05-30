@@ -74,6 +74,7 @@
                 android:layout_weight="1"/>
 
             <TextView
+                android:id="@+id/dni_infomascotas"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="dni"
@@ -102,6 +103,7 @@
                 android:layout_weight="1"/>
 
             <TextView
+                android:id="@+id/nombre_infomascotas"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="nombre"
@@ -130,6 +132,7 @@
                 android:layout_weight="1"/>
 
             <TextView
+                android:id="@+id/edad_infomascotas"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="edad"
@@ -158,6 +161,7 @@
                 android:layout_weight="1"/>
 
             <TextView
+                android:id="@+id/sexo_infomascotas"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="sexo"
@@ -186,6 +190,7 @@
                 android:layout_weight="1"/>
 
             <TextView
+                android:id="@+id/especie_infomascotas"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="especie"
@@ -214,6 +219,7 @@
                 android:layout_weight="1"/>
 
             <TextView
+                android:id="@+id/raza_infomascotas"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="raza"
@@ -242,6 +248,7 @@
                 android:layout_weight="1"/>
 
             <TextView
+                android:id="@+id/dniespecialista_infomascotas"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="dni"

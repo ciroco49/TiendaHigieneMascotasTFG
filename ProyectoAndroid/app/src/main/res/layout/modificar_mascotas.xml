@@ -55,29 +55,29 @@
 
 
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/nombre_modMascota"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="Introduzca el nombre"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/listView_mascotas"
+            app:layout_constraintTop_toBottomOf="@+id/listView_modMascotas"
             tools:ignore="MissingConstraints"
             android:layout_marginTop="20dp"/>
 
         <EditText
-            android:id="@+id/editText2"
+            android:id="@+id/edad_modMascota"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="Introduzca la edad"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText"
+            app:layout_constraintTop_toBottomOf="@+id/nombre_modMascota"
             tools:ignore="MissingConstraints"
             android:layout_marginTop="10dp"/>
 
         <ListView
-            android:id="@+id/listView_mascotas"
+            android:id="@+id/listView_modMascotas"
             android:layout_width="0dp"
             android:layout_height="100dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -87,14 +87,14 @@
 
 
         <ListView
-            android:id="@+id/listView_especialista"
+            android:id="@+id/listView_modEspecialistas"
             android:layout_width="0dp"
             android:layout_height="100dp"
             android:layout_marginTop="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/editText2"/>
+            app:layout_constraintTop_toBottomOf="@id/edad_modMascota"/>
 
         <Button
             android:layout_width="0dp"
@@ -103,9 +103,10 @@
             android:text="Modificar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/listView_especialista"
+            app:layout_constraintTop_toBottomOf="@+id/listView_modEspecialistas"
             tools:ignore="MissingConstraints"
-            android:layout_marginTop="25dp"/>
+            android:layout_marginTop="25dp"
+            android:onClick="modificarMascota"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
