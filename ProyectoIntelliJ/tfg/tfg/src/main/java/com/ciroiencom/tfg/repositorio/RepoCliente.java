@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface RepoCliente extends JpaRepository<Cliente, String> {
     List<Cliente> findByNombre(String nombre);
+    Cliente findByDNI(String DNI);
 }
