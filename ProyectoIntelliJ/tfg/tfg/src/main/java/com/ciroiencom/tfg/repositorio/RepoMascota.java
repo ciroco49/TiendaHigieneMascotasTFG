@@ -13,4 +13,5 @@ public interface RepoMascota extends JpaRepository<Mascota, String> {
     List<Mascota> findByNombre(String nombre);
     Mascota findByDNI(String DNI);
 
+    List<Mascota> findByEspecie(String especie);
 }
