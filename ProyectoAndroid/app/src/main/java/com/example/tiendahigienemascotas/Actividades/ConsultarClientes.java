@@ -38,6 +38,7 @@ EditText filtroNombre_cliente;
         //Compruebo si hay una cuenta loggeada y si existe. Si no se cumple alguna llevo al usuario al Login
         new Login().comprobarCuentaLoggeada(this);
 
+        //Inicializo los elementos de mi layout
         listview_clientes = findViewById(R.id.listView_consultarClientes);
         filtroDNI_cliente = findViewById(R.id.filtroDNICliente);
         filtroNombre_cliente = findViewById(R.id.filtroNombreCliente);
