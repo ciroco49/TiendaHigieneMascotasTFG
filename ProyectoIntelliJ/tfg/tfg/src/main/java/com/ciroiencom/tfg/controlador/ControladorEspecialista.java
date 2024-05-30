@@ -1,11 +1,13 @@
 package com.ciroiencom.tfg.controlador;
 
+import com.ciroiencom.tfg.modelo.DTO.EspecialistaDTO;
 import com.ciroiencom.tfg.modelo.Especialista;
 import com.ciroiencom.tfg.repositorio.RepoCliente;
 import com.ciroiencom.tfg.repositorio.RepoEspecialista;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -15,8 +17,20 @@ public class ControladorEspecialista {
 private RepoEspecialista repoEspecialista;
 
     @GetMapping(value = "/especialistas")
-    public List<Especialista> getEspecialistas() {
-        return repoEspecialista.findAll();
+    public List<EspecialistaDTO> getEspecialistas() {
+        List<Especialista> listaEspecialistas = repoEspecialista.findAll();
+
+        if(!listaEspecialistas.isEmpty()) {
+            List<EspecialistaDTO> listaEspecialistasDTO = new ArrayList<>();
+            //Cada especialista del repositorio lo convierto a EspecialistaDTO
+            for(Especialista esp: listaEspecialistas) {
+                listaEspecialistasDTO.add(EspecialistaDTO.especialistaAEspecialistaDTO(esp));
+            }
+
+            return listaEspecialistasDTO;
+        }
+
+        return null;
     }
 
     @PostMapping(value = "/saveEspecialistas")
