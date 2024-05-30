@@ -17,6 +17,8 @@ public class ControladorMascota {
 
 @Autowired
 private RepoMascota repoMascota;
+@Autowired
+private RepoEspecialista repoEspecialista;
 
     @GetMapping(value = "/mascotas")
     public List<MascotaDTO> getEspecialistas() {
@@ -86,15 +88,15 @@ private RepoMascota repoMascota;
     }
 
     @PutMapping(value = "/updateMascota/{DNI}")
-    public String updateMascota(@PathVariable String DNI, @RequestBody Mascota mascota) {
+    public String updateMascota(@PathVariable String DNI, @RequestBody MascotaDTO mascotaDTO) {
         Mascota updatedMascota = repoMascota.findById(DNI).get();
 
-        updatedMascota.setNombre(mascota.getNombre());
-        updatedMascota.setEdad(mascota.getEdad());
-        updatedMascota.setSexo(mascota.getSexo());
-        updatedMascota.setEspecie(mascota.getEspecie());
-        updatedMascota.setRaza(mascota.getRaza());
-        updatedMascota.setDNI_especialista(mascota.getDNI_especialista());
+        updatedMascota.setNombre(mascotaDTO.getNombre());
+        updatedMascota.setEdad(mascotaDTO.getEdad());
+        updatedMascota.setSexo(mascotaDTO.getSexo());
+        updatedMascota.setEspecie(mascotaDTO.getEspecie());
+        updatedMascota.setRaza(mascotaDTO.getRaza());
+        updatedMascota.setDNI_especialista(repoEspecialista.findByDNI(mascotaDTO.getDNI_especialista()));
 
         repoMascota.save(updatedMascota);
 
