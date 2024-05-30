@@ -1,7 +1,10 @@
 package com.example.tiendahigienemascotas.Actividades;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -44,6 +47,18 @@ public class ConsultarMascotas extends AppCompatActivity implements MascotasCall
         //Al entrar a esta pantalla, cargo todas las mascotas
         MascotaController.getMascotas(this, this);
 
+        listview_mascotas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                MascotaDTO mascotaDTO = (MascotaDTO) parent.getItemAtPosition(position);
+
+                Intent infoMascota = new Intent(ConsultarMascotas.this, InfoMascota.class);
+                infoMascota.putExtra("DNI", mascotaDTO.getDNI());
+                startActivity(infoMascota);
+
+            }
+        });
+
     }
 
     @Override
@@ -61,6 +76,9 @@ public class ConsultarMascotas extends AppCompatActivity implements MascotasCall
     public void onSuccessMascota(MascotaDTO mascotaDTO) {
         adaptador.actualizarMascota(mascotaDTO);
     }
+
+    @Override
+    public void onSuccessModMascota(String mensaje) {}
 
     @Override
     public void onError(String mensaje) {
@@ -86,5 +104,13 @@ public class ConsultarMascotas extends AppCompatActivity implements MascotasCall
     public void filtrarMascotasRaza(View view) {
         String raza = filtro_raza.getText().toString();
         MascotaController.getMascotasPorRaza(raza, this, this);
+    }
+
+    @Override
+    public void onBackPressed() {
+        //Compruebo si hay una cuenta loggeada y si existe. Si no se cumple alguna llevo al usuario al Login
+        new Login().comprobarCuentaLoggeada(this);
+
+        super.onBackPressed();
     }
 }
