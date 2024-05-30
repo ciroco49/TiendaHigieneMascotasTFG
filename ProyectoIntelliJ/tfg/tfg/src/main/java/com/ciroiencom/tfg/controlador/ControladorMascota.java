@@ -47,7 +47,7 @@ private RepoMascota repoMascota;
     public List<MascotaDTO> getMascotaPorEspecie(@RequestBody MascotaDTO mascotaDTO){
         List<Mascota> listaMascotas = repoMascota.findByEspecie(mascotaDTO.getEspecie());
 
-        if(listaMascotas != null) {
+        if(!listaMascotas.isEmpty()) {
             List<MascotaDTO> listaMascotasDTO = new ArrayList<>();
             //Cada mascota obtenida la convierta a MascotaDTO
             for(Mascota masc: listaMascotas) {

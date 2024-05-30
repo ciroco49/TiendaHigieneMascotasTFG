@@ -25,7 +25,14 @@ private RepoCliente repoCliente;
 
     @PostMapping(value="/clientePorNombre")
     public List<Cliente> getClientePorNombre(@RequestBody Cliente cliente){
-        return repoCliente.findByNombre(cliente.getNombre());
+        List<Cliente> listaCliente = repoCliente.findByNombre(cliente.getNombre());
+
+        if(!listaCliente.isEmpty()) {
+            return listaCliente;
+        }
+
+        return null;
+
     }
 
     @PostMapping(value = "/saveClientes")
