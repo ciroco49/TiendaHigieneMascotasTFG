@@ -22,13 +22,17 @@ private RepoMascota repoMascota;
     public List<MascotaDTO> getEspecialistas() {
         List<Mascota> listMascotas = repoMascota.findAll();
 
-        List <MascotaDTO> listMascotasDTO = new ArrayList<>();
-        //Cada mascota del repositorio la convierta a MascotaDTO
-        for(Mascota masc: listMascotas) {
-            listMascotasDTO.add(MascotaDTO.mascotaAMascotaDTO(masc));
+        if(!listMascotas.isEmpty()) {
+            List <MascotaDTO> listMascotasDTO = new ArrayList<>();
+            //Cada mascota del repositorio la convierta a MascotaDTO
+            for(Mascota masc: listMascotas) {
+                listMascotasDTO.add(MascotaDTO.mascotaAMascotaDTO(masc));
+            }
+
+            return listMascotasDTO;
         }
 
-        return listMascotasDTO;
+        return null;
     }
 
     @PostMapping(value="/mascotaPorDni")
