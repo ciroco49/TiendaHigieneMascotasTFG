@@ -100,17 +100,21 @@ public class ModificarCliente extends AppCompatActivity implements ClientesCallB
     }
 
     public void modificarCliente(View view) {
-        //Creo un cliente para enviar los datos para modificar el seleccionado
-        clienteActualizado = new Cliente(
-                DNI_seleccionado,
-                nombre.getText().toString(),
-                apellidos.getText().toString(),
-                telefono.getText().toString(),
-                correo.getText().toString(),
-                residencia.getText().toString());
+        if(DNI_seleccionado != null) {
+            //Creo un cliente para enviar los datos para modificar el seleccionado
+            clienteActualizado = new Cliente(
+                    DNI_seleccionado,
+                    nombre.getText().toString(),
+                    apellidos.getText().toString(),
+                    telefono.getText().toString(),
+                    correo.getText().toString(),
+                    residencia.getText().toString());
 
-        //Llamo a la petición para modificar el cliente
-        ClienteController.actualizarClientePorDNI(DNI_seleccionado, clienteActualizado, this, this);
+            //Llamo a la petición para modificar el cliente
+            ClienteController.actualizarClientePorDNI(DNI_seleccionado, clienteActualizado, this, this);
+        } else {
+            Toast.makeText(this, "Debe seleccionar un cliente", Toast.LENGTH_LONG).show();
+        }
 
     }
 
