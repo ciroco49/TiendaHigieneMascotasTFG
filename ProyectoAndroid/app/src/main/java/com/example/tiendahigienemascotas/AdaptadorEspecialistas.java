@@ -15,11 +15,11 @@ import com.example.tiendahigienemascotas.Modelos.EspecialistaDTO;
 
 import java.util.List;
 
-public class AdaptadorEspecialistas extends ArrayAdapter<Cliente> {
+public class AdaptadorEspecialistas extends ArrayAdapter<EspecialistaDTO> {
     private List<EspecialistaDTO> array_especialistas;
 
     public AdaptadorEspecialistas(Context contexto, List<EspecialistaDTO> array_especialistas) {
-        super(contexto, R.layout.listview_especialistas);
+        super(contexto, R.layout.listview_especialistas, array_especialistas);
         this.array_especialistas = array_especialistas;
     }
 
