@@ -3,7 +3,7 @@ package com.example.tiendahigienemascotas.Modelos;
 import java.util.List;
 
 public class EspecialistaDTO {
-    private String DNI;
+    private String dni;
     private String nombre;
     private String apellidos;
     private String telefono;
@@ -15,8 +15,8 @@ public class EspecialistaDTO {
     public EspecialistaDTO() {
     }
 
-    public EspecialistaDTO(String DNI, String nombre, String apellidos, String telefono, String correo, String residencia, Double sueldo, List<String> DNIMascotaList) {
-        this.DNI = DNI;
+    public EspecialistaDTO(String dni, String nombre, String apellidos, String telefono, String correo, String residencia, Double sueldo, List<String> DNIMascotaList) {
+        this.dni = dni;
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.telefono = telefono;
@@ -27,11 +27,11 @@ public class EspecialistaDTO {
     }
 
     public String getDNI() {
-        return DNI;
+        return dni;
     }
 
     public void setDNI(String DNI) {
-        this.DNI = DNI;
+        this.dni = DNI;
     }
 
     public String getNombre() {
