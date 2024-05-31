@@ -47,7 +47,8 @@
                     android:src="@drawable/ajustes_tienda_mascotas"
                     tools:ignore="MissingConstraints,SpeakableTextPresentCheck"
                     tools:layout_editor_absoluteX="325dp"
-                    tools:layout_editor_absoluteY="88dp" />
+                    tools:layout_editor_absoluteY="88dp"
+                    android:onClick="ruedaAjustes"/>
 
             </GridLayout>
 
@@ -55,85 +56,74 @@
 
 
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/nombre_modEspecialista"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="Introduzca el nombre"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/listView"
+            app:layout_constraintTop_toBottomOf="@+id/listView_modEspecialistas"
             tools:ignore="MissingConstraints"
             android:layout_marginTop="15dp"/>
 
         <EditText
-            android:id="@+id/editText2"
+            android:id="@+id/apellidos_modEspecialista"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="Introduzca los apellidos"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText"
+            app:layout_constraintTop_toBottomOf="@+id/nombre_modEspecialista"
             tools:ignore="MissingConstraints"
             android:layout_marginTop="5dp"/>
 
         <EditText
-            android:id="@+id/editText3"
+            android:id="@+id/telefono_modEspecialista"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="Introduzca el teléfono"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText2"
+            app:layout_constraintTop_toBottomOf="@+id/apellidos_modEspecialista"
             tools:ignore="MissingConstraints"
             android:layout_marginTop="5dp"/>
 
         <EditText
-            android:id="@+id/editText4"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="Introduzca el nombre"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText3"
-            tools:ignore="MissingConstraints"
-            android:layout_marginTop="5dp"/>
-
-        <EditText
-            android:id="@+id/editText5"
+            android:id="@+id/correo_modEspecialista"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="Introduzca el correo"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText4"
+            app:layout_constraintTop_toBottomOf="@+id/telefono_modEspecialista"
             tools:ignore="MissingConstraints"
             android:layout_marginTop="5dp"/>
 
         <EditText
-            android:id="@+id/editText6"
+            android:id="@+id/residencia_modEspecialista"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:hint="Introduzca la residencia"
+            android:hint="Introduzca el residencia"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText5"
-            tools:ignore="MissingConstraints" />
+            app:layout_constraintTop_toBottomOf="@+id/correo_modEspecialista"
+            tools:ignore="MissingConstraints"
+            android:layout_marginTop="5dp"/>
 
         <EditText
-            android:id="@+id/editText7"
+            android:id="@+id/sueldo_modEspecialista"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:hint="Introduzca el sueldo"
+            android:hint="Introduzca la sueldo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText6"
+            app:layout_constraintTop_toBottomOf="@+id/residencia_modEspecialista"
             tools:ignore="MissingConstraints" />
 
         <ListView
-            android:id="@+id/listView"
+            android:id="@+id/listView_modEspecialistas"
             android:layout_width="0dp"
             android:layout_height="100dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -150,7 +140,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText7" />
+            app:layout_constraintTop_toBottomOf="@+id/sueldo_modEspecialista"
+            android:onClick="modificarEspecialista"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

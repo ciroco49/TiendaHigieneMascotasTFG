@@ -48,7 +48,8 @@
                     android:src="@drawable/ajustes_tienda_mascotas"
                     tools:ignore="MissingConstraints,SpeakableTextPresentCheck"
                     tools:layout_editor_absoluteX="325dp"
-                    tools:layout_editor_absoluteY="88dp" />
+                    tools:layout_editor_absoluteY="88dp"
+                    android:onClick="ruedaAjustes"/>
 
             </GridLayout>
 
