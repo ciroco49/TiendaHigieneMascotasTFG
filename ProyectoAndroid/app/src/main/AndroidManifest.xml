@@ -16,39 +16,51 @@
         android:theme="@style/Theme.TiendaHigieneMascotas"
         tools:targetApi="31">
         <activity
+            android:configChanges="orientation|screenSize"
             android:name=".Actividades.ModificarEspecialista"
             android:exported="false" />
         <activity
+            android:configChanges="orientation|screenSize"
             android:name=".Actividades.InfoEspecialistas"
             android:exported="false" />
         <activity
+            android:configChanges="orientation|screenSize"
             android:name=".Actividades.ConsultarEspecialistas"
             android:exported="false" />
         <activity
+            android:configChanges="orientation|screenSize"
             android:name=".Actividades.InfoMascota"
             android:exported="false" />
         <activity
+            android:configChanges="orientation|screenSize"
             android:name=".Actividades.ModificarMascota"
             android:exported="false" />
         <activity
+            android:configChanges="orientation|screenSize"
             android:name=".Actividades.ConsultarMascotas"
             android:exported="false" />
         <activity
+            android:configChanges="orientation|screenSize"
             android:name=".Actividades.ModificarCliente"
             android:exported="false" />
         <activity
+            android:configChanges="orientation|screenSize"
             android:name=".Actividades.InfoCliente"
             android:exported="false" />
         <activity
+            android:configChanges="orientation|screenSize"
             android:name=".Actividades.Ajustes"
             android:exported="false" />
         <activity
+            android:configChanges="orientation|screenSize"
             android:name=".Actividades.ConsultarClientes"
             android:exported="false" />
         <activity
+            android:configChanges="orientation|screenSize"
             android:name=".Actividades.Inicio"
             android:exported="false" />
         <activity
+            android:configChanges="orientation|screenSize"
             android:name=".Actividades.Login"
             android:exported="true">
             <intent-filter>
