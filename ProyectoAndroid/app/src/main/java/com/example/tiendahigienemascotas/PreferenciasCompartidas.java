@@ -18,12 +18,13 @@ public class PreferenciasCompartidas {
 
     private static final String preferencias = "preferencias";
     private static final String correo_encriptado = "correo_encriptado";
+    private static final String ip = "IP";
     private static final String clave_secreta = "clavesecreta_123";
 
-    public static void guardarCorreoEncriptado(Context context, String correo) {
+    public static void guardarCorreoEncriptado(Context contexto, String correo) {
         try {
             String correoEncriptado = encriptar(correo, clave_secreta);
-            SharedPreferences sharedPreferences = context.getSharedPreferences(preferencias, Context.MODE_PRIVATE);
+            SharedPreferences sharedPreferences = contexto.getSharedPreferences(preferencias, Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putString(correo_encriptado, correoEncriptado);
             editor.apply();
@@ -32,8 +33,8 @@ public class PreferenciasCompartidas {
         }
     }
 
-    public static String obtenerCorreoDesencriptado(Context context) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences(preferencias, Context.MODE_PRIVATE);
+    public static String obtenerCorreoDesencriptado(Context contexto) {
+        SharedPreferences sharedPreferences = contexto.getSharedPreferences(preferencias, Context.MODE_PRIVATE);
         String correoEncriptado = sharedPreferences.getString(correo_encriptado, null);
         if (correoEncriptado != null) {
             try {
@@ -43,6 +44,19 @@ public class PreferenciasCompartidas {
             }
         }
         return null;
+    }
+
+    public static void guardarIP(Context contexto, String IP) {
+            SharedPreferences sharedPreferences = contexto.getSharedPreferences(preferencias, Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString(ip, IP);
+            editor.apply();
+    }
+
+    public static String obtenerIP(Context contexto) {
+        SharedPreferences sharedPreferences = contexto.getSharedPreferences(preferencias, Context.MODE_PRIVATE);
+        String IP = sharedPreferences.getString("IP", null);
+        return IP;
     }
 
     private static String encriptar(String texto, String clave) throws GeneralSecurityException {
@@ -62,10 +76,16 @@ public class PreferenciasCompartidas {
         return new String(bytesDesencriptados, StandardCharsets.UTF_8);
     }
 
-    public static void limpiarPreferenciasCompartidas(Context contexto) {
+    public static void limpiarPreferenciasCompartidasLogin(Context contexto) {
         SharedPreferences sharedPreferences = contexto.getSharedPreferences(preferencias, contexto.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.clear().apply();
+        editor.remove(correo_encriptado).apply();
+    }
+
+    public static void limpiarPreferenciasCompartidasIP(Context contexto) {
+        SharedPreferences sharedPreferences = contexto.getSharedPreferences(preferencias, contexto.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.remove(ip).apply();
     }
 
 }

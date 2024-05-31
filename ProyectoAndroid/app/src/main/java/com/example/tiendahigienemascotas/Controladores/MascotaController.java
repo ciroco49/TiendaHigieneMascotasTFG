@@ -16,6 +16,7 @@ import com.example.tiendahigienemascotas.CallBacks.ClientesCallBack;
 import com.example.tiendahigienemascotas.CallBacks.MascotasCallBack;
 import com.example.tiendahigienemascotas.Modelos.Cliente;
 import com.example.tiendahigienemascotas.Modelos.MascotaDTO;
+import com.example.tiendahigienemascotas.PreferenciasCompartidas;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -33,7 +34,8 @@ public class MascotaController {
     public static void getMascotas(Context contexto, MascotasCallBack callBack) {
         RequestQueue queue = Volley.newRequestQueue(contexto);
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET,"http://192.168.68.101:8080/mascotas",
+        StringRequest stringRequest = new StringRequest(Request.Method.GET,
+                "http://" + PreferenciasCompartidas.obtenerIP(contexto) + ":8080/mascotas",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -75,7 +77,8 @@ public class MascotaController {
     public static void getMascotaPorDNI(String DNI, Context contexto, MascotasCallBack callBack) {
         try {
 
-            StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://192.168.68.101:8080/mascotaPorDni",
+            StringRequest stringRequest = new StringRequest(Request.Method.POST,
+                    "http://" + PreferenciasCompartidas.obtenerIP(contexto) + ":8080/mascotaPorDni",
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
@@ -136,7 +139,8 @@ public class MascotaController {
 
     public static void getMascotasPorEspecie(String especie, Context contexto, MascotasCallBack callBack) {
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST,"http://192.168.68.101:8080/mascotaPorEspecie",
+        StringRequest stringRequest = new StringRequest(Request.Method.POST,
+                "http://" + PreferenciasCompartidas.obtenerIP(contexto) + ":8080/mascotaPorEspecie",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -197,7 +201,8 @@ public class MascotaController {
 
     public static void getMascotasPorRaza(String raza, Context contexto, MascotasCallBack callBack) {
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST,"http://192.168.68.101:8080/mascotaPorRaza",
+        StringRequest stringRequest = new StringRequest(Request.Method.POST,
+                "http://" + PreferenciasCompartidas.obtenerIP(contexto) + ":8080/mascotaPorRaza",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -258,7 +263,8 @@ public class MascotaController {
 
     public static void getMascotasPorEspecialista(String DNI, Context contexto, MascotasCallBack callBack) {
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST,"http://192.168.68.101:8080/mascotasPorEspecialista",
+        StringRequest stringRequest = new StringRequest(Request.Method.POST,
+                "http://" + PreferenciasCompartidas.obtenerIP(contexto) + ":8080/mascotasPorEspecialista",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {

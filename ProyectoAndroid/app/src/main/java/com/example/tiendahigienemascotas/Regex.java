@@ -8,16 +8,23 @@ public class Regex {
     //Valido el correo
     public static boolean validarCorreo(String email) {
         String emailRegex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
-        Pattern pattern = Pattern.compile(emailRegex);
-        Matcher matcher = pattern.matcher(email);
+        Pattern patron = Pattern.compile(emailRegex);
+        Matcher matcher = patron.matcher(email);
         return matcher.matches();
     }
 
     //Valido el DNI
     public static boolean validarDNI(String dni) {
         String dniRegex = "^\\d{8}[A-Za-z]$";
-        Pattern pattern = Pattern.compile(dniRegex);
-        Matcher matcher = pattern.matcher(dni);
+        Pattern patron = Pattern.compile(dniRegex);
+        Matcher matcher = patron.matcher(dni);
+        return matcher.matches();
+    }
+
+    public static boolean validarIP(String IP) {
+        String IP_regex = "^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$";
+        Pattern patron = Pattern.compile(IP_regex);
+        Matcher matcher = patron.matcher(IP);
         return matcher.matches();
     }
 

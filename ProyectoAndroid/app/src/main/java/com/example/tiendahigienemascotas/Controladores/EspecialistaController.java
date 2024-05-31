@@ -16,6 +16,7 @@ import com.example.tiendahigienemascotas.CallBacks.ClientesCallBack;
 import com.example.tiendahigienemascotas.CallBacks.EspecialistasCallBack;
 import com.example.tiendahigienemascotas.Modelos.Cliente;
 import com.example.tiendahigienemascotas.Modelos.EspecialistaDTO;
+import com.example.tiendahigienemascotas.PreferenciasCompartidas;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -33,7 +34,8 @@ public class EspecialistaController {
     public static void getEspecialistas(Context contexto, EspecialistasCallBack callBack) {
         RequestQueue queue = Volley.newRequestQueue(contexto);
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET,"http://192.168.68.101:8080/especialistas",
+        StringRequest stringRequest = new StringRequest(Request.Method.GET,
+                "http://" + PreferenciasCompartidas.obtenerIP(contexto) + ":8080/especialistas",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -75,7 +77,8 @@ public class EspecialistaController {
     public static void getEspecialistaPorDNI(String DNI, Context contexto, EspecialistasCallBack callBack) {
         try {
 
-            StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://192.168.68.101:8080/especialistaPorDni",
+            StringRequest stringRequest = new StringRequest(Request.Method.POST,
+                    "http://" + PreferenciasCompartidas.obtenerIP(contexto) + ":8080/especialistaPorDni",
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
@@ -136,7 +139,8 @@ public class EspecialistaController {
 
     public static void getEspecialistasPorNombre(String nombre, Context contexto, EspecialistasCallBack callBack) {
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST,"http://192.168.68.101:8080/especialistaPorNombre",
+        StringRequest stringRequest = new StringRequest(Request.Method.POST,
+                "http://" + PreferenciasCompartidas.obtenerIP(contexto) + ":8080/especialistaPorNombre",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -197,7 +201,8 @@ public class EspecialistaController {
 
     public static void actualizarEspecialistaPorDNI(String DNI, EspecialistaDTO especialistaActualizado, Context contexto, EspecialistasCallBack callBack) {
 
-        StringRequest stringRequest = new StringRequest(Request.Method.PUT, "http://192.168.68.101:8080/updateCliente/" + DNI,
+        StringRequest stringRequest = new StringRequest(Request.Method.PUT,
+                "http://" + PreferenciasCompartidas.obtenerIP(contexto) + ":8080/updateCliente/" + DNI,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {

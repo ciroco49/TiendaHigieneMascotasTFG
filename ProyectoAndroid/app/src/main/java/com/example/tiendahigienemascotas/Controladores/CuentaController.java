@@ -41,7 +41,8 @@ public class CuentaController {
     public static void login(String correo, Context contexto, LoginCallBack callBack) {
         try {
 
-            StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://192.168.68.101:8080/login",
+            StringRequest stringRequest = new StringRequest(Request.Method.POST,
+                    "http://" + PreferenciasCompartidas.obtenerIP(contexto) + ":8080/login",
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
@@ -102,7 +103,8 @@ public class CuentaController {
     }
 
     public static void registrar(String correo, String contrasenha, Context contexto, LoginCallBack callBack) {
-        StringRequest stringRequest = new StringRequest(Request.Method.POST,"http://192.168.68.101:8080/saveCuentas",
+        StringRequest stringRequest = new StringRequest(Request.Method.POST,
+                "http://" + PreferenciasCompartidas.obtenerIP(contexto) + ":8080/saveCuentas",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -176,7 +178,7 @@ public class CuentaController {
                 @Override
                 public void onError(String mensaje) {
                     //Si la cuenta no existe, devuelvo false al callBack pasado como parámetro desde la Activity
-                    PreferenciasCompartidas.limpiarPreferenciasCompartidas(contexto);
+                    PreferenciasCompartidas.limpiarPreferenciasCompartidasLogin(contexto);
                     callBack.existeCuentaLoggeada(false);
                 }
             });

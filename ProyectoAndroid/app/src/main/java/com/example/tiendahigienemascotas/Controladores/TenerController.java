@@ -16,6 +16,7 @@ import com.example.tiendahigienemascotas.CallBacks.TenerCallBack;
 import com.example.tiendahigienemascotas.Modelos.Cliente;
 import com.example.tiendahigienemascotas.Modelos.MascotaDTO;
 import com.example.tiendahigienemascotas.Modelos.TenerDTO;
+import com.example.tiendahigienemascotas.PreferenciasCompartidas;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -32,7 +33,8 @@ public class TenerController {
 
     public static void getTenerPorDNI_Cliente(Cliente cliente, Context contexto, TenerCallBack callBack) {
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://192.168.68.101:8080/tenerPorDNICliente",
+        StringRequest stringRequest = new StringRequest(Request.Method.POST,
+                "http://" + PreferenciasCompartidas.obtenerIP(contexto) + ":8080/tenerPorDNICliente",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -90,7 +92,8 @@ public class TenerController {
 
     public static void getTenerPorDNI_Mascota(MascotaDTO mascotaDTO, Context contexto, TenerCallBack callBack) {
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://192.168.68.101:8080/tenerPorDNIMascota",
+        StringRequest stringRequest = new StringRequest(Request.Method.POST,
+                "http://" + PreferenciasCompartidas.obtenerIP(contexto) + ":8080/tenerPorDNIMascota",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {

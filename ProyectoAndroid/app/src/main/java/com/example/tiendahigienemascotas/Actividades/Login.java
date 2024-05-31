@@ -27,6 +27,9 @@ public class Login extends AppCompatActivity implements LoginCallBack {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
 
+        //Establezco la IP por defecto
+        PreferenciasCompartidas.guardarIP(this, "192.168.68.101");
+
         //Compruebo si hay una cuenta loggeada y si existe. Si se cumplen ambas, loggeo al usuario
         CuentaController.existeCuentaLoggeada(this, this);
 
@@ -109,7 +112,7 @@ public class Login extends AppCompatActivity implements LoginCallBack {
     @Override
     public void onSuccess(Cuenta cuenta) {
         if (cuenta.getContrasenha().equals(ETContraseña.getText().toString())) {
-            PreferenciasCompartidas.limpiarPreferenciasCompartidas(this);
+            PreferenciasCompartidas.limpiarPreferenciasCompartidasLogin(this);
             PreferenciasCompartidas.guardarCorreoEncriptado(this, cuenta.getCorreo());
             Intent inicio = new Intent(this, Inicio.class);
             startActivity(inicio);
@@ -139,7 +142,7 @@ public class Login extends AppCompatActivity implements LoginCallBack {
             @Override
             public void existeCuentaLoggeada(boolean existe) {
                 if(!existe) {
-                    PreferenciasCompartidas.limpiarPreferenciasCompartidas(contexto);
+                    PreferenciasCompartidas.limpiarPreferenciasCompartidasLogin(contexto);
                     Intent login = new Intent(contexto, Login.class);
                     startActivity(login);
                 }
