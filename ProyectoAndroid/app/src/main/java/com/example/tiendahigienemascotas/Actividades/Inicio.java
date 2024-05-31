@@ -83,11 +83,13 @@ public class Inicio extends AppCompatActivity {
         }
 
         public void consultarEspecialistas(View view) {
-            //Intent para consultar
+            Intent consultarEspecialistas = new Intent(this, ConsultarEspecialistas.class);
+            startActivity(consultarEspecialistas);
         }
 
         public void modificarEspecialistas(View view) {
-            //Intent para modificar
+            Intent modificarEspecialista = new Intent(this, ModificarEspecialista.class);
+            startActivity(modificarEspecialista);
         }
 
         public void popUpEspecialistas(View view) {
