@@ -106,7 +106,8 @@
                     android:id="@+id/filtroNombreCliente"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="Introduzca un nombre" />
+                    android:hint="Introduzca un nombre"
+                    android:maxLength="50"/>
 
                 <Button
                     android:layout_width="wrap_content"

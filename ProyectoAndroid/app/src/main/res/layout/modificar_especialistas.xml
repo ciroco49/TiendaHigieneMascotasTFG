@@ -64,7 +64,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/listView_modEspecialistas"
             tools:ignore="MissingConstraints"
-            android:layout_marginTop="15dp"/>
+            android:layout_marginTop="15dp"
+            android:maxLength="50"/>
 
         <EditText
             android:id="@+id/apellidos_modEspecialista"
@@ -75,7 +76,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/nombre_modEspecialista"
             tools:ignore="MissingConstraints"
-            android:layout_marginTop="5dp"/>
+            android:layout_marginTop="5dp"
+            android:maxLength="50"/>
 
         <EditText
             android:id="@+id/telefono_modEspecialista"
@@ -86,7 +88,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/apellidos_modEspecialista"
             tools:ignore="MissingConstraints"
-            android:layout_marginTop="5dp"/>
+            android:layout_marginTop="5dp"
+            android:maxLength="9"/>
 
         <EditText
             android:id="@+id/correo_modEspecialista"
@@ -97,7 +100,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/telefono_modEspecialista"
             tools:ignore="MissingConstraints"
-            android:layout_marginTop="5dp"/>
+            android:layout_marginTop="5dp"
+            android:maxLength="125"/>
 
         <EditText
             android:id="@+id/residencia_modEspecialista"
@@ -109,7 +113,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/correo_modEspecialista"
             tools:ignore="MissingConstraints"
-            android:layout_marginTop="5dp"/>
+            android:layout_marginTop="5dp"
+            android:maxLength="125"/>
 
         <EditText
             android:id="@+id/sueldo_modEspecialista"
@@ -120,7 +125,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/residencia_modEspecialista"
-            tools:ignore="MissingConstraints" />
+            tools:ignore="MissingConstraints"
+            android:maxLength="7"/>
 
         <ListView
             android:id="@+id/listView_modEspecialistas"

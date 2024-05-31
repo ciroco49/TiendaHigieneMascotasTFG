@@ -64,7 +64,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/listView_modMascotas"
             tools:ignore="MissingConstraints"
-            android:layout_marginTop="20dp"/>
+            android:layout_marginTop="20dp"
+            android:maxLength="50"/>
 
         <EditText
             android:id="@+id/edad_modMascota"
@@ -75,7 +76,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/nombre_modMascota"
             tools:ignore="MissingConstraints"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="10dp"
+            android:maxLength="3"/>
 
         <ListView
             android:id="@+id/listView_modMascotas"
