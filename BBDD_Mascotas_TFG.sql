@@ -6,7 +6,7 @@ CREATE TABLE Cliente (
 	DNI VARCHAR(9) PRIMARY KEY,
     nombre VARCHAR(50),
     apellidos VARCHAR(75),
-    telefono VARCHAR(14),
+    telefono VARCHAR(9),
     correo VARCHAR(125),
     residencia VARCHAR(125));
 
@@ -17,7 +17,7 @@ CREATE TABLE Especialista (
     telefono VARCHAR(14),
     correo VARCHAR(125),
     residencia VARCHAR(125),
-    sueldo DECIMAL(10, 2));
+    sueldo DECIMAL(7, 2));
 
 CREATE TABLE Mascota (
     DNI VARCHAR(9) PRIMARY KEY,
