@@ -1,6 +1,7 @@
 package com.ciroiencom.tfg.controlador;
 
 import com.ciroiencom.tfg.modelo.Cliente;
+import com.ciroiencom.tfg.modelo.DTO.EspecialistaDTO;
 import com.ciroiencom.tfg.modelo.DTO.MascotaDTO;
 import com.ciroiencom.tfg.modelo.Especialista;
 import com.ciroiencom.tfg.modelo.Mascota;
@@ -68,6 +69,24 @@ private RepoEspecialista repoEspecialista;
     @PostMapping(value="/mascotaPorRaza")
     public List<MascotaDTO> getMascotaPorRaza(@RequestBody MascotaDTO mascotaDTO){
         List<Mascota> listaMascotas = repoMascota.findByRaza(mascotaDTO.getRaza());
+
+        if(!listaMascotas.isEmpty()) {
+            List<MascotaDTO> listaMascotasDTO = new ArrayList<>();
+            //Cada mascota obtenida la convierta a MascotaDTO
+            for(Mascota masc: listaMascotas) {
+                listaMascotasDTO.add(MascotaDTO.mascotaAMascotaDTO(masc));
+            }
+            return listaMascotasDTO;
+        }
+
+        return null;
+    }
+
+    @PostMapping(value="/mascotasPorEspecialista")
+    public List<MascotaDTO> getMascotasPorEspecialista(@RequestBody EspecialistaDTO especialistaDTO){
+        Especialista especialista = repoEspecialista.findByDNI(especialistaDTO.getDNI());
+
+        List<Mascota> listaMascotas = especialista.getMascotasList();
 
         if(!listaMascotas.isEmpty()) {
             List<MascotaDTO> listaMascotasDTO = new ArrayList<>();

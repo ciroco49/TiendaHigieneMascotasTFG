@@ -1,7 +1,9 @@
 package com.example.tiendahigienemascotas.Actividades;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -61,6 +63,7 @@ AdaptadorClientes adaptador;
         //Compruebo si hay una cuenta loggeada y si existe. Si no se cumple alguna llevo al usuario al Login
         new Login().comprobarCuentaLoggeada(this);
 
+        //Si no se realizó el intent porque sí existe la cuenta loggeada
         super.onBackPressed();
     }
 
@@ -104,5 +107,10 @@ AdaptadorClientes adaptador;
     @Override
     public void onError(String mensaje) {
         Toast.makeText(this, mensaje, Toast.LENGTH_LONG).show();
+    }
+
+    public void ruedaAjustes(View view) {
+        Intent ajustes = new Intent(this, Ajustes.class);
+        startActivity(ajustes);
     }
 }

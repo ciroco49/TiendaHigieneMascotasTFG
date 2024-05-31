@@ -111,6 +111,12 @@ public class ConsultarMascotas extends AppCompatActivity implements MascotasCall
         //Compruebo si hay una cuenta loggeada y si existe. Si no se cumple alguna llevo al usuario al Login
         new Login().comprobarCuentaLoggeada(this);
 
+        //Si no se realizó el intent porque sí existe la cuenta loggeada
         super.onBackPressed();
+    }
+
+    public void ruedaAjustes(View view) {
+        Intent ajustes = new Intent(this, Ajustes.class);
+        startActivity(ajustes);
     }
 }

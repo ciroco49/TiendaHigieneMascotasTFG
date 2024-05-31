@@ -256,6 +256,67 @@ public class MascotaController {
 
     }
 
+    public static void getMascotasPorEspecialista(String DNI, Context contexto, MascotasCallBack callBack) {
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST,"http://192.168.68.101:8080/mascotasPorEspecialista",
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            if(response == null || response.isEmpty()) {
+                                Log.e("GetMascotasPorEspecialista Error: ", "Respuesta vacía o nula");
+                                callBack.onError("No existen mascotas para el especialista proporcionado");
+                            }
+                            Gson gson = new Gson();
+                            Type lista = new TypeToken<List<MascotaDTO>>() {}.getType();
+                            List<MascotaDTO> array_mascotas = gson.fromJson(response, lista);
+                            callBack.onSuccessMascotas(array_mascotas);
+                        } catch (Exception e) {
+                            Log.e("GetMascotasPorEspecialista Error", "Error parseando el JSON", e);
+                            callBack.onError("Error parseando el JSON: " + e.getMessage());
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("GetMascotasPorEspecialista Error", "Error en la petición: " + error.toString());
+                        callBack.onError("Error en la petición: " + error.toString());
+                    }
+                })  {
+            @Override
+            public byte[] getBody() throws AuthFailureError {
+                try {
+                    JSONObject jsonBody = new JSONObject();
+                    jsonBody.put("dni", DNI);
+                    String requestBody = jsonBody.toString();
+                    return requestBody.getBytes(StandardCharsets.UTF_8);
+                } catch (JSONException e) {
+                    Log.e("Body error: ", e.toString());
+                    return null;
+                }
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<>();
+                headers.put("Content-Type", "application/json; charset=utf-8");
+                return headers;
+            }
+
+            @Override
+            protected Response<String> parseNetworkResponse(NetworkResponse response) {
+                String parsed = new String(response.data, StandardCharsets.UTF_8);
+                return Response.success(parsed, HttpHeaderParser.parseCacheHeaders(response));
+            }
+
+        };
+
+        RequestQueue queue = Volley.newRequestQueue(contexto);
+        queue.add(stringRequest);
+
+    }
+
     public static void actualizarMascotaPorDNI(String DNI, MascotaDTO mascotaDTOActualizada, Context contexto, MascotasCallBack callBack) {
 
         StringRequest stringRequest = new StringRequest(Request.Method.PUT, "http://192.168.68.101:8080/updateMascota/" + DNI,

@@ -1,5 +1,6 @@
 package com.example.tiendahigienemascotas.Actividades;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -66,7 +67,7 @@ EspecialistaDTO especialista;
                 nombre.setText(mascotaDTO.getNombre());
                 edad.setText(Integer.toString(mascotaDTO.getEdad()));
 
-                //Me guardo el DNI de la mascota seleccionada
+                //Me guardo la mascota seleccionada
                 mascota = mascotaDTO;
             }
         });
@@ -114,6 +115,12 @@ EspecialistaDTO especialista;
     }
 
     @Override
+    public void onSuccessEspecialista(EspecialistaDTO especialistaDTO) {}
+
+    @Override
+    public void onSuccessModEspecialista(String mensaje) {}
+
+    @Override
     public void onError(String mensaje) {
         Toast.makeText(this, mensaje, Toast.LENGTH_LONG).show();
     }
@@ -154,6 +161,12 @@ EspecialistaDTO especialista;
         //Compruebo si hay una cuenta loggeada y si existe. Si no se cumple alguna llevo al usuario al Login
         new Login().comprobarCuentaLoggeada(this);
 
+        //Si no se realizó el intent porque sí existe la cuenta loggeada
         super.onBackPressed();
+    }
+
+    public void ruedaAjustes(View view) {
+        Intent ajustes = new Intent(this, Ajustes.class);
+        startActivity(ajustes);
     }
 }
