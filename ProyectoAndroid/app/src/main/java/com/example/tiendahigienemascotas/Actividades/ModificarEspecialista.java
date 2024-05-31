@@ -21,6 +21,7 @@ import com.example.tiendahigienemascotas.Controladores.EspecialistaController;
 import com.example.tiendahigienemascotas.Modelos.Cliente;
 import com.example.tiendahigienemascotas.Modelos.EspecialistaDTO;
 import com.example.tiendahigienemascotas.R;
+import com.example.tiendahigienemascotas.Regex;
 
 import java.util.List;
 
@@ -108,6 +109,15 @@ EspecialistaDTO especialista_seleccionado, especialistaDTO_actualizado;
     }
 
     public void modificarEspecialista(View view) {
+        if(!Regex.datoEsEntero(telefono.getText().toString())) {
+            Toast.makeText(this, "Debe proporcionar un teléfono entero, con números", Toast.LENGTH_LONG).show();
+        } else if(!Regex.validarCorreo(correo.getText().toString())) {
+            Toast.makeText(this, "El correo proporcionado no cumple el formato requerido", Toast.LENGTH_LONG).show();
+        } else if(!Regex.datoEsDouble(sueldo.getText().toString())) {
+            Toast.makeText(this, "Debe proporcionar un sueldo decimal, con números", Toast.LENGTH_LONG).show();
+        }
+
+
         if(DNI_seleccionado != null) {
             //Creo un cliente para enviar los datos para modificar el seleccionado
             especialistaDTO_actualizado = new EspecialistaDTO(

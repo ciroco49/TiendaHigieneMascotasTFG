@@ -21,4 +21,24 @@ public class Regex {
         return matcher.matches();
     }
 
+    public static boolean datoEsEntero(String dato) {
+        //Intento parsear el dato para comprobar si es un entero o no
+        try {
+            Integer.parseInt(dato);
+            return true;
+        } catch (NumberFormatException ex) {
+            return false;
+        }
+    }
+
+    public static boolean datoEsDouble(String dato) {
+        //Intento parsear el dato para comprobar si es un double o no
+        try {
+            Double.parseDouble(dato);
+            return true;
+        } catch (NumberFormatException ex) {
+            return false;
+        }
+    }
+
 }

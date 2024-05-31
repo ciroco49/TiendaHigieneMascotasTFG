@@ -26,6 +26,7 @@ import com.example.tiendahigienemascotas.Modelos.Cliente;
 import com.example.tiendahigienemascotas.Modelos.EspecialistaDTO;
 import com.example.tiendahigienemascotas.Modelos.MascotaDTO;
 import com.example.tiendahigienemascotas.R;
+import com.example.tiendahigienemascotas.Regex;
 
 import java.util.List;
 
@@ -128,7 +129,7 @@ EspecialistaDTO especialista;
     public void modificarMascota(View view) {
         if(mascota == null || especialista == null) {
             Toast.makeText(this, "Debe seleccionar una mascota y un especialista", Toast.LENGTH_LONG).show();
-        } else if(!edadEsEntera(edad.getText().toString())) {
+        } else if(!Regex.datoEsEntero(edad.getText().toString())) {
             Toast.makeText(this, "Debe proporcionar una edad entera, con números", Toast.LENGTH_LONG).show();
         } else {
             //Creo una mascota para enviar los datos para modificar la seleccionada
@@ -143,16 +144,6 @@ EspecialistaDTO especialista;
 
             //Llamo a la petición para modificar la mascota
             MascotaController.actualizarMascotaPorDNI(mascota.getDNI(), mascotaActualizada, this, this);
-        }
-    }
-
-    private boolean edadEsEntera(String edadProporcionada) {
-        //Intento parsear la edad para comprobar si es un entero o no
-        try {
-            Integer.parseInt(edadProporcionada);
-            return true;
-        } catch (NumberFormatException ex) {
-            return false;
         }
     }
 

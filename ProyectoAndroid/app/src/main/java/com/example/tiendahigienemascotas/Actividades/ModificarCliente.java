@@ -25,6 +25,7 @@ import com.example.tiendahigienemascotas.Modelos.Cliente;
 import com.example.tiendahigienemascotas.Modelos.Cuenta;
 import com.example.tiendahigienemascotas.PreferenciasCompartidas;
 import com.example.tiendahigienemascotas.R;
+import com.example.tiendahigienemascotas.Regex;
 
 import java.util.List;
 
@@ -100,6 +101,14 @@ public class ModificarCliente extends AppCompatActivity implements ClientesCallB
     }
 
     public void modificarCliente(View view) {
+        if(!Regex.datoEsEntero(telefono.getText().toString())) {
+            Toast.makeText(this, "Debe proporcionar un teléfono entero, con números", Toast.LENGTH_LONG).show();
+            return;
+        } else if(!Regex.validarCorreo(correo.getText().toString())) {
+            Toast.makeText(this, "El correo proporcionado no cumple el formato requerido", Toast.LENGTH_LONG).show();
+            return;
+        }
+
         if(DNI_seleccionado != null) {
             //Creo un cliente para enviar los datos para modificar el seleccionado
             clienteActualizado = new Cliente(
