@@ -70,7 +70,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="DNI: "
+                android:text="@string/infoDNI"
                 android:textSize="20sp"
                 android:layout_weight="1"/>
 
@@ -99,7 +99,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nombre: "
+                android:text="@string/infoNombre"
                 android:textSize="20sp"
                 android:layout_weight="1"/>
 
@@ -128,7 +128,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Apellidos: "
+                android:text="@string/infoApellidos"
                 android:textSize="20sp"
                 android:layout_weight="1"/>
 
@@ -157,7 +157,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Teléfono: "
+                android:text="@string/infoTelefono"
                 android:textSize="20sp"
                 android:layout_weight="1"/>
 
@@ -186,7 +186,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Correo: "
+                android:text="@string/infoCorreo"
                 android:textSize="20sp"
                 android:layout_weight="1"/>
 
@@ -215,7 +215,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Residencia: "
+                android:text="@string/infoResidencia"
                 android:textSize="20sp"
                 android:layout_weight="1"/>
 
@@ -244,7 +244,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sueldo: "
+                android:text="@string/infoSueldo"
                 android:textSize="20sp"
                 android:layout_weight="1"/>
 

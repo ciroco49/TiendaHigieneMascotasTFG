@@ -21,6 +21,7 @@ import com.example.tiendahigienemascotas.Controladores.EspecialistaController;
 import com.example.tiendahigienemascotas.Controladores.MascotaController;
 import com.example.tiendahigienemascotas.Modelos.EspecialistaDTO;
 import com.example.tiendahigienemascotas.Modelos.MascotaDTO;
+import com.example.tiendahigienemascotas.PreferenciasCompartidas;
 import com.example.tiendahigienemascotas.R;
 
 import java.util.List;
@@ -33,6 +34,13 @@ public class InfoEspecialistas extends AppCompatActivity implements Especialista
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.info_especialistas);
+
+        //Si el idioma seleccionado no coincide con el Locale que tiene esta actividad, recargo para setear el idioma bien
+        if(!PreferenciasCompartidas.obtenerCodigoIdioma(InfoEspecialistas.this).equals(Ajustes.obtenerIdiomaActividad(InfoEspecialistas.this))) {
+            Ajustes.establecerIdiomaActividad(InfoEspecialistas.this, PreferenciasCompartidas.obtenerCodigoIdioma(InfoEspecialistas.this));
+            recreate();
+            return;
+        }
 
         //Compruebo si hay una cuenta loggeada y si existe. Si no se cumple alguna llevo al usuario al Login
         new Login().comprobarCuentaLoggeada(this);

@@ -20,6 +20,7 @@ import com.example.tiendahigienemascotas.Controladores.ClienteController;
 import com.example.tiendahigienemascotas.Controladores.EspecialistaController;
 import com.example.tiendahigienemascotas.Modelos.Cliente;
 import com.example.tiendahigienemascotas.Modelos.EspecialistaDTO;
+import com.example.tiendahigienemascotas.PreferenciasCompartidas;
 import com.example.tiendahigienemascotas.R;
 import com.example.tiendahigienemascotas.Regex;
 
@@ -35,6 +36,13 @@ EspecialistaDTO especialista_seleccionado, especialistaDTO_actualizado;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.modificar_especialistas);
+
+        //Si el idioma seleccionado no coincide con el Locale que tiene esta actividad, recargo para setear el idioma bien
+        if(!PreferenciasCompartidas.obtenerCodigoIdioma(ModificarEspecialista.this).equals(Ajustes.obtenerIdiomaActividad(ModificarEspecialista.this))) {
+            Ajustes.establecerIdiomaActividad(ModificarEspecialista.this, PreferenciasCompartidas.obtenerCodigoIdioma(ModificarEspecialista.this));
+            recreate();
+            return;
+        }
 
         //Compruebo si hay una cuenta loggeada y si existe. Si no se cumple alguna llevo al usuario al Login
         new Login().comprobarCuentaLoggeada(this);

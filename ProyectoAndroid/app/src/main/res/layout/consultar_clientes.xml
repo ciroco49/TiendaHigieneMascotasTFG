@@ -84,12 +84,12 @@
                     android:id="@+id/filtroDNICliente"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="Introduzca un DNI" />
+                    android:hint="@string/filtroDNI" />
 
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Filtrar por DNI"
+                    android:text="@string/BTNfiltroDNI"
                     android:onClick="filtrarClientesDNI"/>
 
             </LinearLayout>
@@ -106,13 +106,13 @@
                     android:id="@+id/filtroNombreCliente"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="Introduzca un nombre"
+                    android:hint="@string/filtroNombre"
                     android:maxLength="50"/>
 
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Filtrar por nombre"
+                    android:text="@string/BTNfiltroNombre"
                     android:onClick="filtrarClientesNombre"/>
 
             </LinearLayout>

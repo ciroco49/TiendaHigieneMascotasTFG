@@ -23,6 +23,7 @@ import com.example.tiendahigienemascotas.Controladores.TenerController;
 import com.example.tiendahigienemascotas.Modelos.Cliente;
 import com.example.tiendahigienemascotas.Modelos.MascotaDTO;
 import com.example.tiendahigienemascotas.Modelos.TenerDTO;
+import com.example.tiendahigienemascotas.PreferenciasCompartidas;
 import com.example.tiendahigienemascotas.R;
 
 import java.util.ArrayList;
@@ -36,6 +37,13 @@ AdaptadorClientes adaptador;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.info_mascotas);
+
+        //Si el idioma seleccionado no coincide con el Locale que tiene esta actividad, recargo para setear el idioma bien
+        if(!PreferenciasCompartidas.obtenerCodigoIdioma(InfoMascota.this).equals(Ajustes.obtenerIdiomaActividad(InfoMascota.this))) {
+            Ajustes.establecerIdiomaActividad(InfoMascota.this, PreferenciasCompartidas.obtenerCodigoIdioma(InfoMascota.this));
+            recreate();
+            return;
+        }
 
         //Compruebo si hay una cuenta loggeada y si existe. Si no se cumple alguna llevo al usuario al Login
         new Login().comprobarCuentaLoggeada(this);

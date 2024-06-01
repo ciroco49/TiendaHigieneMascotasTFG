@@ -76,11 +76,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Idioma "
+                android:text="@string/idioma"
                 android:textSize="20sp"
                 android:layout_gravity="center_vertical"/>
 
             <Spinner
+                android:id="@+id/spinnerIdiomas"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_weight="1"
@@ -102,7 +103,7 @@
             android:layout_marginTop="35dp">
 
             <ImageView
-                android:layout_width="33dp"
+                android:layout_width="35dp"
                 android:layout_height="45dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="5dp"
@@ -116,7 +117,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
-                android:text="IP "
+                android:text="@string/ip"
                 android:textSize="20sp" />
 
             <EditText
@@ -143,24 +144,25 @@
             tools:ignore="MissingConstraints">
 
             <ImageView
-                android:layout_width="30dp"
+                android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_weight="1"
                 android:scaleType="centerCrop"
-                android:src="@drawable/idioma"
+                android:src="@drawable/icono_imagen_perfil"
                 android:layout_gravity="center_vertical"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Imagen de perfil "
+                android:text="@string/imagenDePerfil"
                 android:textSize="20sp"
                 android:layout_gravity="center_vertical"/>
 
             <Spinner
+                android:id="@+id/spinnerImagenes"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_weight="1"
@@ -181,7 +183,7 @@
             android:id="@+id/button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Aplicar cambios"
+            android:text="@string/aplicarCambios"
             android:layout_marginTop="35dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -192,7 +194,7 @@
 
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Cerrar sesión"
+            android:text="@string/cerrarSesion"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"

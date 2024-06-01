@@ -70,7 +70,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="DNI: "
+                android:text="@string/infoDNI"
                 android:textSize="20sp"
                 android:layout_weight="1"/>
 
@@ -99,7 +99,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nombre: "
+                android:text="@string/infoNombre"
                 android:textSize="20sp"
                 android:layout_weight="1"/>
 
@@ -128,7 +128,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Edad: "
+                android:text="@string/infoEdad"
                 android:textSize="20sp"
                 android:layout_weight="1"/>
 
@@ -157,7 +157,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sexo: "
+                android:text="@string/infoSexo"
                 android:textSize="20sp"
                 android:layout_weight="1"/>
 
@@ -186,7 +186,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Especie: "
+                android:text="@string/infoEspecie"
                 android:textSize="20sp"
                 android:layout_weight="1"/>
 
@@ -215,7 +215,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Raza: "
+                android:text="@string/infoRaza"
                 android:textSize="20sp"
                 android:layout_weight="1"/>
 
@@ -244,7 +244,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="DNI del especialista: "
+                android:text="@string/infoDNI_especialista"
                 android:textSize="20sp"
                 android:layout_weight="1"/>
 

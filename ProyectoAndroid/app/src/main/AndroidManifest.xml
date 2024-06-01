@@ -16,52 +16,55 @@
         android:theme="@style/Theme.TiendaHigieneMascotas"
         tools:targetApi="31">
         <activity
-            android:configChanges="orientation|screenSize"
+            android:name=".Actividades.ActividadBase"
+            android:exported="false" />
+        <activity
             android:name=".Actividades.ModificarEspecialista"
+            android:configChanges="orientation|screenSize"
             android:exported="false" />
         <activity
-            android:configChanges="orientation|screenSize"
             android:name=".Actividades.InfoEspecialistas"
+            android:configChanges="orientation|screenSize"
             android:exported="false" />
         <activity
-            android:configChanges="orientation|screenSize"
             android:name=".Actividades.ConsultarEspecialistas"
+            android:configChanges="orientation|screenSize"
             android:exported="false" />
         <activity
-            android:configChanges="orientation|screenSize"
             android:name=".Actividades.InfoMascota"
+            android:configChanges="orientation|screenSize"
             android:exported="false" />
         <activity
-            android:configChanges="orientation|screenSize"
             android:name=".Actividades.ModificarMascota"
+            android:configChanges="orientation|screenSize"
             android:exported="false" />
         <activity
-            android:configChanges="orientation|screenSize"
             android:name=".Actividades.ConsultarMascotas"
+            android:configChanges="orientation|screenSize"
             android:exported="false" />
         <activity
-            android:configChanges="orientation|screenSize"
             android:name=".Actividades.ModificarCliente"
+            android:configChanges="orientation|screenSize"
             android:exported="false" />
         <activity
-            android:configChanges="orientation|screenSize"
             android:name=".Actividades.InfoCliente"
+            android:configChanges="orientation|screenSize"
             android:exported="false" />
         <activity
-            android:configChanges="orientation|screenSize"
             android:name=".Actividades.Ajustes"
+            android:configChanges="orientation|screenSize"
             android:exported="false" />
         <activity
-            android:configChanges="orientation|screenSize"
             android:name=".Actividades.ConsultarClientes"
+            android:configChanges="orientation|screenSize"
             android:exported="false" />
         <activity
-            android:configChanges="orientation|screenSize"
             android:name=".Actividades.Inicio"
+            android:configChanges="orientation|screenSize"
             android:exported="false" />
         <activity
-            android:configChanges="orientation|screenSize"
             android:name=".Actividades.Login"
+            android:configChanges="orientation|screenSize"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -21,6 +21,7 @@ import com.example.tiendahigienemascotas.CallBacks.MascotasCallBack;
 import com.example.tiendahigienemascotas.Controladores.ClienteController;
 import com.example.tiendahigienemascotas.Controladores.MascotaController;
 import com.example.tiendahigienemascotas.Modelos.MascotaDTO;
+import com.example.tiendahigienemascotas.PreferenciasCompartidas;
 import com.example.tiendahigienemascotas.R;
 import com.example.tiendahigienemascotas.Regex;
 
@@ -34,6 +35,13 @@ public class ConsultarMascotas extends AppCompatActivity implements MascotasCall
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.consultar_mascotas);
+
+        //Si el idioma seleccionado no coincide con el Locale que tiene esta actividad, recargo para setear el idioma bien
+        if(!PreferenciasCompartidas.obtenerCodigoIdioma(ConsultarMascotas.this).equals(Ajustes.obtenerIdiomaActividad(ConsultarMascotas.this))) {
+            Ajustes.establecerIdiomaActividad(ConsultarMascotas.this, PreferenciasCompartidas.obtenerCodigoIdioma(ConsultarMascotas.this));
+            recreate();
+            return;
+        }
 
         //Compruebo si hay una cuenta loggeada y si existe. Si no se cumple alguna llevo al usuario al Login
         new Login().comprobarCuentaLoggeada(this);

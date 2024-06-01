@@ -1,10 +1,16 @@
 package com.example.tiendahigienemascotas.Actividades;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,17 +25,56 @@ import com.example.tiendahigienemascotas.PreferenciasCompartidas;
 import com.example.tiendahigienemascotas.R;
 import com.example.tiendahigienemascotas.Regex;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+
 public class Ajustes extends AppCompatActivity {
 EditText IP;
+Spinner spinner_idioma;
+private static final String[] idiomas = {"Español", "Gallego"};
+String codigoIdiomaSeleccionado;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu_ajustes);
 
+        //Si el idioma seleccionado no coincide con el Locale que tiene esta actividad, recargo para setear el idioma bien
+        if(!PreferenciasCompartidas.obtenerCodigoIdioma(Ajustes.this).equals(Ajustes.obtenerIdiomaActividad(Ajustes.this))) {
+            Ajustes.establecerIdiomaActividad(Ajustes.this, PreferenciasCompartidas.obtenerCodigoIdioma(Ajustes.this));
+            recreate();
+            return;
+        }
+
         //Compruebo si hay una cuenta loggeada y si existe. Si no se cumple alguna llevo al usuario al Login
         new Login().comprobarCuentaLoggeada(this);
 
+        //Inicializo mis elementos
+        spinner_idioma = findViewById(R.id.spinnerIdiomas);
+        ArrayAdapter<String> adaptadorIdiomas = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, idiomas);
+        adaptadorIdiomas.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner_idioma.setAdapter(adaptadorIdiomas);
+        spinner_idioma.setSelection(0);
+
         IP = findViewById(R.id.IP_ajustes);
+
+        spinner_idioma.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String idioma_seleccionado = (String) parent.getItemAtPosition(position);
+
+                if(idioma_seleccionado.equals("Español")) {
+                    codigoIdiomaSeleccionado = "es";
+                } else {
+                    codigoIdiomaSeleccionado = "gl";
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {}
+        });
+
 
     }
 
@@ -53,6 +98,37 @@ EditText IP;
         if(!ipv4.isEmpty() && Regex.validarIP(ipv4)) {
             PreferenciasCompartidas.guardarIP(this, ipv4);
         }
+
+        //Guardo el código del idioma escogido en las preferencias para usarlo en mis actividades
+        PreferenciasCompartidas.guardarCodigoIdioma(Ajustes.this,codigoIdiomaSeleccionado);
+
+        
+
+
+        //Si el idioma seleccionado no coincide con el Locale que tiene esta actividad, recargo para setear el idioma bien
+        if(!PreferenciasCompartidas.obtenerCodigoIdioma(Ajustes.this).equals(Ajustes.obtenerIdiomaActividad(Ajustes.this))) {
+            Ajustes.establecerIdiomaActividad(Ajustes.this, PreferenciasCompartidas.obtenerCodigoIdioma(Ajustes.this));
+            recreate();
+        }
+
+    }
+
+    public static void establecerIdiomaActividad(Activity actividad, String codigoIdioma) {
+        //Creo el Locale (idoma) con el código del idioma y se lo establezco a la configuración de la actividad
+        Locale locale = new Locale(codigoIdioma);
+        locale.setDefault(locale);
+        Resources recursos = actividad.getResources();
+        Configuration config = recursos.getConfiguration();
+        config.setLocale(locale);
+        config.getLocales();
+        recursos.updateConfiguration(config, recursos.getDisplayMetrics());
+    }
+
+    public static String obtenerIdiomaActividad(Activity actividad) {
+        //Obtengo el Locale (idioma) establecido en la configuración de la actividad
+        Resources resources = actividad.getResources();
+        Configuration config = resources.getConfiguration();
+        return config.getLocales().get(0).toString();
     }
 
 }

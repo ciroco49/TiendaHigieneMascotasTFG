@@ -30,6 +30,13 @@ public class Inicio extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.inicio);
 
+        //Si el idioma seleccionado no coincide con el Locale que tiene esta actividad, recargo para setear el idioma bien
+        if(!PreferenciasCompartidas.obtenerCodigoIdioma(Inicio.this).equals(Ajustes.obtenerIdiomaActividad(Inicio.this))) {
+            Ajustes.establecerIdiomaActividad(Inicio.this, PreferenciasCompartidas.obtenerCodigoIdioma(Inicio.this));
+            recreate();
+            return;
+        }
+
         //Compruebo si hay una cuenta loggeada y si existe. Si no se cumple alguna llevo al usuario al Login
         new Login().comprobarCuentaLoggeada(this);
 

@@ -85,12 +85,12 @@
                     android:id="@+id/filtroDNIMascota"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Introduzca un DNI" />
+                    android:hint="@string/filtroDNI" />
 
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Filtrar por DNI"
+                    android:text="@string/BTNfiltroDNI"
                     android:onClick="filtrarMascotasDNI"/>
 
             </LinearLayout>
@@ -107,13 +107,13 @@
                     android:id="@+id/filtroEspecieMascota"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Introduzca una especie"
+                    android:hint="@string/filtroEspecie"
                     android:maxLength="50"/>
 
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Filtrar por especie"
+                    android:text="@string/BTNFiltroEspecie"
                     android:onClick="filtrarMascotasEspecie"/>
 
             </LinearLayout>
@@ -135,13 +135,13 @@
                 android:id="@+id/filtroRazaMascota"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Introduzca una raza"
+                android:hint="@string/filtroRaza"
                 android:maxLength="50"/>
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Filtrar por raza"
+                android:text="@string/BTNFiltroRaza"
                 android:onClick="filtrarMascotasRaza"/>
 
         </LinearLayout>

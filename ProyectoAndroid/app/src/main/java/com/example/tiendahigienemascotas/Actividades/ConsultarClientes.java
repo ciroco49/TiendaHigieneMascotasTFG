@@ -35,6 +35,13 @@ EditText filtroNombre_cliente;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.consultar_clientes);
 
+        //Si el idioma seleccionado no coincide con el Locale que tiene esta actividad, recargo para setear el idioma bien
+        if(!PreferenciasCompartidas.obtenerCodigoIdioma(ConsultarClientes.this).equals(Ajustes.obtenerIdiomaActividad(ConsultarClientes.this))) {
+            Ajustes.establecerIdiomaActividad(ConsultarClientes.this, PreferenciasCompartidas.obtenerCodigoIdioma(ConsultarClientes.this));
+            recreate();
+            return;
+        }
+
         //Compruebo si hay una cuenta loggeada y si existe. Si no se cumple alguna llevo al usuario al Login
         new Login().comprobarCuentaLoggeada(this);
 

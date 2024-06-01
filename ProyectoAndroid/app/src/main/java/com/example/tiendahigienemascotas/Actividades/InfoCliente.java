@@ -35,6 +35,13 @@ AdaptadorMascotas adaptador;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.info_clientes);
 
+        //Si el idioma seleccionado no coincide con el Locale que tiene esta actividad, recargo para setear el idioma bien
+        if(!PreferenciasCompartidas.obtenerCodigoIdioma(InfoCliente.this).equals(Ajustes.obtenerIdiomaActividad(InfoCliente.this))) {
+            Ajustes.establecerIdiomaActividad(InfoCliente.this, PreferenciasCompartidas.obtenerCodigoIdioma(InfoCliente.this));
+            recreate();
+            return;
+        }
+
         //Compruebo si hay una cuenta loggeada y si existe. Si no se cumple alguna llevo al usuario al Login
         new Login().comprobarCuentaLoggeada(this);
 

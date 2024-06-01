@@ -19,6 +19,7 @@ public class PreferenciasCompartidas {
     private static final String preferencias = "preferencias";
     private static final String correo_encriptado = "correo_encriptado";
     private static final String ip = "IP";
+    private static final String codIdioma = "codIdioma";
     private static final String clave_secreta = "clavesecreta_123";
 
     public static void guardarCorreoEncriptado(Context contexto, String correo) {
@@ -55,8 +56,21 @@ public class PreferenciasCompartidas {
 
     public static String obtenerIP(Context contexto) {
         SharedPreferences sharedPreferences = contexto.getSharedPreferences(preferencias, Context.MODE_PRIVATE);
-        String IP = sharedPreferences.getString("IP", null);
+        String IP = sharedPreferences.getString(ip, null);
         return IP;
+    }
+
+    public static void guardarCodigoIdioma(Context contexto, String codigoIdioma) {
+        SharedPreferences sharedPreferences = contexto.getSharedPreferences(preferencias, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(codIdioma, codigoIdioma);
+        editor.apply();
+    }
+
+    public static String obtenerCodigoIdioma(Context contexto) {
+        SharedPreferences sharedPreferences = contexto.getSharedPreferences(preferencias, Context.MODE_PRIVATE);
+        String codigoIdioma = sharedPreferences.getString(codIdioma, null);
+        return codigoIdioma;
     }
 
     private static String encriptar(String texto, String clave) throws GeneralSecurityException {

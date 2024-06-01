@@ -40,6 +40,13 @@ public class ModificarCliente extends AppCompatActivity implements ClientesCallB
         super.onCreate(savedInstanceState);
         setContentView(R.layout.modificar_clientes);
 
+        //Si el idioma seleccionado no coincide con el Locale que tiene esta actividad, recargo para setear el idioma bien
+        if(!PreferenciasCompartidas.obtenerCodigoIdioma(ModificarCliente.this).equals(Ajustes.obtenerIdiomaActividad(ModificarCliente.this))) {
+            Ajustes.establecerIdiomaActividad(ModificarCliente.this, PreferenciasCompartidas.obtenerCodigoIdioma(ModificarCliente.this));
+            recreate();
+            return;
+        }
+
         //Compruebo si hay una cuenta loggeada y si existe. Si no se cumple alguna llevo al usuario al Login
         new Login().comprobarCuentaLoggeada(this);
 

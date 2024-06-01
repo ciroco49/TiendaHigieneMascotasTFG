@@ -1,3 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">TiendaHigieneMascotas</string>
+    <string name="introducirCorreo">Introduzca su correo</string>
+    <string name="introducirContraseña">Introduzca su contraseña</string>
+    <string name="btnLogin">Login</string>
+    <string name="btnRegistrar">Registrar</string>
+    <string name="msgNoTieneCuenta">¿No tiene cuenta? \n Cree una</string>
+    <string name="filtroDNI">Introduzca un DNI</string>
+    <string name="filtroNombre">Introduzca un nombre</string>
+    <string name="BTNfiltroDNI">Filtrar por DNI</string>
+    <string name="BTNfiltroNombre">Filtrar por nombre</string>
+    <string name="infoDNI">DNI:</string>
+    <string name="infoNombre">Nombre:</string>
+    <string name="infoApellidos">Apellidos:</string>
+    <string name="infoTelefono">Teléfono:</string>
+    <string name="infoCorreo">Correo:</string>
+    <string name="infoResidencia">Residencia:</string>
+    <string name="nombreMod">Introduzca el nombre</string>
+    <string name="apellidosMod">Introduzca los apellidos</string>
+    <string name="telefonoMod">Introduzca el teléfono</string>
+    <string name="correoMod">Introduzca el correo</string>
+    <string name="residenciaMod">Introduzca la residencia</string>
+    <string name="modificar">Modificar</string>
+    <string name="filtroEspecie">Introduzca una especie</string>
+    <string name="BTNFiltroEspecie">Filtrar por especie</string>
+    <string name="filtroRaza">Introduzca una raza</string>
+    <string name="BTNFiltroRaza">Filtrar por raza</string>
+    <string name="infoEdad">Edad:</string>
+    <string name="infoSexo">Sexo:</string>
+    <string name="infoEspecie">Especie:</string>
+    <string name="infoRaza">Raza:</string>
+    <string name="infoDNI_especialista">DNI del especialista:</string>
+    <string name="edadMod">Introduzca la edad</string>
+    <string name="infoSueldo">Sueldo:</string>
+    <string name="sueldoMod">Introduzca la sueldo</string>
+    <string name="clientes">Clientes</string>
+    <string name="consultar">Consultar</string>
+    <string name="especialistas">Especialistas</string>
+    <string name="mascotas">Mascotas</string>
+    <string name="aplicarCambios">Aplicar cambios</string>
+    <string name="cerrarSesion">Cerrar sesión</string>
+    <string name="idioma">Idioma</string>
+    <string name="ip">IP</string>
+    <string name="imagenDePerfil">Imagen de perfil</string>
 </resources>

@@ -27,6 +27,21 @@ public class Login extends AppCompatActivity implements LoginCallBack {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
 
+        //Si no hay ningún idioma seleccionado, establezco el castellano por defecto y recargo para setear el idioma
+        if(PreferenciasCompartidas.obtenerCodigoIdioma(this) == null) {
+            PreferenciasCompartidas.guardarCodigoIdioma(this, "es");
+            Ajustes.establecerIdiomaActividad(Login.this, PreferenciasCompartidas.obtenerCodigoIdioma(Login.this));
+            recreate();
+            return;
+        }
+
+        //Si el idioma seleccionado no coincide con el Locale que tiene esta actividad, recargo para setear el idioma bien
+        if(!PreferenciasCompartidas.obtenerCodigoIdioma(Login.this).equals(Ajustes.obtenerIdiomaActividad(Login.this))) {
+            Ajustes.establecerIdiomaActividad(Login.this, PreferenciasCompartidas.obtenerCodigoIdioma(Login.this));
+            recreate();
+            return;
+        }
+
         //Establezco la IP por defecto
         PreferenciasCompartidas.guardarIP(this, "192.168.68.101");
 
