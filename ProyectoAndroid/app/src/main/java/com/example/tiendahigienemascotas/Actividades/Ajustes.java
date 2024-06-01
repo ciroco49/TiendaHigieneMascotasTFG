@@ -4,12 +4,16 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 
 import androidx.activity.EdgeToEdge;
@@ -18,6 +22,9 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.tiendahigienemascotas.BBDD.ImagenDAO;
+import com.example.tiendahigienemascotas.BBDD.ImagenesDBHelper;
+import com.example.tiendahigienemascotas.BBDD.entidades.Imagen;
 import com.example.tiendahigienemascotas.CallBacks.LoginCallBack;
 import com.example.tiendahigienemascotas.Controladores.CuentaController;
 import com.example.tiendahigienemascotas.Modelos.Cuenta;
@@ -32,7 +39,13 @@ import java.util.Locale;
 public class Ajustes extends AppCompatActivity {
 EditText IP;
 Spinner spinner_idioma;
+Spinner spinner_imagenes;
 private static final String[] idiomas = {"Español", "Gallego"};
+private static final String[] imagenes = {"Hombre", "Mujer"};
+ImageView imagenSpinner;
+ImagenesDBHelper dbHelper;
+SQLiteDatabase db;
+ArrayList<Imagen> listaImagenes = new ArrayList<>();
 String codigoIdiomaSeleccionado;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,17 +59,32 @@ String codigoIdiomaSeleccionado;
             return;
         }
 
+        //Instancio el dbHelper para utilizar la BD
+        dbHelper = new ImagenesDBHelper(getBaseContext());
+
+        //Abro la base de datos de forma legible para obtener las imágenes de la BD de SQLite
+        db =dbHelper.getReadableDatabase();
+        listaImagenes = ImagenDAO.getImagenes(db);
+
         //Compruebo si hay una cuenta loggeada y si existe. Si no se cumple alguna llevo al usuario al Login
         new Login().comprobarCuentaLoggeada(this);
 
         //Inicializo mis elementos
         spinner_idioma = findViewById(R.id.spinnerIdiomas);
+        spinner_imagenes = findViewById(R.id.spinnerImagenes);
+
         ArrayAdapter<String> adaptadorIdiomas = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, idiomas);
         adaptadorIdiomas.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner_idioma.setAdapter(adaptadorIdiomas);
         spinner_idioma.setSelection(0);
 
+        ArrayAdapter<String> adaptadorImagenes = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, imagenes);
+        adaptadorImagenes.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner_imagenes.setAdapter(adaptadorImagenes);
+        spinner_imagenes.setSelection(0);
+
         IP = findViewById(R.id.IP_ajustes);
+        imagenSpinner = findViewById(R.id.imagenSpinner);
 
         spinner_idioma.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -67,6 +95,27 @@ String codigoIdiomaSeleccionado;
                     codigoIdiomaSeleccionado = "es";
                 } else {
                     codigoIdiomaSeleccionado = "gl";
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {}
+        });
+
+        spinner_imagenes.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String imagen_seleccionada = (String) parent.getItemAtPosition(position);
+
+                if(imagen_seleccionada.equals("Hombre")) {
+                    Imagen imagen = listaImagenes.get(0);
+                    Bitmap bitmap = byteArrayABitmap(imagen.getImagenBytes());
+                    imagenSpinner.setImageBitmap(bitmap);
+                } else {
+                    Imagen imagen = listaImagenes.get(1);
+                    Bitmap bitmap = byteArrayABitmap(imagen.getImagenBytes());
+                    imagenSpinner.setImageBitmap(bitmap);
                 }
 
             }
@@ -129,6 +178,10 @@ String codigoIdiomaSeleccionado;
         Resources resources = actividad.getResources();
         Configuration config = resources.getConfiguration();
         return config.getLocales().get(0).toString();
+    }
+
+    private Bitmap byteArrayABitmap(byte[] arrayBytes) {
+        return BitmapFactory.decodeByteArray(arrayBytes, 0, arrayBytes.length);
     }
 
 }

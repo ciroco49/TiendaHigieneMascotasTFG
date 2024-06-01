@@ -1,16 +1,26 @@
 package com.example.tiendahigienemascotas.Actividades;
 
+import static com.example.tiendahigienemascotas.BBDD.ImagenesContract.SQL_CREATE_TABLE;
+import static com.example.tiendahigienemascotas.BBDD.ImagenesContract.SQL_DELETE_TABLE;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.tiendahigienemascotas.BBDD.ImagenDAO;
+import com.example.tiendahigienemascotas.BBDD.ImagenesDBHelper;
+import com.example.tiendahigienemascotas.BBDD.entidades.Imagen;
 import com.example.tiendahigienemascotas.CallBacks.LoginCallBack;
 import com.example.tiendahigienemascotas.Controladores.CuentaController;
 import com.example.tiendahigienemascotas.Modelos.Cuenta;
@@ -18,9 +28,15 @@ import com.example.tiendahigienemascotas.PreferenciasCompartidas;
 import com.example.tiendahigienemascotas.R;
 import com.example.tiendahigienemascotas.Regex;
 
+import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Login extends AppCompatActivity implements LoginCallBack {
     EditText ETcorreo;
     EditText ETContraseña;
+    ImagenesDBHelper dbHelper;
+    SQLiteDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +56,26 @@ public class Login extends AppCompatActivity implements LoginCallBack {
             Ajustes.establecerIdiomaActividad(Login.this, PreferenciasCompartidas.obtenerCodigoIdioma(Login.this));
             recreate();
             return;
+        }
+
+        //Instancio el dbHelper para utilizar la BD
+        dbHelper = new ImagenesDBHelper(getBaseContext());
+
+        //Borro la tabla de imágenes y la vuelvo a crear
+        //Para poder insertar las imágenes de nuevo en caso de abrir la app y evitar así duplicados
+        db = dbHelper.getWritableDatabase();
+        db.execSQL(SQL_DELETE_TABLE);
+        db.execSQL(SQL_CREATE_TABLE);
+        db.close();
+
+        //Creo un array con los bitmaps con las imágenes que inserto en SQLite
+        List<Bitmap> listaBitmaps = new ArrayList<>();
+        listaBitmaps.add(BitmapFactory.decodeResource(this.getResources(), R.drawable.hombre));
+        listaBitmaps.add(BitmapFactory.decodeResource(this.getResources(), R.drawable.mujer));
+
+        //Cada bitmap lo convierto a array de bytes e inserto cada imagen en la BD
+        for(Bitmap bitmapImagen: listaBitmaps) {
+            insertarImagenesSQLite(bitmapABitArray(bitmapImagen));
         }
 
         //Establezco la IP por defecto
@@ -172,5 +208,25 @@ public class Login extends AppCompatActivity implements LoginCallBack {
             public void onError(String mensaje) {}
         });
     }
+
+    private byte[] bitmapABitArray(Bitmap bitmap) {
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        return stream.toByteArray();
+    }
+
+    private void insertarImagenesSQLite(byte[] bytesImagen){
+        //Obtengo la BD en su "forma editable"
+        db = dbHelper.getWritableDatabase();
+
+        //Instancio la imagen que insertaré en la BD
+        Imagen imagen = new Imagen(bytesImagen);
+
+        ImagenDAO.InsertarImagen(db, imagen);
+
+        db.close();
+    }
+
+
 
 }
