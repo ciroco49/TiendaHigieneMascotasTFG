@@ -4,25 +4,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.example.tiendahigienemascotas.AdaptadorClientes;
-import com.example.tiendahigienemascotas.AdaptadorMascotas;
 import com.example.tiendahigienemascotas.CallBacks.ClientesCallBack;
-import com.example.tiendahigienemascotas.CallBacks.LoginCallBack;
 import com.example.tiendahigienemascotas.Controladores.ClienteController;
-import com.example.tiendahigienemascotas.Controladores.CuentaController;
 import com.example.tiendahigienemascotas.Modelos.Cliente;
-import com.example.tiendahigienemascotas.Modelos.Cuenta;
 import com.example.tiendahigienemascotas.PreferenciasCompartidas;
 import com.example.tiendahigienemascotas.R;
 import com.example.tiendahigienemascotas.Regex;

@@ -11,13 +11,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.tiendahigienemascotas.AdaptadorMascotas;
 import com.example.tiendahigienemascotas.CallBacks.ClientesCallBack;
-import com.example.tiendahigienemascotas.CallBacks.LoginCallBack;
 import com.example.tiendahigienemascotas.CallBacks.TenerCallBack;
 import com.example.tiendahigienemascotas.Controladores.ClienteController;
-import com.example.tiendahigienemascotas.Controladores.CuentaController;
 import com.example.tiendahigienemascotas.Controladores.TenerController;
 import com.example.tiendahigienemascotas.Modelos.Cliente;
-import com.example.tiendahigienemascotas.Modelos.Cuenta;
 import com.example.tiendahigienemascotas.Modelos.MascotaDTO;
 import com.example.tiendahigienemascotas.Modelos.TenerDTO;
 import com.example.tiendahigienemascotas.PreferenciasCompartidas;

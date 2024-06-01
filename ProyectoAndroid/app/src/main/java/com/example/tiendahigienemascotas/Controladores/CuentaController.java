@@ -1,38 +1,27 @@
 package com.example.tiendahigienemascotas.Controladores;
 
 import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
-import com.example.tiendahigienemascotas.Actividades.Inicio;
-import com.example.tiendahigienemascotas.Actividades.Login;
 import com.example.tiendahigienemascotas.CallBacks.LoginCallBack;
-import com.example.tiendahigienemascotas.Modelos.Cliente;
-import com.example.tiendahigienemascotas.Modelos.Cuenta;
+import com.example.tiendahigienemascotas.Modelos.CuentaDTO;
 import com.example.tiendahigienemascotas.PreferenciasCompartidas;
 import com.google.gson.Gson;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.android.volley.Response;
 import com.android.volley.Request;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.UnsupportedEncodingException;
-import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 
@@ -55,9 +44,9 @@ public class CuentaController {
 
                             Log.d("Login Response", response);
                             Gson gson = new Gson();
-                            Cuenta cuenta = gson.fromJson(response, Cuenta.class);
-                            Log.d("Cuenta", cuenta.toString());
-                            callBack.onSuccess(cuenta);
+                            CuentaDTO cuentaDTO = gson.fromJson(response, CuentaDTO.class);
+                            Log.d("Cuenta", cuentaDTO.toString());
+                            callBack.onSuccess(cuentaDTO);
                         }
                     }, new Response.ErrorListener() {
                 @Override
@@ -164,7 +153,7 @@ public class CuentaController {
         if(correoLoggeado != null) {
             login(correoLoggeado, contexto, new LoginCallBack() {
                 @Override
-                public void onSuccess(Cuenta cuenta) {
+                public void onSuccess(CuentaDTO cuentaDTO) {
                     //Si existe la cuenta, devuelvo true al callBack pasado como parámetro desde la Activity
                     callBack.existeCuentaLoggeada(true);
                 }
