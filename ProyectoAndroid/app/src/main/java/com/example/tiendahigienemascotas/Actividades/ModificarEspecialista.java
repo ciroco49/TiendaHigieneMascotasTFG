@@ -30,7 +30,6 @@ public class ModificarEspecialista extends AppCompatActivity implements Especial
 EditText nombre, apellidos, telefono, correo, residencia, sueldo;
 ListView listView_especialistas;
 AdaptadorEspecialistas adaptador;
-String DNI_seleccionado;
 EspecialistaDTO especialista_seleccionado, especialistaDTO_actualizado;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,7 +125,7 @@ EspecialistaDTO especialista_seleccionado, especialistaDTO_actualizado;
         }
 
 
-        if(DNI_seleccionado != null) {
+        if(especialista_seleccionado != null) {
             //Creo un cliente para enviar los datos para modificar el seleccionado
             especialistaDTO_actualizado = new EspecialistaDTO(
                     especialista_seleccionado.getDNI(),
@@ -136,7 +135,7 @@ EspecialistaDTO especialista_seleccionado, especialistaDTO_actualizado;
                     correo.getText().toString(),
                     residencia.getText().toString(),
                     Double.parseDouble(sueldo.getText().toString()),
-                    especialista_seleccionado.getDNIMascotaList());
+                    especialista_seleccionado.getdnimascotaList());
 
             //Llamo a la petición para modificar el especialista
             EspecialistaController.actualizarEspecialistaPorDNI(especialista_seleccionado.getDNI(), especialistaDTO_actualizado,
