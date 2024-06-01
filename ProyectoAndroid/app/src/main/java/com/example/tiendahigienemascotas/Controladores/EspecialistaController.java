@@ -20,6 +20,7 @@ import com.example.tiendahigienemascotas.PreferenciasCompartidas;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -202,7 +203,7 @@ public class EspecialistaController {
     public static void actualizarEspecialistaPorDNI(String DNI, EspecialistaDTO especialistaActualizado, Context contexto, EspecialistasCallBack callBack) {
 
         StringRequest stringRequest = new StringRequest(Request.Method.PUT,
-                "http://" + PreferenciasCompartidas.obtenerIP(contexto) + ":8080/updateCliente/" + DNI,
+                "http://" + PreferenciasCompartidas.obtenerIP(contexto) + ":8080/updateEspecialista/" + DNI,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -232,7 +233,9 @@ public class EspecialistaController {
                     jsonBody.put("correo", especialistaActualizado.getCorreo());
                     jsonBody.put("residencia", especialistaActualizado.getResidencia());
                     jsonBody.put("sueldo", especialistaActualizado.getSueldo());
+                    jsonBody.put("dnimascotaList", new JSONArray(especialistaActualizado.getdnimascotaList()));
                     String requestBody = jsonBody.toString();
+                    Log.d("BODY", requestBody);
                     return requestBody.getBytes(StandardCharsets.UTF_8);
                 } catch (JSONException e) {
                     Log.e("Body error: ", e.toString());

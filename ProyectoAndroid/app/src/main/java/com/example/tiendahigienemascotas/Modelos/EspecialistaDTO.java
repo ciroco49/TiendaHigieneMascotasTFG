@@ -10,12 +10,12 @@ public class EspecialistaDTO {
     private String correo;
     private String residencia;
     private Double sueldo;
-    private List<String> DNIMascotaList;
+    private List<String> dnimascotaList;
 
     public EspecialistaDTO() {
     }
 
-    public EspecialistaDTO(String dni, String nombre, String apellidos, String telefono, String correo, String residencia, Double sueldo, List<String> DNIMascotaList) {
+    public EspecialistaDTO(String dni, String nombre, String apellidos, String telefono, String correo, String residencia, Double sueldo, List<String> dnimascotaList) {
         this.dni = dni;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -23,7 +23,7 @@ public class EspecialistaDTO {
         this.correo = correo;
         this.residencia = residencia;
         this.sueldo = sueldo;
-        this.DNIMascotaList = DNIMascotaList;
+        this.dnimascotaList = dnimascotaList;
     }
 
     public String getDNI() {
@@ -82,12 +82,12 @@ public class EspecialistaDTO {
         this.sueldo = sueldo;
     }
 
-    public List<String> getDNIMascotaList() {
-        return DNIMascotaList;
+    public List<String> getdnimascotaList() {
+        return dnimascotaList;
     }
 
-    public void setDNIMascotaList(List<String> DNIMascotaList) {
-        this.DNIMascotaList = DNIMascotaList;
+    public void setdnimascotaList(List<String> dnimascotaList) {
+        this.dnimascotaList = dnimascotaList;
     }
 }
 
