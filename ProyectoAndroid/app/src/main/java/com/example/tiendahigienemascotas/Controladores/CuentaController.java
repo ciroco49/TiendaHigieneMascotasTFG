@@ -8,7 +8,9 @@ import com.android.volley.NetworkResponse;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
+import com.example.tiendahigienemascotas.CallBacks.ClientesCallBack;
 import com.example.tiendahigienemascotas.CallBacks.LoginCallBack;
+import com.example.tiendahigienemascotas.Modelos.Cliente;
 import com.example.tiendahigienemascotas.Modelos.CuentaDTO;
 import com.example.tiendahigienemascotas.PreferenciasCompartidas;
 import com.google.gson.Gson;
@@ -162,6 +164,9 @@ public class CuentaController {
                 public void onSuccessRegistro(String mensaje) {}
 
                 @Override
+                public void onSuccessModCuentaImagen(String mensaje) {}
+
+                @Override
                 public void existeCuentaLoggeada(boolean existe) {}
 
                 @Override
@@ -176,5 +181,68 @@ public class CuentaController {
         }
 
     }
+
+    public static void actualizarCuentaPorCorreo(String correo, CuentaDTO cuentaDTO, Context contexto, LoginCallBack callBack) {
+
+        StringRequest stringRequest = new StringRequest(Request.Method.PUT,
+                "http://" + PreferenciasCompartidas.obtenerIP(contexto) + ":8080/updateCuenta/" + correo,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        if(response == null || response.isEmpty()) {
+                            Log.e("ActualizarCuentaPorCorreo Error: ", "Respuesta vacía o nula");
+                            callBack.onError("No existe la cuenta a modificar");
+                        }
+
+                        callBack.onSuccessModCuentaImagen(response);
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("ActualizarCuentaPorCorreo Error", "Error en la petición: " + error.toString());
+                        callBack.onError("Error en la petición: " + error.toString());
+                    }
+                }) {
+            @Override
+            public byte[] getBody() throws AuthFailureError {
+                try {
+                    JSONObject jsonBody = new JSONObject();
+                    jsonBody.put("contrasenha", cuentaDTO.getContrasenha());
+                    jsonBody.put("imagen", cuentaDTO.getImagen());
+                    String requestBody = jsonBody.toString();
+                    return requestBody.getBytes(StandardCharsets.UTF_8);
+                } catch (JSONException e) {
+                    Log.e("Body error: ", e.toString());
+                    return null;
+                }
+            }
+
+            @Override
+            public String getBodyContentType() {
+                return "application/json; charset=utf-8";
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<>();
+                headers.put("Content-Type", "application/json; charset=utf-8");
+                return headers;
+            }
+
+            @Override
+            protected Response<String> parseNetworkResponse(NetworkResponse response) {
+                String parsed = new String(response.data, StandardCharsets.UTF_8);
+                return Response.success(parsed, HttpHeaderParser.parseCacheHeaders(response));
+            }
+
+        };
+
+        // Agregar la petición a la cola de Volley
+        RequestQueue queue = Volley.newRequestQueue(contexto);
+        queue.add(stringRequest);
+    }
+
 
 }

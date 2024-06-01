@@ -2,6 +2,7 @@ package com.ciroiencom.tfg.controlador;
 
 import com.ciroiencom.tfg.modelo.Cuenta;
 import com.ciroiencom.tfg.modelo.Cuenta;
+import com.ciroiencom.tfg.modelo.DTO.CuentaDTO;
 import com.ciroiencom.tfg.repositorio.RepoCliente;
 import com.ciroiencom.tfg.repositorio.RepoCuenta;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,26 +24,33 @@ public class ControladorCuenta {
     }
 
     @PostMapping("/login")
-    public Cuenta getCuenta(@RequestBody Cuenta cuenta) {
-        return repoCuenta.findByCorreo(cuenta.getCorreo());
+    public Cuenta getCuenta(@RequestBody CuentaDTO cuentaDTO) {
+        return repoCuenta.findByCorreo(cuentaDTO.getCorreo());
     }
 
     @PostMapping(value = "/saveCuentas")
-    public String saveCuenta(@RequestBody Cuenta cuenta) {
+    public String saveCuenta(@RequestBody CuentaDTO cuentaDTO) {
+        Cuenta cuenta = CuentaDTO.cuentaDTOaCuenta(cuentaDTO);
+
         repoCuenta.save(cuenta);
         return "Cuenta registrada";
     }
 
     @PutMapping(value = "/updateCuenta/{correo}")
-    public String updateCuenta(@PathVariable String correo, @RequestBody Cuenta Cuenta) {
-        Cuenta updatedCuenta = repoCuenta.findById(correo).get();
+    public String updateCuenta(@PathVariable String correo, @RequestBody CuentaDTO cuentaDTO) {
+        Cuenta cuentaDTO_transformada = CuentaDTO.cuentaDTOaCuenta(cuentaDTO);
 
-        updatedCuenta.setContrasenha(Cuenta.getContrasenha());
-        updatedCuenta.setImagen(Cuenta.getImagen());
+        Cuenta updatedCuenta = repoCuenta.findByCorreo(correo);
 
-        repoCuenta.save(updatedCuenta);
+        if (updatedCuenta != null) {
+            updatedCuenta.setContrasenha(cuentaDTO_transformada.getContrasenha());
+            updatedCuenta.setImagen(cuentaDTO_transformada.getImagen());
 
-        return "Cuenta actualizada";
+            repoCuenta.save(updatedCuenta);
+            return "Cuenta actualizada";
+        }
+
+        return null;
     }
 
     @DeleteMapping(value = "/deleteCuenta/{correo}")

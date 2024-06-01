@@ -1,10 +1,7 @@
 package com.ciroiencom.tfg.modelo;
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.sql.Blob;
 
@@ -16,12 +13,13 @@ public class Cuenta {
     @Column
     private String contrasenha;
     @Column
-    private Blob imagen;
+    @Lob
+    private String imagen;
 
     public Cuenta() {
     }
 
-    public Cuenta(String correo, String contrasenha, Blob imagen) {
+    public Cuenta(String correo, String contrasenha, String imagen) {
         this.correo = correo;
         this.contrasenha = contrasenha;
         this.imagen = imagen;
@@ -43,11 +41,11 @@ public class Cuenta {
         this.contrasenha = contrasenha;
     }
 
-    public Blob getImagen() {
+    public String getImagen() {
         return imagen;
     }
 
-    public void setImagen(Blob imagen) {
+    public void setImagen(String imagen) {
         this.imagen = imagen;
     }
 }

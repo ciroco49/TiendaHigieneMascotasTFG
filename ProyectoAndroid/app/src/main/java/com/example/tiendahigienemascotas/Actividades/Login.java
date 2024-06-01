@@ -121,6 +121,9 @@ public class Login extends AppCompatActivity implements LoginCallBack {
                                 }
 
                                 @Override
+                                public void onSuccessModCuentaImagen(String mensaje) {}
+
+                                @Override
                                 public void existeCuentaLoggeada(boolean existe) {}
 
                                 @Override
@@ -133,6 +136,9 @@ public class Login extends AppCompatActivity implements LoginCallBack {
 
                 @Override
                 public void onSuccessRegistro(String mensaje) {}
+
+                @Override
+                public void onSuccessModCuentaImagen(String mensaje) {}
 
                 @Override
                 public void existeCuentaLoggeada(boolean existe) {}
@@ -174,6 +180,9 @@ public class Login extends AppCompatActivity implements LoginCallBack {
     public void onSuccessRegistro(String mensaje) {}
 
     @Override
+    public void onSuccessModCuentaImagen(String mensaje) {}
+
+    @Override
     public void existeCuentaLoggeada(boolean existe) {
         if(existe) {
             Intent inicio = new Intent(this, Inicio.class);
@@ -201,6 +210,9 @@ public class Login extends AppCompatActivity implements LoginCallBack {
 
             @Override
             public void onSuccessRegistro(String mensaje) {}
+
+            @Override
+            public void onSuccessModCuentaImagen(String mensaje) {}
 
             @Override
             public void onError(String mensaje) {}

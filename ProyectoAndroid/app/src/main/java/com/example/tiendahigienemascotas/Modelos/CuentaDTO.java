@@ -2,15 +2,15 @@ package com.example.tiendahigienemascotas.Modelos;
 
 import java.util.Base64;
 
-public class Cuenta {
+public class CuentaDTO {
     private String correo;
     private String contrasenha;
     private byte[] imagen;
 
-    public Cuenta() {
+    public CuentaDTO() {
     }
 
-    public Cuenta(String correo, String contrasenha, byte[] imagen) {
+    public CuentaDTO(String correo, String contrasenha, byte[] imagen) {
         this.correo = correo;
         this.contrasenha = contrasenha;
         this.imagen = imagen;

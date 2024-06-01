@@ -14,12 +14,16 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.tiendahigienemascotas.BBDD.ImagenDAO;
 import com.example.tiendahigienemascotas.BBDD.ImagenesDBHelper;
 import com.example.tiendahigienemascotas.BBDD.entidades.Imagen;
+import com.example.tiendahigienemascotas.CallBacks.LoginCallBack;
+import com.example.tiendahigienemascotas.Controladores.CuentaController;
+import com.example.tiendahigienemascotas.Modelos.CuentaDTO;
 import com.example.tiendahigienemascotas.PreferenciasCompartidas;
 import com.example.tiendahigienemascotas.R;
 import com.example.tiendahigienemascotas.Regex;
@@ -38,6 +42,7 @@ ImagenesDBHelper dbHelper;
 SQLiteDatabase db;
 ArrayList<Imagen> listaImagenes = new ArrayList<>();
 String codigoIdiomaSeleccionado;
+String imagenSeleccionada;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,10 +105,14 @@ String codigoIdiomaSeleccionado;
                 String imagen_seleccionada = (String) parent.getItemAtPosition(position);
 
                 if(imagen_seleccionada.equals("Hombre")) {
+                    imagenSeleccionada = "Hombre";
+
                     Imagen imagen = listaImagenes.get(0);
                     Bitmap bitmap = byteArrayABitmap(imagen.getImagenBytes());
                     imagenSpinner.setImageBitmap(bitmap);
                 } else {
+                    imagenSeleccionada = "Mujer";
+
                     Imagen imagen = listaImagenes.get(1);
                     Bitmap bitmap = byteArrayABitmap(imagen.getImagenBytes());
                     imagenSpinner.setImageBitmap(bitmap);
@@ -148,9 +157,57 @@ String codigoIdiomaSeleccionado;
             Ajustes.establecerIdiomaActividad(Ajustes.this, PreferenciasCompartidas.obtenerCodigoIdioma(Ajustes.this));
         }
 
+        //Obtengo el correo de la cuenta loggeada e intento actualizar la cuenta con la nueva imagen seleccionada
+        String correo = PreferenciasCompartidas.obtenerCorreoDesencriptado(Ajustes.this);
+        CuentaController.login(correo, Ajustes.this, new LoginCallBack() {
+            @Override
+            public void onSuccess(CuentaDTO cuentaDTO) {
+                CuentaDTO cuentaActualizada = new CuentaDTO();
+                    cuentaActualizada.setCorreo(cuentaDTO.getCorreo());
+                    cuentaActualizada.setContrasenha(cuentaDTO.getContrasenha());
 
+                    if(imagenSeleccionada.equals("Hombre")) {
+                        cuentaActualizada.setImagen(listaImagenes.get(0).getImagenBytes());
+                    } else {
+                        cuentaActualizada.setImagen(listaImagenes.get(1).getImagenBytes());
+                    }
 
+                    //
+                CuentaController.actualizarCuentaPorCorreo(cuentaActualizada.getCorreo(), cuentaActualizada,
+                        Ajustes.this, new LoginCallBack() {
+                            @Override
+                            public void onSuccess(CuentaDTO cuentaDTO) {}
 
+                            @Override
+                            public void onSuccessRegistro(String mensaje) {}
+
+                            @Override
+                            public void onSuccessModCuentaImagen(String mensaje) {}
+
+                            @Override
+                            public void existeCuentaLoggeada(boolean existe) {}
+
+                            @Override
+                            public void onError(String mensaje) {
+                                Toast.makeText(Ajustes.this, mensaje, Toast.LENGTH_LONG).show();
+                            }
+                        });
+            }
+
+            @Override
+            public void onSuccessRegistro(String mensaje) {}
+
+            @Override
+            public void onSuccessModCuentaImagen(String mensaje) {}
+
+            @Override
+            public void existeCuentaLoggeada(boolean existe) {}
+
+            @Override
+            public void onError(String mensaje) {
+                Toast.makeText(Ajustes.this, mensaje, Toast.LENGTH_LONG).show();
+            }
+        });
 
         //Recargo la pantalla para aplicar los cambios de idioma y/o imagen
         recreate();
