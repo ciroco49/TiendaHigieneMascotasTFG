@@ -8,7 +8,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -16,24 +15,16 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.example.tiendahigienemascotas.BBDD.ImagenDAO;
 import com.example.tiendahigienemascotas.BBDD.ImagenesDBHelper;
 import com.example.tiendahigienemascotas.BBDD.entidades.Imagen;
-import com.example.tiendahigienemascotas.CallBacks.LoginCallBack;
-import com.example.tiendahigienemascotas.Controladores.CuentaController;
-import com.example.tiendahigienemascotas.Modelos.Cuenta;
 import com.example.tiendahigienemascotas.PreferenciasCompartidas;
 import com.example.tiendahigienemascotas.R;
 import com.example.tiendahigienemascotas.Regex;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 
 public class Ajustes extends AppCompatActivity {
@@ -148,18 +139,21 @@ String codigoIdiomaSeleccionado;
             PreferenciasCompartidas.guardarIP(this, ipv4);
         }
 
+
         //Guardo el código del idioma escogido en las preferencias para usarlo en mis actividades
         PreferenciasCompartidas.guardarCodigoIdioma(Ajustes.this,codigoIdiomaSeleccionado);
 
-        
-
-
-        //Si el idioma seleccionado no coincide con el Locale que tiene esta actividad, recargo para setear el idioma bien
+        //Si el idioma seleccionado no coincide con el Locale que tiene esta actividad se lo setteo
         if(!PreferenciasCompartidas.obtenerCodigoIdioma(Ajustes.this).equals(Ajustes.obtenerIdiomaActividad(Ajustes.this))) {
             Ajustes.establecerIdiomaActividad(Ajustes.this, PreferenciasCompartidas.obtenerCodigoIdioma(Ajustes.this));
-            recreate();
         }
 
+
+
+
+
+        //Recargo la pantalla para aplicar los cambios de idioma y/o imagen
+        recreate();
     }
 
     public static void establecerIdiomaActividad(Activity actividad, String codigoIdioma) {
