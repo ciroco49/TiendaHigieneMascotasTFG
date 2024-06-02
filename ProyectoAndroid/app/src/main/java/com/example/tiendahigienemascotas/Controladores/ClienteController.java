@@ -40,6 +40,7 @@ public class ClienteController {
                             if(response == null || response.isEmpty()) {
                                 Log.e("GetClientes Error: ", "Respuesta vacía o nula");
                                 callBack.onError("No se han encontrado clientes");
+                                return;
                             }
                             Gson gson = new Gson();
                             Type lista = new TypeToken<List<Cliente>>() {}.getType();
@@ -145,6 +146,7 @@ public class ClienteController {
                             if(response == null || response.isEmpty()) {
                                 Log.e("GetClientesPorNombre Error: ", "Respuesta vacía o nula");
                                 callBack.onError("No existen clientes con el nombre proporcionado");
+                                return;
                             }
                             Gson gson = new Gson();
                             Type lista = new TypeToken<List<Cliente>>() {}.getType();
@@ -206,6 +208,7 @@ public class ClienteController {
                         if(response == null || response.isEmpty()) {
                             Log.e("ActualizarClientePorDNI Error: ", "Respuesta vacía o nula");
                             callBack.onError("No se ha podido modificar el cliente");
+                            return;
                         }
 
                         callBack.onSuccessModCliente(response);

@@ -107,6 +107,7 @@ public class CuentaController {
                             if(response == null || response.isEmpty()) {
                                 Log.e("Registrar Error: ", "Respuesta vacía o nula");
                                 callBack.onError("No se ha podido registrar la cuenta");
+                                return;
                             }
 
                             callBack.onSuccessRegistro(response);
@@ -197,6 +198,7 @@ public class CuentaController {
                         if(response == null || response.isEmpty()) {
                             Log.e("ActualizarCuentaPorCorreo Error: ", "Respuesta vacía o nula");
                             callBack.onError("No existe la cuenta a modificar");
+                            return;
                         }
 
                         callBack.onSuccessModCuentaImagen(response);

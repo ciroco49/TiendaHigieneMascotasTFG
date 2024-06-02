@@ -84,6 +84,7 @@ AdaptadorClientes adaptador;
         dni.setText(mascotaDTO.getDNI());
         nombre.setText(mascotaDTO.getNombre());
         edad.setText(Integer.toString(mascotaDTO.getEdad()));
+        sexo.setText(Character.toString(mascotaDTO.getSexo()));
         especie.setText(mascotaDTO.getEspecie());
         raza.setText(mascotaDTO.getRaza());
         dni_especialista.setText(mascotaDTO.getDNI_especialista());

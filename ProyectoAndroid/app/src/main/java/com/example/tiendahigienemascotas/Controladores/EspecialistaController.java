@@ -44,6 +44,7 @@ public class EspecialistaController {
                             if(response == null || response.isEmpty()) {
                                 Log.e("GetEspecialistas Error: ", "Respuesta vacía o nula");
                                 callBack.onError("No se han encontrado especialistas");
+                                return;
                             }
                             Gson gson = new Gson();
                             Type lista = new TypeToken<List<EspecialistaDTO>>() {}.getType();
@@ -149,6 +150,7 @@ public class EspecialistaController {
                             if(response == null || response.isEmpty()) {
                                 Log.e("GetEspecialistasPorNombre Error: ", "Respuesta vacía o nula");
                                 callBack.onError("No existen especialistas con el nombre proporcionado");
+                                return;
                             }
                             Gson gson = new Gson();
                             Type lista = new TypeToken<List<EspecialistaDTO>>() {}.getType();
@@ -210,6 +212,7 @@ public class EspecialistaController {
                         if(response == null || response.isEmpty()) {
                             Log.e("ActualizarEspecialistaPorDNI Error: ", "Respuesta vacía o nula");
                             callBack.onError("No se ha podido modificar el especialista");
+                            return;
                         }
 
                         callBack.onSuccessModEspecialista(response);

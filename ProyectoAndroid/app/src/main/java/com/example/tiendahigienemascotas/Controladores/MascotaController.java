@@ -43,6 +43,7 @@ public class MascotaController {
                             if(response == null || response.isEmpty()) {
                                 Log.e("GetMascotas Error: ", "Respuesta vacía o nula");
                                 callBack.onError("No se han encontrado mascotas");
+                                return;
                             }
                             Gson gson = new Gson();
                             Type lista = new TypeToken<List<MascotaDTO>>() {}.getType();
@@ -148,6 +149,7 @@ public class MascotaController {
                             if(response == null || response.isEmpty()) {
                                 Log.e("GetMascotasPorEspecie Error: ", "Respuesta vacía o nula");
                                 callBack.onError("No existen mascotas con la especie proporcionada");
+                                return;
                             }
                             Gson gson = new Gson();
                             Type lista = new TypeToken<List<MascotaDTO>>() {}.getType();
@@ -210,6 +212,7 @@ public class MascotaController {
                             if(response == null || response.isEmpty()) {
                                 Log.e("GetMascotasPorRaza Error: ", "Respuesta vacía o nula");
                                 callBack.onError("No existen mascotas con la raza proporcionada");
+                                return;
                             }
                             Gson gson = new Gson();
                             Type lista = new TypeToken<List<MascotaDTO>>() {}.getType();
@@ -272,6 +275,7 @@ public class MascotaController {
                             if(response == null || response.isEmpty()) {
                                 Log.e("GetMascotasPorEspecialista Error: ", "Respuesta vacía o nula");
                                 callBack.onError("No existen mascotas para el especialista proporcionado");
+                                return;
                             }
                             Gson gson = new Gson();
                             Type lista = new TypeToken<List<MascotaDTO>>() {}.getType();
@@ -332,6 +336,7 @@ public class MascotaController {
                         if(response == null || response.isEmpty()) {
                             Log.e("ActualizarMascotaPorDNI Error: ", "Respuesta vacía o nula");
                             callBack.onError("No se ha podido modificar la mascota");
+                            return;
                         }
 
                         callBack.onSuccessModMascota(response);
