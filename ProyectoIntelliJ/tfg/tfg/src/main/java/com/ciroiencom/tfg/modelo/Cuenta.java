@@ -12,14 +12,14 @@ public class Cuenta {
     private String correo;
     @Column
     private String contrasenha;
-    @Column
+    @Column(name = "imagen", columnDefinition = "LONGBLOB")
     @Lob
-    private String imagen;
+    private byte[] imagen;
 
     public Cuenta() {
     }
 
-    public Cuenta(String correo, String contrasenha, String imagen) {
+    public Cuenta(String correo, String contrasenha, byte[] imagen) {
         this.correo = correo;
         this.contrasenha = contrasenha;
         this.imagen = imagen;
@@ -41,11 +41,11 @@ public class Cuenta {
         this.contrasenha = contrasenha;
     }
 
-    public String getImagen() {
+    public byte[] getImagen() {
         return imagen;
     }
 
-    public void setImagen(String imagen) {
+    public void setImagen(byte[] imagen) {
         this.imagen = imagen;
     }
 }

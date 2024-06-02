@@ -2,7 +2,6 @@ package com.ciroiencom.tfg.controlador;
 
 import com.ciroiencom.tfg.modelo.Cuenta;
 import com.ciroiencom.tfg.modelo.Cuenta;
-import com.ciroiencom.tfg.modelo.DTO.CuentaDTO;
 import com.ciroiencom.tfg.repositorio.RepoCliente;
 import com.ciroiencom.tfg.repositorio.RepoCuenta;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,27 +23,24 @@ public class ControladorCuenta {
     }
 
     @PostMapping("/login")
-    public Cuenta getCuenta(@RequestBody CuentaDTO cuentaDTO) {
-        return repoCuenta.findByCorreo(cuentaDTO.getCorreo());
+    public Cuenta getCuenta(@RequestBody Cuenta cuenta) {
+        Cuenta cuentaObtenida = repoCuenta.findByCorreo(cuenta.getCorreo());
+        return cuentaObtenida;
     }
 
     @PostMapping(value = "/saveCuentas")
-    public String saveCuenta(@RequestBody CuentaDTO cuentaDTO) {
-        Cuenta cuenta = CuentaDTO.cuentaDTOaCuenta(cuentaDTO);
-
+    public String saveCuenta(@RequestBody Cuenta cuenta) {;
         repoCuenta.save(cuenta);
         return "Cuenta registrada";
     }
 
     @PutMapping(value = "/updateCuenta/{correo}")
-    public String updateCuenta(@PathVariable String correo, @RequestBody CuentaDTO cuentaDTO) {
-        Cuenta cuentaDTO_transformada = CuentaDTO.cuentaDTOaCuenta(cuentaDTO);
-
+    public String updateCuenta(@PathVariable String correo, @RequestBody Cuenta cuenta) {
         Cuenta updatedCuenta = repoCuenta.findByCorreo(correo);
 
         if (updatedCuenta != null) {
-            updatedCuenta.setContrasenha(cuentaDTO_transformada.getContrasenha());
-            updatedCuenta.setImagen(cuentaDTO_transformada.getImagen());
+            updatedCuenta.setContrasenha(cuenta.getContrasenha());
+            updatedCuenta.setImagen(cuenta.getImagen());
 
             repoCuenta.save(updatedCuenta);
             return "Cuenta actualizada";

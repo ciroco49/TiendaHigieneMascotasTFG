@@ -10,6 +10,7 @@ import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.example.tiendahigienemascotas.CallBacks.ClientesCallBack;
 import com.example.tiendahigienemascotas.CallBacks.LoginCallBack;
+import com.example.tiendahigienemascotas.FuncionesByteArray;
 import com.example.tiendahigienemascotas.Modelos.Cliente;
 import com.example.tiendahigienemascotas.Modelos.CuentaDTO;
 import com.example.tiendahigienemascotas.PreferenciasCompartidas;
@@ -18,7 +19,9 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.android.volley.Response;
 import com.android.volley.Request;
+import com.google.gson.GsonBuilder;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -45,7 +48,9 @@ public class CuentaController {
                             }
 
                             Log.d("Login Response", response);
-                            Gson gson = new Gson();
+                            Gson gson = new GsonBuilder()
+                                        .registerTypeAdapter(byte[].class, new FuncionesByteArray())
+                                        .create();
                             CuentaDTO cuentaDTO = gson.fromJson(response, CuentaDTO.class);
                             Log.d("Cuenta", cuentaDTO.toString());
                             callBack.onSuccess(cuentaDTO);
@@ -209,8 +214,9 @@ public class CuentaController {
             public byte[] getBody() throws AuthFailureError {
                 try {
                     JSONObject jsonBody = new JSONObject();
+                    jsonBody.put("correo", cuentaDTO.getCorreo());
                     jsonBody.put("contrasenha", cuentaDTO.getContrasenha());
-                    jsonBody.put("imagen", cuentaDTO.getImagen());
+                    jsonBody.put("imagen", new JSONArray(cuentaDTO.getImagen()));
                     String requestBody = jsonBody.toString();
                     return requestBody.getBytes(StandardCharsets.UTF_8);
                 } catch (JSONException e) {
