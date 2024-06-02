@@ -37,7 +37,7 @@ Spinner spinner_idioma;
 Spinner spinner_imagenes;
 private static final String[] idiomas = {"Español", "Gallego"};
 private static final String[] imagenes = {"Hombre", "Mujer"};
-ImageView imagenSpinner;
+ImageView imagenSpinner, imgPerfil;
 ImagenesDBHelper dbHelper;
 SQLiteDatabase db;
 ArrayList<Imagen> listaImagenes = new ArrayList<>();
@@ -55,15 +55,15 @@ String imagenSeleccionada;
             return;
         }
 
+        //Compruebo si hay una cuenta loggeada y si existe. Si no se cumple alguna llevo al usuario al Login
+        new Login().comprobarCuentaLoggeada(this);
+
         //Instancio el dbHelper para utilizar la BD
         dbHelper = new ImagenesDBHelper(getBaseContext());
 
         //Abro la base de datos de forma legible para obtener las imágenes de la BD de SQLite
         db =dbHelper.getReadableDatabase();
         listaImagenes = ImagenDAO.getImagenes(db);
-
-        //Compruebo si hay una cuenta loggeada y si existe. Si no se cumple alguna llevo al usuario al Login
-        new Login().comprobarCuentaLoggeada(this);
 
         //Inicializo mis elementos
         spinner_idioma = findViewById(R.id.spinnerIdiomas);
@@ -81,6 +81,7 @@ String imagenSeleccionada;
 
         IP = findViewById(R.id.IP_ajustes);
         imagenSpinner = findViewById(R.id.imagenSpinner);
+        imgPerfil = findViewById(R.id.imagenActual);
 
         spinner_idioma.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -124,6 +125,37 @@ String imagenSeleccionada;
             public void onNothingSelected(AdapterView<?> parent) {}
         });
 
+        //Obtengo la cuenta loggeada para saber si cargar en la imagen de perfil su foto o la imagen por defecto
+        String correo = PreferenciasCompartidas.obtenerCorreoDesencriptado(Ajustes.this);
+        CuentaController.login(correo, Ajustes.this, new LoginCallBack() {
+            @Override
+            public void onSuccess(CuentaDTO cuentaDTO) {
+                if(cuentaDTO.getImagen() == null) {
+                    imgPerfil.setImageBitmap(BitmapFactory.decodeResource(Ajustes.this.getResources(),
+                                                                                R.drawable.logo_cliente_default));
+                } else {
+                    //Obtengo su array de bytes, lo transformo a bitmap y se lo seteo a la imagen del perfil en la pantalla
+                    byte[] bytesImagen = cuentaDTO.getImagen();
+                    Bitmap bitmapImagen = byteArrayABitmap(bytesImagen);
+
+                    imgPerfil.setImageBitmap(bitmapImagen);
+                }
+            }
+
+            @Override
+            public void onSuccessRegistro(String mensaje) { }
+
+            @Override
+            public void onSuccessModCuentaImagen(String mensaje) {}
+
+            @Override
+            public void existeCuentaLoggeada(boolean existe) {}
+
+            @Override
+            public void onError(String mensaje) {
+                Toast.makeText(Ajustes.this, mensaje, Toast.LENGTH_LONG).show();
+            }
+        });
 
     }
 
@@ -158,6 +190,7 @@ String imagenSeleccionada;
         }
 
         //Obtengo el correo de la cuenta loggeada e intento actualizar la cuenta con la nueva imagen seleccionada
+        //Después de actualizar su imagen obtengo la cuenta loggeada y setteo la imagen de perfil en la pantalla
         String correo = PreferenciasCompartidas.obtenerCorreoDesencriptado(Ajustes.this);
         CuentaController.login(correo, Ajustes.this, new LoginCallBack() {
             @Override
@@ -182,7 +215,33 @@ String imagenSeleccionada;
                             public void onSuccessRegistro(String mensaje) {}
 
                             @Override
-                            public void onSuccessModCuentaImagen(String mensaje) {}
+                            public void onSuccessModCuentaImagen(String mensaje) {
+                                //Si se ha actualizado correctamente obtengo la cuenta y setteo la imagen al ImageView
+                                String correo = PreferenciasCompartidas.obtenerCorreoDesencriptado(Ajustes.this);
+                                CuentaController.login(correo, Ajustes.this, new LoginCallBack() {
+                                    @Override
+                                    public void onSuccess(CuentaDTO cuentaDTO) {
+                                        //Le seteo la imagen al ImageView
+                                        imgPerfil.setImageBitmap(byteArrayABitmap(cuentaDTO.getImagen()));
+                                        //Recargo la pantalla para aplicar los cambios de imagen y/o idioma
+                                        recreate();
+                                    }
+
+                                    @Override
+                                    public void onSuccessRegistro(String mensaje) {}
+
+                                    @Override
+                                    public void onSuccessModCuentaImagen(String mensaje) {}
+
+                                    @Override
+                                    public void existeCuentaLoggeada(boolean existe) {}
+
+                                    @Override
+                                    public void onError(String mensaje) {
+                                        Toast.makeText(Ajustes.this, mensaje, Toast.LENGTH_LONG).show();
+                                    }
+                                });
+                            }
 
                             @Override
                             public void existeCuentaLoggeada(boolean existe) {}
@@ -209,8 +268,9 @@ String imagenSeleccionada;
             }
         });
 
-        //Recargo la pantalla para aplicar los cambios de idioma y/o imagen
-        recreate();
+        //Aviso de que los cambios han sido realizados
+        Toast.makeText(this, "Cambios aplicados", Toast.LENGTH_LONG).show();
+
     }
 
     public static void establecerIdiomaActividad(Activity actividad, String codigoIdioma) {
