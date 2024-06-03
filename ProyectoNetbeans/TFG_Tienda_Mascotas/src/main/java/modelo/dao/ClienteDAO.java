@@ -4,6 +4,12 @@
  */
 package modelo.dao;
 
+import java.awt.TextArea;
+import java.util.Iterator;
+import java.util.List;
+import org.hibernate.query.Query;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JTextArea;
 import modelo.vo.Cliente;
 import org.hibernate.Session;
 
@@ -37,6 +43,35 @@ public class ClienteDAO {
             cliente.setCorreo(correo);
             cliente.setResidencia(residencia);
         session.update(cliente);
+    }
+
+    public DefaultComboBoxModel cargarCombo(Session session, DefaultComboBoxModel modeloCombo) {
+        Cliente cliente;
+        
+        Query q = session.createQuery("from Cliente c");
+
+        List<Cliente> listaClientes = q.list(); 
+        Iterator it = listaClientes.iterator();
+
+        while (it.hasNext()) {
+            cliente = (Cliente) it.next();
+            modeloCombo.addElement(cliente);
+        }
+        
+        return modeloCombo;
+    }
+
+    public void cargarTxtAreaCliente(Session session, Cliente cliente, JTextArea txtArea) {
+        //Limpio el txtArea y le cargo los datos del cliente seleccionado
+        txtArea.setText("");
+        
+        txtArea.setText("DNI: " + cliente.getDNI() + "\n" +
+                        "Nombre: " + cliente.getNombre() + "\n" +
+                        "Apellidos: " + cliente.getApellidos()+ "\n" +
+                        "Teléfono: " + cliente.getTelefono()+ "\n" +
+                        "Correo: " + cliente.getCorreo()+ "\n" +
+                        "Residencia: " + cliente.getResidencia());
+        
     }
     
     

@@ -6,12 +6,12 @@ package controller;
 
 import AA_Main.Regex;
 import controller.factory.HibernateUtil;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import modelo.dao.ClienteDAO;
 import modelo.vo.Cliente;
 import org.hibernate.Session;
 import vista.ClientesIBM;
-import vista.Inicio;
 
 /**
  *
@@ -19,15 +19,13 @@ import vista.Inicio;
  */
 public class ControladorClientesIBM {
     public static Session session;
-    public static Inicio inicio = new Inicio();
     public static ClienteDAO clienteDAO;
-    public static ClientesIBM ventana = new ClientesIBM(inicio, true);
+    public static ClientesIBM ventana;
     
-    public static void iniciar() {
-        ventana.setVisible(true);
+    public static void iniciar(JFrame parent) {
+        ventana = new ClientesIBM(parent, true);
         ventana.setLocationRelativeTo(null);
-//        ventana.getCmbDepartamento().setModel(modelocombo);
-//        modelotabla=(DefaultTableModel) ventana.getTblEmpleados().getModel();
+        ventana.setVisible(true);
     }
 
     public static void iniciaSession() {

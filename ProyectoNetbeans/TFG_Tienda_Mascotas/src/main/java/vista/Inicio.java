@@ -4,8 +4,8 @@
  */
 package vista;
 
+import controller.ControladorClientesC;
 import controller.ControladorClientesIBM;
-import controller.ControladorInicio;
 
 /**
  *
@@ -35,12 +35,11 @@ public class Inicio extends javax.swing.JFrame {
         clientesMascotasLBL = new javax.swing.JLabel();
         cuentasLBL = new javax.swing.JLabel();
         manejarClientesBTN = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        consultarClientesBTN = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -68,7 +67,12 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Consultar");
+        consultarClientesBTN.setText("Consultar");
+        consultarClientesBTN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                consultarClientesBTNMouseClicked(evt);
+            }
+        });
 
         jButton3.setText("Manejar");
 
@@ -77,8 +81,6 @@ public class Inicio extends javax.swing.JFrame {
         jButton5.setText("Manejar");
 
         jButton6.setText("Manejar");
-
-        jButton7.setText("Consultar");
 
         jLabel1.setFont(new java.awt.Font("Segoe Print", 1, 30)); // NOI18N
         jLabel1.setText("GESTIÓN DE TIENDA DE HIGIENE DE MASCOTAS");
@@ -99,11 +101,9 @@ public class Inicio extends javax.swing.JFrame {
                                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(83, 83, 83))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(consultarClientesBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(41, 41, 41)
                         .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(41, 41, 41)
@@ -145,9 +145,7 @@ public class Inicio extends javax.swing.JFrame {
                     .addComponent(jButton5)
                     .addComponent(jButton6))
                 .addGap(39, 39, 39)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton7))
+                .addComponent(consultarClientesBTN)
                 .addContainerGap(145, Short.MAX_VALUE))
         );
 
@@ -155,8 +153,12 @@ public class Inicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void manejarClientesBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manejarClientesBTNMouseClicked
-        ControladorClientesIBM.iniciar();
+        ControladorClientesIBM.iniciar(this);
     }//GEN-LAST:event_manejarClientesBTNMouseClicked
+
+    private void consultarClientesBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_consultarClientesBTNMouseClicked
+        ControladorClientesC.iniciar(this);
+    }//GEN-LAST:event_consultarClientesBTNMouseClicked
 
     /**
      * @param args the command line arguments
@@ -166,14 +168,13 @@ public class Inicio extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel clientesLBL;
     private javax.swing.JLabel clientesMascotasLBL;
+    private javax.swing.JButton consultarClientesBTN;
     private javax.swing.JLabel cuentasLBL;
     private javax.swing.JLabel especialistasLBL;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton manejarClientesBTN;
     private javax.swing.JLabel mascotasLBL;

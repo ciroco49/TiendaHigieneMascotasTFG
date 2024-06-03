@@ -86,6 +86,6 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return "DNI: " + DNI + " ||| Nombre: " + nombre;
+        return "DNI: " + DNI;
     }
 }

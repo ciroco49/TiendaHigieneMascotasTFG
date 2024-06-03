@@ -16,7 +16,7 @@ public class ClientesIBM extends javax.swing.JDialog {
     /**
      * Creates new form ClientesIBM
      */
-    public ClientesIBM(java.awt.Frame parent, boolean modal) {
+    public ClientesIBM(javax.swing.JFrame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         ControladorClientesIBM.iniciaSession();
