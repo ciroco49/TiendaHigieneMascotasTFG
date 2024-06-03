@@ -4,9 +4,12 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Table(name = "Cliente")
+@OnDelete(action = OnDeleteAction.CASCADE)
 public class Cliente {
     @Id
     private String DNI;
