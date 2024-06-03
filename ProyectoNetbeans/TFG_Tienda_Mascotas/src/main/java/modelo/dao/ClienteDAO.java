@@ -29,6 +29,15 @@ public class ClienteDAO {
     public void borrar(Session session, Cliente cliente) {
         session.delete(cliente);
     }
+
+    public void modificar(Session session, Cliente cliente, String nombre, String apellidos, String telefono, String correo, String residencia) {
+            cliente.setNombre(nombre);
+            cliente.setApellidos(apellidos);
+            cliente.setTelefono(telefono);
+            cliente.setCorreo(correo);
+            cliente.setResidencia(residencia);
+        session.update(cliente);
+    }
     
     
 }

@@ -49,6 +49,31 @@ public class ClientesIBM extends javax.swing.JDialog {
     public JTextField getBorrarPorDNI() {
         return borrarPorDNI;
     }
+
+    public JTextField getModificarApellidos() {
+        return modificarApellidos;
+    }
+
+    public JTextField getModificarCorreo() {
+        return modificarCorreo;
+    }
+
+    public JTextField getModificarDNI() {
+        return modificarDNI;
+    }
+
+    public JTextField getModificarNombre() {
+        return modificarNombre;
+    }
+
+    public JTextField getModificarResidencia() {
+        return modificarResidencia;
+    }
+
+    public JTextField getModificarTelefono() {
+        return modificarTelefono;
+    }
+    
     
     
     /**
@@ -80,6 +105,19 @@ public class ClientesIBM extends javax.swing.JDialog {
         jLabel7 = new javax.swing.JLabel();
         borrarBTN = new javax.swing.JButton();
         PanelModificar = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        modificarDNI = new javax.swing.JTextField();
+        modificarCorreo = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        modificarNombre = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        modificarApellidos = new javax.swing.JTextField();
+        modificarTelefono = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        modificarResidencia = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        modificarBTN = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -140,7 +178,7 @@ public class ClientesIBM extends javax.swing.JDialog {
                             .addComponent(insertarNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(insertarTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(insertarApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 272, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 341, Short.MAX_VALUE)
                         .addComponent(insertarBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(139, 139, 139))))
         );
@@ -196,7 +234,7 @@ public class ClientesIBM extends javax.swing.JDialog {
             PanelBorrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelBorrarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE)
+                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(borrarPorDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(453, 453, 453)
@@ -218,15 +256,93 @@ public class ClientesIBM extends javax.swing.JDialog {
 
         PanelModificar.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Modificar clientes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 14))); // NOI18N
 
+        jLabel8.setText("Nombre");
+
+        jLabel11.setText("Residencia");
+
+        jLabel10.setText("DNI");
+
+        jLabel12.setText("Correo");
+
+        jLabel9.setText("Apellidos");
+
+        jLabel13.setText("Teléfono");
+
+        modificarBTN.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        modificarBTN.setText("Modificar");
+        modificarBTN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                modificarBTNMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout PanelModificarLayout = new javax.swing.GroupLayout(PanelModificar);
         PanelModificar.setLayout(PanelModificarLayout);
         PanelModificarLayout.setHorizontalGroup(
             PanelModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(PanelModificarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(PanelModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelModificarLayout.createSequentialGroup()
+                        .addGroup(PanelModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel12)
+                            .addComponent(jLabel11))
+                        .addGroup(PanelModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(PanelModificarLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(modificarResidencia, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelModificarLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(PanelModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(modificarTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(modificarCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(modificarApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(modificarNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(modificarDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(modificarBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(139, 139, 139))
+                    .addGroup(PanelModificarLayout.createSequentialGroup()
+                        .addGroup(PanelModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         PanelModificarLayout.setVerticalGroup(
             PanelModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 202, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelModificarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(PanelModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(modificarDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(PanelModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelModificarLayout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addGroup(PanelModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(modificarNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(PanelModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel9)
+                            .addComponent(modificarApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(PanelModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel13)
+                            .addComponent(modificarTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(PanelModificarLayout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(modificarBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(PanelModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(modificarCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(PanelModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(modificarResidencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout PanelBaseLayout = new javax.swing.GroupLayout(PanelBase);
@@ -239,7 +355,7 @@ public class ClientesIBM extends javax.swing.JDialog {
                     .addComponent(PanelModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(PanelBorrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(PanelInsertar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         PanelBaseLayout.setVerticalGroup(
             PanelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -250,7 +366,7 @@ public class ClientesIBM extends javax.swing.JDialog {
                 .addComponent(PanelBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(PanelModificar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -275,6 +391,10 @@ public class ClientesIBM extends javax.swing.JDialog {
         ControladorClientesIBM.cerrarSession();
     }//GEN-LAST:event_formWindowClosed
 
+    private void modificarBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modificarBTNMouseClicked
+        ControladorClientesIBM.modificar();
+    }//GEN-LAST:event_modificarBTNMouseClicked
+
     private void borrarBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_borrarBTNMouseClicked
         ControladorClientesIBM.borrar();
     }//GEN-LAST:event_borrarBTNMouseClicked
@@ -298,11 +418,24 @@ public class ClientesIBM extends javax.swing.JDialog {
     private javax.swing.JTextField insertarResidencia;
     private javax.swing.JTextField insertarTelefono;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JTextField modificarApellidos;
+    private javax.swing.JButton modificarBTN;
+    private javax.swing.JTextField modificarCorreo;
+    private javax.swing.JTextField modificarDNI;
+    private javax.swing.JTextField modificarNombre;
+    private javax.swing.JTextField modificarResidencia;
+    private javax.swing.JTextField modificarTelefono;
     // End of variables declaration//GEN-END:variables
 }
