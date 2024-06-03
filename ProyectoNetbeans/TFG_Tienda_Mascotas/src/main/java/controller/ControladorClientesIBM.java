@@ -71,12 +71,13 @@ public class ControladorClientesIBM {
                                 ventana.getInsertarApellidos().getText(), ventana.getInsertarTelefono().getText(),
                                 ventana.getInsertarCorreo().getText(), ventana.getInsertarResidencia().getText());
             
+            JOptionPane.showMessageDialog(null, "Cliente insertado correctamente");
+            
             session.getTransaction().commit();
         } catch(Exception ex) {
             ex.printStackTrace();
             session.getTransaction().rollback();
         }
-        
         
     }
     
