@@ -24,7 +24,10 @@ public class ClienteDAO {
       Cliente cliente = new Cliente(dni, nombre, apellidos, telefono, correo, residencia);
       
       session.save(cliente);
-        
+    }
+    
+    public void borrar(Session session, Cliente cliente) {
+        session.delete(cliente);
     }
     
     

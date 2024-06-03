@@ -58,11 +58,12 @@ public class ControladorClientesIBM {
         }
         
         try {
-            session.beginTransaction();
+            HibernateUtil.beginTx(session);
             
-            Cliente c = clienteDAO.getCliente(session, ventana.getInsertarDNI().getText());
+            //Compruebo que el cliente no existe antes de insertar
+            Cliente cliente = clienteDAO.getCliente(session, ventana.getInsertarDNI().getText());
             
-            if(c != null) {
+            if(cliente != null) {
                 JOptionPane.showMessageDialog(null, "El cliente proporcionado ya existe");
                 return;
             }
@@ -75,6 +76,39 @@ public class ControladorClientesIBM {
             
             session.getTransaction().commit();
         } catch(Exception ex) {
+            ex.printStackTrace();
+            session.getTransaction().rollback();
+        }
+        
+    }
+
+    public static void borrar() {
+        //Comprobar que rellene todos los campos y que tengan valores válidos
+        if(ventana.getBorrarPorDNI().getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Es obligatorio rellenar el campo DNI");
+            return;
+        } else if(!Regex.validarDNI(ventana.getBorrarPorDNI().getText())) {
+            JOptionPane.showMessageDialog(null, "El dni proporcionado no cumple el formato requerido");
+            return;
+        }
+        
+        try {
+            HibernateUtil.beginTx(session);
+            
+            //Compruebo que el cliente existe antes de borrar
+            Cliente cliente = clienteDAO.getCliente(session, ventana.getBorrarPorDNI().getText());
+            
+            if(cliente == null) {
+                JOptionPane.showMessageDialog(null, "No existe el cliente proporcionado");
+                return;
+            }
+            
+            clienteDAO.borrar(session, cliente);
+            
+            JOptionPane.showMessageDialog(null, "Cliente borrado correctamente");
+            
+            session.getTransaction().commit();
+        } catch (Exception ex) {
             ex.printStackTrace();
             session.getTransaction().rollback();
         }

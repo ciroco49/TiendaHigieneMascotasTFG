@@ -45,7 +45,10 @@ public class ClientesIBM extends javax.swing.JDialog {
     public JTextField getInsertarTelefono() {
         return insertarTelefono;
     }
-    
+
+    public JTextField getBorrarPorDNI() {
+        return borrarPorDNI;
+    }
     
     
     /**
@@ -73,6 +76,9 @@ public class ClientesIBM extends javax.swing.JDialog {
         insertarResidencia = new javax.swing.JTextField();
         insertarBTN = new javax.swing.JButton();
         PanelBorrar = new javax.swing.JPanel();
+        borrarPorDNI = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        borrarBTN = new javax.swing.JButton();
         PanelModificar = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -175,15 +181,39 @@ public class ClientesIBM extends javax.swing.JDialog {
 
         PanelBorrar.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Borrar clientes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 14))); // NOI18N
 
+        jLabel7.setText("DNI");
+
+        borrarBTN.setText("Borrar");
+        borrarBTN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                borrarBTNMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout PanelBorrarLayout = new javax.swing.GroupLayout(PanelBorrar);
         PanelBorrar.setLayout(PanelBorrarLayout);
         PanelBorrarLayout.setHorizontalGroup(
             PanelBorrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 945, Short.MAX_VALUE)
+            .addGroup(PanelBorrarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(borrarPorDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(453, 453, 453)
+                .addComponent(borrarBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(138, 138, 138))
         );
         PanelBorrarLayout.setVerticalGroup(
             PanelBorrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 49, Short.MAX_VALUE)
+            .addGroup(PanelBorrarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(PanelBorrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(borrarPorDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(23, Short.MAX_VALUE))
+            .addGroup(PanelBorrarLayout.createSequentialGroup()
+                .addComponent(borrarBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         PanelModificar.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Modificar clientes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 14))); // NOI18N
@@ -245,6 +275,10 @@ public class ClientesIBM extends javax.swing.JDialog {
         ControladorClientesIBM.cerrarSession();
     }//GEN-LAST:event_formWindowClosed
 
+    private void borrarBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_borrarBTNMouseClicked
+        ControladorClientesIBM.borrar();
+    }//GEN-LAST:event_borrarBTNMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -254,6 +288,8 @@ public class ClientesIBM extends javax.swing.JDialog {
     private javax.swing.JPanel PanelBorrar;
     private javax.swing.JPanel PanelInsertar;
     private javax.swing.JPanel PanelModificar;
+    private javax.swing.JButton borrarBTN;
+    private javax.swing.JTextField borrarPorDNI;
     private javax.swing.JTextField insertarApellidos;
     private javax.swing.JButton insertarBTN;
     private javax.swing.JTextField insertarCorreo;
@@ -267,5 +303,6 @@ public class ClientesIBM extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     // End of variables declaration//GEN-END:variables
 }
