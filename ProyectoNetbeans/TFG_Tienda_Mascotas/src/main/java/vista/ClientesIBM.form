@@ -96,17 +96,6 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="insertarCorreo" min="-2" pref="450" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="insertarResidencia" min="-2" pref="450" max="-2" attributes="0"/>
-                                  <Component id="insertarDNI" min="-2" pref="100" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="32767" attributes="0"/>
-                          </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="insertarNombre" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
@@ -116,6 +105,14 @@
                               <EmptySpace pref="341" max="32767" attributes="0"/>
                               <Component id="insertarBTN" min="-2" pref="170" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="139" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="insertarCorreo" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="insertarResidencia" alignment="0" pref="450" max="32767" attributes="0"/>
+                                  <Component id="insertarDNI" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
