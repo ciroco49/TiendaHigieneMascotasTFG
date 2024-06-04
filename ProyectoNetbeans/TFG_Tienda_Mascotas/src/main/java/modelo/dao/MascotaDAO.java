@@ -36,44 +36,6 @@ public class MascotaDAO {
     public void borrar(Session session, Mascota mascota) {
         session.delete(mascota);
     }
-
-    public void modificar(Session session, Cliente cliente, String nombre, String apellidos, String telefono, String correo, String residencia) {
-            cliente.setNombre(nombre);
-            cliente.setApellidos(apellidos);
-            cliente.setTelefono(telefono);
-            cliente.setCorreo(correo);
-            cliente.setResidencia(residencia);
-        session.update(cliente);
-    }
-
-    public DefaultComboBoxModel cargarCombo(Session session, DefaultComboBoxModel modeloCombo) {
-        Cliente cliente;
-        
-        Query q = session.createQuery("from Cliente c");
-
-        List<Cliente> listaClientes = q.list(); 
-        Iterator it = listaClientes.iterator();
-
-        while (it.hasNext()) {
-            cliente = (Cliente) it.next();
-            modeloCombo.addElement(cliente);
-        }
-        
-        return modeloCombo;
-    }
-
-    public void cargarTxtAreaCliente(Session session, Cliente cliente, JTextArea txtArea) {
-        //Limpio el txtArea y le cargo los datos del cliente seleccionado
-        txtArea.setText("");
-        
-        txtArea.setText("DNI: " + cliente.getDNI() + "\n" +
-                        "Nombre: " + cliente.getNombre() + "\n" +
-                        "Apellidos: " + cliente.getApellidos()+ "\n" +
-                        "Teléfono: " + cliente.getTelefono()+ "\n" +
-                        "Correo: " + cliente.getCorreo()+ "\n" +
-                        "Residencia: " + cliente.getResidencia());
-        
-    }
     
     
 }
