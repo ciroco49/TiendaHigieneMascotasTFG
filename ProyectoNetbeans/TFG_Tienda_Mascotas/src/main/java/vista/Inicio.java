@@ -6,6 +6,7 @@ package vista;
 
 import controller.ControladorClientesC;
 import controller.ControladorClientesIBM;
+import controller.ControladorCuentasIBM;
 import controller.ControladorEspecialistasIBM;
 import controller.ControladorMascotasIBM;
 import controller.ControladorTenerIBM;
@@ -42,7 +43,7 @@ public class Inicio extends javax.swing.JFrame {
         manejarMascotasIBM = new javax.swing.JButton();
         manejarTenerBTN = new javax.swing.JButton();
         manejarEspecialistasBTN = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        manejarCuentasBTN = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -98,7 +99,12 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        jButton6.setText("Manejar");
+        manejarCuentasBTN.setText("Manejar");
+        manejarCuentasBTN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                manejarCuentasBTNMouseClicked(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Segoe Print", 1, 30)); // NOI18N
         jLabel1.setText("GESTIÓN DE TIENDA DE HIGIENE DE MASCOTAS");
@@ -125,7 +131,7 @@ public class Inicio extends javax.swing.JFrame {
                         .addGap(41, 41, 41)
                         .addComponent(manejarEspecialistasBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(41, 41, 41)
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(manejarCuentasBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(62, 62, 62))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
@@ -161,7 +167,7 @@ public class Inicio extends javax.swing.JFrame {
                     .addComponent(manejarMascotasIBM)
                     .addComponent(manejarTenerBTN)
                     .addComponent(manejarEspecialistasBTN)
-                    .addComponent(jButton6))
+                    .addComponent(manejarCuentasBTN))
                 .addGap(39, 39, 39)
                 .addComponent(consultarClientesBTN)
                 .addContainerGap(145, Short.MAX_VALUE))
@@ -190,6 +196,10 @@ public class Inicio extends javax.swing.JFrame {
         ControladorTenerIBM.iniciar(this);
     }//GEN-LAST:event_manejarTenerBTNMouseClicked
 
+    private void manejarCuentasBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manejarCuentasBTNMouseClicked
+        ControladorCuentasIBM.iniciar(this);
+    }//GEN-LAST:event_manejarCuentasBTNMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -201,9 +211,9 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JButton consultarClientesBTN;
     private javax.swing.JLabel cuentasLBL;
     private javax.swing.JLabel especialistasLBL;
-    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton manejarClientesBTN;
+    private javax.swing.JButton manejarCuentasBTN;
     private javax.swing.JButton manejarEspecialistasBTN;
     private javax.swing.JButton manejarMascotasIBM;
     private javax.swing.JButton manejarTenerBTN;

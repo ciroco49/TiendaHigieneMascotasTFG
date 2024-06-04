@@ -16,10 +16,9 @@ public class Cuenta {
     public Cuenta() {
     }
 
-    public Cuenta(String correo, String contrasenha, byte[] imagen) {
+    public Cuenta(String correo, String contrasenha) {
         this.correo = correo;
         this.contrasenha = contrasenha;
-        this.imagen = imagen;
     }
 
     public String getCorreo() {

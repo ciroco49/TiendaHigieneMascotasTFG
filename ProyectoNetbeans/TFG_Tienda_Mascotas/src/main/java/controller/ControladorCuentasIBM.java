@@ -10,13 +10,16 @@ import controller.factory.HibernateUtil;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import modelo.dao.ClienteDAO;
+import modelo.dao.CuentaDAO;
 import modelo.dao.EspecialistaDAO;
 import modelo.dao.MascotaDAO;
 import modelo.vo.Cliente;
+import modelo.vo.Cuenta;
 import modelo.vo.Especialista;
 import modelo.vo.Mascota;
 import modelo.vo.Tener;
 import org.hibernate.Session;
+import vista.CuentasIBM;
 import vista.EspecialistasIBM;
 import vista.MascotasIBM;
 import vista.TenerIBM;
@@ -25,20 +28,20 @@ import vista.TenerIBM;
  *
  * @author ciroi
  */
-public class ControladorTenerIBM {
+public class ControladorCuentasIBM {
     public static Session session;
-    public static TenerDAO tenerDAO;
-    public static TenerIBM ventana;
+    public static CuentaDAO cuentaDAO;
+    public static CuentasIBM ventana;
     
     public static void iniciar(JFrame parent) {
-        ventana = new TenerIBM(parent, true);
+        ventana = new CuentasIBM(parent, true);
         ventana.setLocationRelativeTo(null);
         ventana.setVisible(true);
     }
 
     public static void iniciaSession() {
         session = HibernateUtil.getSessionFactory().openSession();
-        tenerDAO = new TenerDAO();
+        cuentaDAO = new CuentaDAO();
     }
     public static void cerrarSession() {
         session.close();       
@@ -46,46 +49,28 @@ public class ControladorTenerIBM {
 
     public static void insertar() {
         //Comprobar que rellene todos los campos y que tengan valores válidos
-        if(ventana.getInsertarDNICliente().getText().isEmpty() || ventana.getInsertarDNIMascota().getText().isEmpty()) {
+        if(ventana.getInsertarCorreo().getText().isEmpty() || ventana.getInsertarContraseña().getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Es obligatorio rellenar todos los campos");
             return;
-        } else if(!Regex.validarDNI(ventana.getInsertarDNICliente().getText())) {
-            JOptionPane.showMessageDialog(null, "El dni de cliente proporcionado no cumple el formato requerido");
-            return;
-        } else if(!Regex.validarDNI(ventana.getInsertarDNIMascota().getText())) {
-            JOptionPane.showMessageDialog(null, "El dni de mascota proporcionado no cumple el formato requerido");
+        } else if(!Regex.validarCorreo(ventana.getInsertarCorreo().getText())) {
+            JOptionPane.showMessageDialog(null, "El correo proporcionado no cumple el formato requerido");
             return;
         }
         
         try {
             HibernateUtil.beginTx(session);
             
-            //Compruebo que el cliente y la mascota existen antes de insertar
-            Cliente cliente = new ClienteDAO().getCliente(session, ventana.getInsertarDNICliente().getText());
+            //Compruebo que la cuenta no existe antes de insertar
+            Cuenta cuenta = cuentaDAO.getCuenta(session, ventana.getInsertarCorreo().getText());
             
-            if(cliente == null) {
-                JOptionPane.showMessageDialog(null, "El cliente proporcionado no existe");
+            if(cuenta != null) {
+                JOptionPane.showMessageDialog(null, "La cuenta proporcionada ya existe");
                 return;
             }
             
-            Mascota mascota = new MascotaDAO().getMascota(session, ventana.getInsertarDNIMascota().getText());
+            cuentaDAO.insertar(session, ventana.getInsertarCorreo().getText(), ventana.getInsertarContraseña().getText());
             
-            if(mascota == null) {
-                JOptionPane.showMessageDialog(null, "La mascota proporcionada no existe");
-                return;
-            }
-            
-            //Compruebo que no exista ya el registro en la tabla
-            Tener tener = tenerDAO.getTener(session, cliente, mascota);
-           
-            if(tener != null) {
-                JOptionPane.showMessageDialog(null, "El registro proporcionado ya existe");
-                return;
-            }
-            
-            tenerDAO.insertar(session, cliente, mascota);
-            
-            JOptionPane.showMessageDialog(null, "Registro insertado correctamente");
+            JOptionPane.showMessageDialog(null, "Cuenta insertada correctamente");
             
             HibernateUtil.commitTx(session);
         } catch(Exception ex) {
@@ -97,44 +82,26 @@ public class ControladorTenerIBM {
 
     public static void borrar() {
         //Comprobar que rellene todos los campos y que tengan valores válidos
-        if(ventana.getBorrarDNICliente().getText().isEmpty() || ventana.getBorrarDNIMascota().getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Es obligatorio rellenar todos los campos");
+        if(ventana.getBorrarPorCorreo().getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Es obligatorio rellenar el campo correo");
             return;
-        } else if(!Regex.validarDNI(ventana.getBorrarDNICliente().getText())) {
-            JOptionPane.showMessageDialog(null, "El dni de cliente proporcionado no cumple el formato requerido");
-            return;
-        } else if(!Regex.validarDNI(ventana.getBorrarDNIMascota().getText())) {
-            JOptionPane.showMessageDialog(null, "El dni de mascota proporcionado no cumple el formato requerido");
+        } else if(!Regex.validarCorreo(ventana.getBorrarPorCorreo().getText())) {
+            JOptionPane.showMessageDialog(null, "El correo proporcionado no cumple el formato requerido");
             return;
         }
         
         try {
             HibernateUtil.beginTx(session);
             
-            //Compruebo que el cliente y la mascota existen antes de borrar
-            Cliente cliente = new ClienteDAO().getCliente(session, ventana.getBorrarDNICliente().getText());
+            //Compruebo que la cuenta existe antes de borrar
+            Cuenta cuenta = cuentaDAO.getCuenta(session, ventana.getBorrarPorCorreo().getText());
             
-            if(cliente == null) {
-                JOptionPane.showMessageDialog(null, "El cliente proporcionado no existe");
-                return;
-            }
-            
-            Mascota mascota = new MascotaDAO().getMascota(session, ventana.getBorrarDNIMascota().getText());
-            
-            if(mascota == null) {
-                JOptionPane.showMessageDialog(null, "La mascota proporcionada no existe");
-                return;
-            }
-            
-            //Compruebo que el registro existe antes de borrar
-            Tener tener = tenerDAO.getTener(session, cliente, mascota);
-            
-            if(tener == null) {
-                JOptionPane.showMessageDialog(null, "No existe el registro proporcionado");
+            if(cuenta == null) {
+                JOptionPane.showMessageDialog(null, "La cuenta proporcionada no existe");
                 return;
             }
 
-            tenerDAO.borrar(session, tener);
+            cuentaDAO.borrar(session, cuenta);
                 
             JOptionPane.showMessageDialog(null, "Registro borrado correctamente");
             

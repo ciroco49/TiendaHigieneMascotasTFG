@@ -10,6 +10,7 @@ import org.hibernate.query.Query;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTextArea;
 import modelo.vo.Cliente;
+import modelo.vo.Cuenta;
 import modelo.vo.Especialista;
 import modelo.vo.Mascota;
 import modelo.vo.Tener;
@@ -19,28 +20,22 @@ import org.hibernate.Session;
  *
  * @author ciroi
  */
-public class TenerDAO {
+public class CuentaDAO {
     
-    public Tener getTener(Session session, Cliente cliente, Mascota mascota) {
-        String consulta = "from Tener t where t.DNICliente =:cliente and t.DNIMascota =:mascota";
-        
-        Query q = session.createQuery(consulta);
-        
-        q.setParameter("cliente", cliente);
-        q.setParameter("mascota", mascota);
-        
-        return (Tener) q.uniqueResult();
+    public Cuenta getCuenta(Session session, String correo) {
+        //OBTIENE CUENTAS POR LA PK
+        return session.get(Cuenta.class, correo);
     }
     
-    public void insertar(Session session, Cliente cliente, Mascota mascota) throws Exception {
+    public void insertar(Session session, String correo, String contraseña) throws Exception {
         
-      Tener tener = new Tener(cliente, mascota);
+      Cuenta cuenta = new Cuenta(correo, contraseña);
       
-      session.save(tener);
+      session.save(cuenta);
     }
     
-    public void borrar(Session session, Tener tener) {
-        session.delete(tener);
+    public void borrar(Session session, Cuenta cuenta) {
+        session.delete(cuenta);
     }
     
     

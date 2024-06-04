@@ -4,6 +4,7 @@
  */
 package vista;
 
+import controller.ControladorCuentasIBM;
 import controller.ControladorEspecialistasIBM;
 import controller.ControladorMascotasIBM;
 import controller.ControladorTenerIBM;
@@ -21,7 +22,7 @@ public class TenerIBM extends javax.swing.JDialog {
     public TenerIBM(javax.swing.JFrame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        ControladorTenerIBM.iniciaSession();
+        ControladorCuentasIBM.iniciaSession();
     }
 
     public JTextField getBorrarDNICliente() {
@@ -39,6 +40,8 @@ public class TenerIBM extends javax.swing.JDialog {
     public JTextField getInsertarDNIMascota() {
         return insertarDNIMascota;
     }
+
+    
 
     
     /**
@@ -213,15 +216,15 @@ public class TenerIBM extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void insertarBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_insertarBTNMouseClicked
-        ControladorTenerIBM.insertar();
+        ControladorCuentasIBM.insertar();
     }//GEN-LAST:event_insertarBTNMouseClicked
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        ControladorTenerIBM.cerrarSession();
+        ControladorCuentasIBM.cerrarSession();
     }//GEN-LAST:event_formWindowClosed
 
     private void borrarBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_borrarBTNMouseClicked
-        ControladorTenerIBM.borrar();
+        ControladorCuentasIBM.borrar();
     }//GEN-LAST:event_borrarBTNMouseClicked
 
     /**

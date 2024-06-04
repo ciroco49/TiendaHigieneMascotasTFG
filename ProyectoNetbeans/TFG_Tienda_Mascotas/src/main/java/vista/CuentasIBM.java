@@ -4,6 +4,7 @@
  */
 package vista;
 
+import controller.ControladorCuentasIBM;
 import controller.ControladorEspecialistasIBM;
 import controller.ControladorMascotasIBM;
 import controller.ControladorTenerIBM;
@@ -13,31 +14,27 @@ import javax.swing.JTextField;
  *
  * @author ciroi
  */
-public class TenerIBM extends javax.swing.JDialog {
+public class CuentasIBM extends javax.swing.JDialog {
 
     /**
      * Creates new form ClientesIBM
      */
-    public TenerIBM(javax.swing.JFrame parent, boolean modal) {
+    public CuentasIBM(javax.swing.JFrame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        ControladorTenerIBM.iniciaSession();
+        ControladorCuentasIBM.iniciaSession();
     }
 
-    public JTextField getBorrarDNICliente() {
-        return borrarDNICliente;
+    public JTextField getBorrarPorCorreo() {
+        return borrarPorCorreo;
     }
 
-    public JTextField getBorrarDNIMascota() {
-        return borrarDNIMascota;
+    public JTextField getInsertarContraseña() {
+        return insertarContraseña;
     }
 
-    public JTextField getInsertarDNICliente() {
-        return insertarDNICliente;
-    }
-
-    public JTextField getInsertarDNIMascota() {
-        return insertarDNIMascota;
+    public JTextField getInsertarCorreo() {
+        return insertarCorreo;
     }
 
     
@@ -53,16 +50,14 @@ public class TenerIBM extends javax.swing.JDialog {
         PanelBase = new javax.swing.JPanel();
         PanelInsertar = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        insertarDNICliente = new javax.swing.JTextField();
+        insertarCorreo = new javax.swing.JTextField();
         insertarBTN = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        insertarDNIMascota = new javax.swing.JTextField();
+        insertarContraseña = new javax.swing.JTextField();
         PanelBorrar = new javax.swing.JPanel();
-        borrarDNIMascota = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         borrarBTN = new javax.swing.JButton();
-        jLabel9 = new javax.swing.JLabel();
-        borrarDNICliente = new javax.swing.JTextField();
+        borrarPorCorreo = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -72,9 +67,9 @@ public class TenerIBM extends javax.swing.JDialog {
             }
         });
 
-        PanelInsertar.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Insertar mascotas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 14))); // NOI18N
+        PanelInsertar.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Insertar tener", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 14))); // NOI18N
 
-        jLabel1.setText("DNI del cliente");
+        jLabel1.setText("Correo");
 
         insertarBTN.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         insertarBTN.setText("Insertar");
@@ -84,7 +79,7 @@ public class TenerIBM extends javax.swing.JDialog {
             }
         });
 
-        jLabel7.setText("DNI de la mascota");
+        jLabel7.setText("Contraseña");
 
         javax.swing.GroupLayout PanelInsertarLayout = new javax.swing.GroupLayout(PanelInsertar);
         PanelInsertar.setLayout(PanelInsertarLayout);
@@ -92,14 +87,14 @@ public class TenerIBM extends javax.swing.JDialog {
             PanelInsertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelInsertarLayout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(PanelInsertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(PanelInsertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(PanelInsertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(insertarDNIMascota, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(insertarDNICliente, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 428, Short.MAX_VALUE)
+                    .addComponent(insertarContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(insertarCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
                 .addComponent(insertarBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(134, 134, 134))
         );
@@ -110,21 +105,21 @@ public class TenerIBM extends javax.swing.JDialog {
                     .addGroup(PanelInsertarLayout.createSequentialGroup()
                         .addGap(42, 42, 42)
                         .addGroup(PanelInsertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(insertarDNICliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(insertarCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1))
                         .addGap(42, 42, 42)
                         .addGroup(PanelInsertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
-                            .addComponent(insertarDNIMascota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(insertarContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(PanelInsertarLayout.createSequentialGroup()
                         .addGap(32, 32, 32)
                         .addComponent(insertarBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(44, Short.MAX_VALUE))
         );
 
-        PanelBorrar.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Borrar mascotas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 14))); // NOI18N
+        PanelBorrar.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Borrar tener", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 14))); // NOI18N
 
-        jLabel8.setText("DNI del cliente");
+        jLabel8.setText("Correo");
 
         borrarBTN.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
         borrarBTN.setText("Borrar");
@@ -134,47 +129,30 @@ public class TenerIBM extends javax.swing.JDialog {
             }
         });
 
-        jLabel9.setText("DNI de la mascota");
-
         javax.swing.GroupLayout PanelBorrarLayout = new javax.swing.GroupLayout(PanelBorrar);
         PanelBorrar.setLayout(PanelBorrarLayout);
         PanelBorrarLayout.setHorizontalGroup(
             PanelBorrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelBorrarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(PanelBorrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(PanelBorrarLayout.createSequentialGroup()
-                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(40, 40, 40)
-                        .addComponent(borrarDNIMascota, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 405, Short.MAX_VALUE)
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(borrarPorCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
                 .addComponent(borrarBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(138, 138, 138))
-            .addGroup(PanelBorrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(PanelBorrarLayout.createSequentialGroup()
-                    .addGap(163, 163, 163)
-                    .addComponent(borrarDNICliente, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(707, Short.MAX_VALUE)))
         );
         PanelBorrarLayout.setVerticalGroup(
             PanelBorrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelBorrarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addGroup(PanelBorrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(borrarDNIMascota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18))
+                    .addComponent(jLabel8)
+                    .addComponent(borrarPorCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 26, Short.MAX_VALUE))
             .addGroup(PanelBorrarLayout.createSequentialGroup()
                 .addComponent(borrarBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(PanelBorrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(PanelBorrarLayout.createSequentialGroup()
-                    .addGap(22, 22, 22)
-                    .addComponent(borrarDNICliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(51, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout PanelBaseLayout = new javax.swing.GroupLayout(PanelBase);
@@ -195,7 +173,7 @@ public class TenerIBM extends javax.swing.JDialog {
                 .addComponent(PanelInsertar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(PanelBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -213,15 +191,15 @@ public class TenerIBM extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void insertarBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_insertarBTNMouseClicked
-        ControladorTenerIBM.insertar();
+        ControladorCuentasIBM.insertar();
     }//GEN-LAST:event_insertarBTNMouseClicked
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        ControladorTenerIBM.cerrarSession();
+        ControladorCuentasIBM.cerrarSession();
     }//GEN-LAST:event_formWindowClosed
 
     private void borrarBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_borrarBTNMouseClicked
-        ControladorTenerIBM.borrar();
+        ControladorCuentasIBM.borrar();
     }//GEN-LAST:event_borrarBTNMouseClicked
 
     /**
@@ -233,14 +211,12 @@ public class TenerIBM extends javax.swing.JDialog {
     private javax.swing.JPanel PanelBorrar;
     private javax.swing.JPanel PanelInsertar;
     private javax.swing.JButton borrarBTN;
-    private javax.swing.JTextField borrarDNICliente;
-    private javax.swing.JTextField borrarDNIMascota;
+    private javax.swing.JTextField borrarPorCorreo;
     private javax.swing.JButton insertarBTN;
-    private javax.swing.JTextField insertarDNICliente;
-    private javax.swing.JTextField insertarDNIMascota;
+    private javax.swing.JTextField insertarContraseña;
+    private javax.swing.JTextField insertarCorreo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     // End of variables declaration//GEN-END:variables
 }
