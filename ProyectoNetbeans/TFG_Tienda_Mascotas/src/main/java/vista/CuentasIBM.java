@@ -72,7 +72,7 @@ public class TenerIBM extends javax.swing.JDialog {
             }
         });
 
-        PanelInsertar.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Insertar tener", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 14))); // NOI18N
+        PanelInsertar.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Insertar mascotas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 14))); // NOI18N
 
         jLabel1.setText("DNI del cliente");
 
@@ -122,7 +122,7 @@ public class TenerIBM extends javax.swing.JDialog {
                 .addContainerGap(44, Short.MAX_VALUE))
         );
 
-        PanelBorrar.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Borrar tener", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 14))); // NOI18N
+        PanelBorrar.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Borrar mascotas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 14))); // NOI18N
 
         jLabel8.setText("DNI del cliente");
 
