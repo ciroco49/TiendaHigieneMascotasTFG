@@ -1,7 +1,10 @@
 package modelo.vo;
 
+import java.util.ArrayList;
 import javax.persistence.*;
 import java.util.List;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Table(name = "Especialista")
@@ -20,10 +23,10 @@ public class Especialista {
     private String residencia;
     @Column
     private Double sueldo;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "DNI_especialista")
-    private List<Mascota> mascotasList;
+    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "DNI_especialista")
+    private List<Mascota> mascotasList = new ArrayList<Mascota>();
 
-    public Especialista(String DNI, String nombre, String apellidos, String telefono, String correo, String residencia, Double sueldo, List<Mascota> mascotasList) {
+    public Especialista(String DNI, String nombre, String apellidos, String telefono, String correo, String residencia, Double sueldo) {
         this.DNI = DNI;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -31,7 +34,6 @@ public class Especialista {
         this.correo = correo;
         this.residencia = residencia;
         this.sueldo = sueldo;
-        this.mascotasList = mascotasList;
     }
 
     public Especialista() {

@@ -1,5 +1,6 @@
 package modelo.vo;
 
+import java.util.List;
 import javax.persistence.*;
 
 @Entity
@@ -21,6 +22,8 @@ public class Mascota {
     @ManyToOne
     @JoinColumn(name = "DNI_especialista", referencedColumnName = "DNI")
     private Especialista DNI_especialista;
+    @OneToMany(mappedBy = "DNIMascota", cascade = CascadeType.REMOVE)
+    private List<Tener> listaTener;
 
     public Mascota(String DNI, String nombre, int edad, char sexo, String especie, String raza, Especialista DNI_especialista) {
         this.DNI = DNI;

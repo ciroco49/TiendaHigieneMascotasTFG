@@ -1,8 +1,11 @@
 package modelo.vo;
 
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -23,6 +26,8 @@ public class Cliente {
     private String correo;
     @Column
     private String residencia;
+    @OneToMany(mappedBy = "DNICliente", cascade = CascadeType.REMOVE)
+    private List<Tener> listaTener;
 
     public Cliente(String DNI, String nombre, String apellidos, String telefono, String correo, String residencia) {
         this.DNI = DNI;

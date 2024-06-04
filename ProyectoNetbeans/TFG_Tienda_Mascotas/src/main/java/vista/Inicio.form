@@ -43,7 +43,7 @@
                       </Group>
                       <Component id="jButton3" min="-2" pref="103" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                      <Component id="jButton5" min="-2" pref="103" max="-2" attributes="0"/>
+                      <Component id="manejarEspecialistasBTN" min="-2" pref="103" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                       <Component id="jButton6" min="-2" pref="103" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
@@ -87,7 +87,7 @@
                   <Component id="manejarClientesBTN" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jButton3" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jButton4" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButton5" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="manejarEspecialistasBTN" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jButton6" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
@@ -164,10 +164,13 @@
         <Property name="text" type="java.lang.String" value="Manejar"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton5">
+    <Component class="javax.swing.JButton" name="manejarEspecialistasBTN">
       <Properties>
         <Property name="text" type="java.lang.String" value="Manejar"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="manejarEspecialistasBTNMouseClicked"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButton6">
       <Properties>
