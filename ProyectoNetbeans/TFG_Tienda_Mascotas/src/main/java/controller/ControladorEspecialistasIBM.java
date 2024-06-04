@@ -8,12 +8,9 @@ import AA_Main.Regex;
 import controller.factory.HibernateUtil;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import modelo.dao.ClienteDAO;
 import modelo.dao.EspecialistaDAO;
-import modelo.vo.Cliente;
 import modelo.vo.Especialista;
 import org.hibernate.Session;
-import vista.ClientesIBM;
 import vista.EspecialistasIBM;
 
 /**

@@ -5,54 +5,57 @@
 package vista;
 
 import controller.ControladorEspecialistasIBM;
+import controller.ControladorMascotasIBM;
 import javax.swing.JTextField;
 
 /**
  *
  * @author ciroi
  */
-public class EspecialistasIBM extends javax.swing.JDialog {
+public class MascotasIBM extends javax.swing.JDialog {
 
     /**
      * Creates new form ClientesIBM
      */
-    public EspecialistasIBM(javax.swing.JFrame parent, boolean modal) {
+    public MascotasIBM(javax.swing.JFrame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        ControladorEspecialistasIBM.iniciaSession();
-    }
-
-    public JTextField getInsertarApellidos() {
-        return insertarApellidos;
-    }
-
-    public JTextField getInsertarCorreo() {
-        return insertarCorreo;
-    }
-
-    public JTextField getInsertarDNI() {
-        return insertarDNI;
-    }
-
-    public JTextField getInsertarNombre() {
-        return insertarNombre;
-    }
-
-    public JTextField getInsertarResidencia() {
-        return insertarResidencia;
-    }
-
-    public JTextField getInsertarTelefono() {
-        return insertarTelefono;
+        ControladorMascotasIBM.iniciaSession();
     }
 
     public JTextField getBorrarPorDNI() {
         return borrarPorDNI;
     }
 
-    public JTextField getInsertarSueldo() {
-        return insertarSueldo;
+    public JTextField getInsertarDNI() {
+        return insertarDNI;
     }
+
+    public JTextField getInsertarDNIespecialista() {
+        return insertarDNIespecialista;
+    }
+
+    public JTextField getInsertarEdad() {
+        return insertarEdad;
+    }
+
+    public JTextField getInsertarEspecie() {
+        return insertarEspecie;
+    }
+
+    public JTextField getInsertarNombre() {
+        return insertarNombre;
+    }
+
+    public JTextField getInsertarRaza() {
+        return insertarRaza;
+    }
+
+    public JTextField getInsertarSexo() {
+        return insertarSexo;
+    }
+
+    
     
     
     
@@ -75,13 +78,13 @@ public class EspecialistasIBM extends javax.swing.JDialog {
         jLabel6 = new javax.swing.JLabel();
         insertarDNI = new javax.swing.JTextField();
         insertarNombre = new javax.swing.JTextField();
-        insertarApellidos = new javax.swing.JTextField();
-        insertarTelefono = new javax.swing.JTextField();
-        insertarCorreo = new javax.swing.JTextField();
-        insertarResidencia = new javax.swing.JTextField();
+        insertarEdad = new javax.swing.JTextField();
+        insertarSexo = new javax.swing.JTextField();
+        insertarEspecie = new javax.swing.JTextField();
+        insertarRaza = new javax.swing.JTextField();
         insertarBTN = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        insertarSueldo = new javax.swing.JTextField();
+        insertarDNIespecialista = new javax.swing.JTextField();
         PanelBorrar = new javax.swing.JPanel();
         borrarPorDNI = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
@@ -95,19 +98,19 @@ public class EspecialistasIBM extends javax.swing.JDialog {
             }
         });
 
-        PanelInsertar.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Insertar especialistas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 14))); // NOI18N
+        PanelInsertar.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Insertar mascotas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 14))); // NOI18N
 
         jLabel1.setText("DNI");
 
         jLabel2.setText("Nombre");
 
-        jLabel3.setText("Apellidos");
+        jLabel3.setText("Edad");
 
-        jLabel4.setText("Teléfono");
+        jLabel4.setText("Sexo");
 
-        jLabel5.setText("Correo");
+        jLabel5.setText("Especie");
 
-        jLabel6.setText("Residencia");
+        jLabel6.setText("Raza");
 
         insertarBTN.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         insertarBTN.setText("Insertar");
@@ -117,7 +120,7 @@ public class EspecialistasIBM extends javax.swing.JDialog {
             }
         });
 
-        jLabel7.setText("Sueldo");
+        jLabel7.setText("DNI del especialista");
 
         javax.swing.GroupLayout PanelInsertarLayout = new javax.swing.GroupLayout(PanelInsertar);
         PanelInsertar.setLayout(PanelInsertarLayout);
@@ -133,27 +136,24 @@ public class EspecialistasIBM extends javax.swing.JDialog {
                         .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING))
                     .addComponent(jLabel6)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PanelInsertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanelInsertarLayout.createSequentialGroup()
-                        .addGroup(PanelInsertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(insertarResidencia, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(insertarDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(PanelInsertarLayout.createSequentialGroup()
-                        .addGroup(PanelInsertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(insertarNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(insertarTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(insertarApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(PanelInsertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(insertarRaza)
+                            .addComponent(insertarEspecie)
+                            .addComponent(insertarNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                            .addComponent(insertarEdad, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(insertarSexo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 369, Short.MAX_VALUE)
                         .addComponent(insertarBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(139, 139, 139))
                     .addGroup(PanelInsertarLayout.createSequentialGroup()
                         .addGroup(PanelInsertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(insertarSueldo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(insertarCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addComponent(insertarDNIespecialista, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(insertarDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         PanelInsertarLayout.setVerticalGroup(
             PanelInsertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -170,31 +170,31 @@ public class EspecialistasIBM extends javax.swing.JDialog {
                             .addComponent(insertarNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(PanelInsertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(insertarApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(insertarEdad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3))
                         .addGap(18, 18, 18)
                         .addGroup(PanelInsertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
-                            .addComponent(insertarTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(insertarSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(PanelInsertarLayout.createSequentialGroup()
                         .addGap(33, 33, 33)
                         .addComponent(insertarBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(4, 4, 4)
                 .addGroup(PanelInsertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(insertarCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(insertarEspecie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addGap(18, 18, 18)
                 .addGroup(PanelInsertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(insertarResidencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(insertarRaza, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(PanelInsertarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(insertarSueldo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(insertarDNIespecialista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
-        PanelBorrar.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Borrar especialistas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 14))); // NOI18N
+        PanelBorrar.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Borrar mascotas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 0, 14))); // NOI18N
 
         jLabel8.setText("DNI");
 
@@ -212,7 +212,7 @@ public class EspecialistasIBM extends javax.swing.JDialog {
             PanelBorrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelBorrarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE)
+                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(borrarPorDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(453, 453, 453)
@@ -268,15 +268,15 @@ public class EspecialistasIBM extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void insertarBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_insertarBTNMouseClicked
-        ControladorEspecialistasIBM.insertar();
+        ControladorMascotasIBM.insertar();
     }//GEN-LAST:event_insertarBTNMouseClicked
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        ControladorEspecialistasIBM.cerrarSession();
+        ControladorMascotasIBM.cerrarSession();
     }//GEN-LAST:event_formWindowClosed
 
     private void borrarBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_borrarBTNMouseClicked
-        ControladorEspecialistasIBM.borrar();
+        ControladorMascotasIBM.borrar();
     }//GEN-LAST:event_borrarBTNMouseClicked
 
     /**
@@ -289,14 +289,14 @@ public class EspecialistasIBM extends javax.swing.JDialog {
     private javax.swing.JPanel PanelInsertar;
     private javax.swing.JButton borrarBTN;
     private javax.swing.JTextField borrarPorDNI;
-    private javax.swing.JTextField insertarApellidos;
     private javax.swing.JButton insertarBTN;
-    private javax.swing.JTextField insertarCorreo;
     private javax.swing.JTextField insertarDNI;
+    private javax.swing.JTextField insertarDNIespecialista;
+    private javax.swing.JTextField insertarEdad;
+    private javax.swing.JTextField insertarEspecie;
     private javax.swing.JTextField insertarNombre;
-    private javax.swing.JTextField insertarResidencia;
-    private javax.swing.JTextField insertarSueldo;
-    private javax.swing.JTextField insertarTelefono;
+    private javax.swing.JTextField insertarRaza;
+    private javax.swing.JTextField insertarSexo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

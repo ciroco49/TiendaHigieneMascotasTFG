@@ -7,6 +7,7 @@ package vista;
 import controller.ControladorClientesC;
 import controller.ControladorClientesIBM;
 import controller.ControladorEspecialistasIBM;
+import controller.ControladorMascotasIBM;
 
 /**
  *
@@ -37,7 +38,7 @@ public class Inicio extends javax.swing.JFrame {
         cuentasLBL = new javax.swing.JLabel();
         manejarClientesBTN = new javax.swing.JButton();
         consultarClientesBTN = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        manejarMascotasIBM = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         manejarEspecialistasBTN = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
@@ -75,7 +76,12 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setText("Manejar");
+        manejarMascotasIBM.setText("Manejar");
+        manejarMascotasIBM.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                manejarMascotasIBMMouseClicked(evt);
+            }
+        });
 
         jButton4.setText("Manejar");
 
@@ -109,7 +115,7 @@ public class Inicio extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(consultarClientesBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(manejarMascotasIBM, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(41, 41, 41)
                         .addComponent(manejarEspecialistasBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(41, 41, 41)
@@ -146,7 +152,7 @@ public class Inicio extends javax.swing.JFrame {
                 .addGap(46, 46, 46)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(manejarClientesBTN)
-                    .addComponent(jButton3)
+                    .addComponent(manejarMascotasIBM)
                     .addComponent(jButton4)
                     .addComponent(manejarEspecialistasBTN)
                     .addComponent(jButton6))
@@ -170,6 +176,10 @@ public class Inicio extends javax.swing.JFrame {
         ControladorEspecialistasIBM.iniciar(this);
     }//GEN-LAST:event_manejarEspecialistasBTNMouseClicked
 
+    private void manejarMascotasIBMMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_manejarMascotasIBMMouseClicked
+        ControladorMascotasIBM.iniciar(this);
+    }//GEN-LAST:event_manejarMascotasIBMMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -181,12 +191,12 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JButton consultarClientesBTN;
     private javax.swing.JLabel cuentasLBL;
     private javax.swing.JLabel especialistasLBL;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton manejarClientesBTN;
     private javax.swing.JButton manejarEspecialistasBTN;
+    private javax.swing.JButton manejarMascotasIBM;
     private javax.swing.JLabel mascotasLBL;
     // End of variables declaration//GEN-END:variables
 }

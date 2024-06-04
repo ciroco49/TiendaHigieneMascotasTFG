@@ -221,6 +221,7 @@ public class ClientesIBM extends javax.swing.JDialog {
 
         jLabel7.setText("DNI");
 
+        borrarBTN.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
         borrarBTN.setText("Borrar");
         borrarBTN.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

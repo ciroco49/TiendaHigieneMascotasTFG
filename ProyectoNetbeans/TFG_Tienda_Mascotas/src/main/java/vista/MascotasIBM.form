@@ -69,7 +69,7 @@
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder title="Insertar especialistas">
+                <TitledBorder title="Insertar mascotas">
                   <Font PropertyName="font" name="Dialog" size="14" style="0"/>
                 </TitledBorder>
               </Border>
@@ -90,33 +90,28 @@
                           </Group>
                           <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel4" min="-2" pref="65" max="-2" attributes="0"/>
-                          <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel7" min="-2" pref="114" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="insertarResidencia" min="-2" pref="450" max="-2" attributes="0"/>
-                                  <Component id="insertarDNI" min="-2" pref="100" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="insertarRaza" max="32767" attributes="0"/>
+                                  <Component id="insertarEspecie" max="32767" attributes="0"/>
+                                  <Component id="insertarNombre" alignment="1" pref="200" max="32767" attributes="0"/>
+                                  <Component id="insertarEdad" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                                  <Component id="insertarSexo" alignment="0" min="-2" pref="25" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="insertarNombre" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                                  <Component id="insertarTelefono" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                                  <Component id="insertarApellidos" alignment="0" min="-2" pref="275" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace pref="369" max="32767" attributes="0"/>
                               <Component id="insertarBTN" min="-2" pref="170" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="139" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="insertarSueldo" min="-2" pref="100" max="-2" attributes="0"/>
-                                  <Component id="insertarCorreo" min="-2" pref="450" max="-2" attributes="0"/>
+                                  <Component id="insertarDNIespecialista" min="-2" pref="100" max="-2" attributes="0"/>
+                                  <Component id="insertarDNI" min="-2" pref="100" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -139,13 +134,13 @@
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="insertarApellidos" min="-2" max="-2" attributes="0"/>
+                                  <Component id="insertarEdad" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="insertarTelefono" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="insertarSexo" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -155,18 +150,18 @@
                       </Group>
                       <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="insertarCorreo" min="-2" max="-2" attributes="0"/>
+                          <Component id="insertarEspecie" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="insertarResidencia" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="insertarRaza" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="insertarSueldo" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="insertarDNIespecialista" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="15" max="32767" attributes="0"/>
                   </Group>
@@ -186,35 +181,35 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel3">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Apellidos"/>
+                <Property name="text" type="java.lang.String" value="Edad"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel4">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Tel&#xe9;fono"/>
+                <Property name="text" type="java.lang.String" value="Sexo"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel5">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Correo"/>
+                <Property name="text" type="java.lang.String" value="Especie"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel6">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Residencia"/>
+                <Property name="text" type="java.lang.String" value="Raza"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="insertarDNI">
             </Component>
             <Component class="javax.swing.JTextField" name="insertarNombre">
             </Component>
-            <Component class="javax.swing.JTextField" name="insertarApellidos">
+            <Component class="javax.swing.JTextField" name="insertarEdad">
             </Component>
-            <Component class="javax.swing.JTextField" name="insertarTelefono">
+            <Component class="javax.swing.JTextField" name="insertarSexo">
             </Component>
-            <Component class="javax.swing.JTextField" name="insertarCorreo">
+            <Component class="javax.swing.JTextField" name="insertarEspecie">
             </Component>
-            <Component class="javax.swing.JTextField" name="insertarResidencia">
+            <Component class="javax.swing.JTextField" name="insertarRaza">
             </Component>
             <Component class="javax.swing.JButton" name="insertarBTN">
               <Properties>
@@ -229,10 +224,10 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel7">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Sueldo"/>
+                <Property name="text" type="java.lang.String" value="DNI del especialista"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="insertarSueldo">
+            <Component class="javax.swing.JTextField" name="insertarDNIespecialista">
             </Component>
           </SubComponents>
         </Container>
@@ -240,7 +235,7 @@
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder title="Borrar especialistas">
+                <TitledBorder title="Borrar mascotas">
                   <Font PropertyName="font" name="Dialog" size="14" style="0"/>
                 </TitledBorder>
               </Border>
@@ -252,7 +247,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLabel8" pref="87" max="32767" attributes="0"/>
+                      <Component id="jLabel8" pref="136" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="borrarPorDNI" min="-2" pref="100" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="453" max="-2" attributes="0"/>
