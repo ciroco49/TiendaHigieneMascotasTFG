@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.21.3.final using JasperReports Library version 6.21.3-4a3078d20785ebe464f18037d738d12fc98c13cf  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="EspecialistasPorCantidadMascotas" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5d398d6c-bcbb-4205-9358-5550f4c2dc48">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="MySQL"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT e.DNI, e.nombre, e.sueldo, COUNT(m.DNI) AS num_mascotas
+FROM Especialista e
+INNER JOIN Mascota m ON e.DNI = m.DNI_especialista
+GROUP BY e.DNI
+ORDER BY num_mascotas DESC]]>
+	</queryString>
+	<field name="DNI" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="DNI"/>
+		<property name="com.jaspersoft.studio.field.label" value="DNI"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="especialista"/>
+	</field>
+	<field name="nombre" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nombre"/>
+		<property name="com.jaspersoft.studio.field.label" value="nombre"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="especialista"/>
+	</field>
+	<field name="sueldo" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="sueldo"/>
+		<property name="com.jaspersoft.studio.field.label" value="sueldo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="especialista"/>
+	</field>
+	<field name="num_mascotas" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="num_mascotas"/>
+		<property name="com.jaspersoft.studio.field.label" value="num_mascotas"/>
+	</field>
+	<group name="DNI">
+		<groupExpression><![CDATA[$F{DNI}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="100" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="-19" y="0" width="594" height="100" backcolor="#ABD8FF" uuid="4778d7f5-1643-4dd3-8d40-67dddf8151c9"/>
+				<staticText>
+					<reportElement x="180" y="22" width="238" height="56" uuid="a65b9654-e07e-4d8b-9ef6-256e88770b48"/>
+					<textElement textAlignment="Center">
+						<font size="20" isBold="true"/>
+					</textElement>
+					<text><![CDATA[TIENDA DE HIGIENE 
+DE MASCOTAS]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="90" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="10" width="594" height="80" backcolor="#B5DCF5" uuid="bc27a2dd-eb66-452d-ad56-0a425a67ae5f"/>
+				<staticText>
+					<reportElement x="93" y="25" width="414" height="30" uuid="baee3663-f67d-46da-8db7-9b996bac50a2"/>
+					<textElement>
+						<font size="18"/>
+					</textElement>
+					<text><![CDATA[Especialistas ordenados por cantidad de mascotas]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="-20" y="10" width="594" height="110" backcolor="#E3F9FF" uuid="3ca34e30-bcab-4da0-836c-c8be79302257"/>
+				<textField>
+					<reportElement x="40" y="60" width="100" height="30" uuid="df7581ab-7371-4913-bc14-3f778b7f9b3f">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="526a97ca-b118-4650-88e5-65b9c47716cf"/>
+					</reportElement>
+					<textFieldExpression><![CDATA[$F{DNI}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="40" y="20" width="100" height="30" uuid="e197fa71-9fb7-4235-a71f-fb2b0c2522ce">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="526a97ca-b118-4650-88e5-65b9c47716cf"/>
+					</reportElement>
+					<textElement>
+						<font isBold="true" isUnderline="true"/>
+					</textElement>
+					<text><![CDATA[DNI]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="180" y="60" width="100" height="30" uuid="2a33d164-6574-4e92-811d-1b1011600df1">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8413ad3e-36fa-42ba-a732-52c344c69fb4"/>
+					</reportElement>
+					<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="180" y="20" width="100" height="30" uuid="e5256c9c-1c39-4172-99cf-142f8dbf9ac0">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8413ad3e-36fa-42ba-a732-52c344c69fb4"/>
+					</reportElement>
+					<textElement>
+						<font isBold="true" isUnderline="true"/>
+					</textElement>
+					<text><![CDATA[NOMBRE]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="310" y="20" width="100" height="30" uuid="e80709da-b879-456c-9700-6b3bc06b9ff0">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="33d381e6-56fc-4821-ac38-cb942eecf8bb"/>
+					</reportElement>
+					<textElement>
+						<font isBold="true" isUnderline="true"/>
+					</textElement>
+					<text><![CDATA[SUELDO]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="450" y="20" width="100" height="30" uuid="21a75757-65c2-4661-aa42-d959c60bc446">
+						<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f9577484-e864-407d-bfa4-7a90f8c6b668"/>
+					</reportElement>
+					<textElement>
+						<font isBold="true" isUnderline="true"/>
+					</textElement>
+					<text><![CDATA[MASCOTAS]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="310" y="60" width="100" height="30" uuid="621aafc9-988f-4ea8-a5fc-483b0ff0835a"/>
+					<textFieldExpression><![CDATA[$F{sueldo}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="450" y="60" width="100" height="30" uuid="0cee7873-a1e5-4c2e-a025-f262cb83ac3a"/>
+					<textFieldExpression><![CDATA[$F{num_mascotas}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="55" splitType="Stretch">
+			<textField evaluationTime="Report">
+				<reportElement x="520" y="25" width="60" height="30" uuid="38b0ceea-63f2-4202-b37e-bf1505c53554"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[" of " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="420" y="25" width="100" height="30" uuid="36f7c0e1-3c67-456f-b2ae-f9c684bf57c7"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>
