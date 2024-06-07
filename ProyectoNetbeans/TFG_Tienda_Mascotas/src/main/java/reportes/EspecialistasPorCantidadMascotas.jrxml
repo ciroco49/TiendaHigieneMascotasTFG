@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f42662cd-cf61-4982-a0f3-b5be3bffdd58">
+	<property name="ireport.zoom" value="1.1"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT e.DNI, e.nombre, e.sueldo, COUNT(m.DNI) AS num_mascotas
+FROM Especialista e
+INNER JOIN Mascota m ON e.DNI = m.DNI_especialista
+GROUP BY e.DNI
+ORDER BY num_mascotas DESC]]>
+	</queryString>
+	<field name="DNI" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombre" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="sueldo" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="num_mascotas" class="java.lang.Long"/>
+	<group name="DNI">
+		<groupExpression><![CDATA[$F{DNI}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="110" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="-21" y="0" width="596" height="110" backcolor="#7FBAE8" uuid="d01ced74-a8b3-4cbb-b4ed-41b2db4b1f61"/>
+				<staticText>
+					<reportElement x="208" y="28" width="203" height="52" uuid="7fb2083a-0bf1-4a8a-93de-c75180b2ef51"/>
+					<textElement textAlignment="Center">
+						<font size="20" isBold="true"/>
+					</textElement>
+					<text><![CDATA[TIENDA DE HIGIENE DE MASCOTAS]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="101" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="-21" y="11" width="596" height="77" backcolor="#B6DAEE" uuid="ddb28f9c-95b4-4795-ad7b-e43cfd8e6b74"/>
+				<staticText>
+					<reportElement x="118" y="22" width="396" height="30" uuid="cc9c7c4b-1cc3-48bf-a64c-50013671dc83"/>
+					<textElement textAlignment="Center">
+						<font size="16" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Especialistas ordenados por cantidad de mascotas]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="83">
+			<frame>
+				<reportElement mode="Opaque" x="-21" y="0" width="596" height="75" backcolor="#E8F2F5" uuid="9e48614f-669b-4794-98fe-e306bb89528e"/>
+				<staticText>
+					<reportElement x="36" y="14" width="100" height="20" uuid="1521695e-2505-42eb-ab8c-0d315d5dbd23"/>
+					<textElement>
+						<font size="12" isBold="true" isItalic="false" isUnderline="true" isStrikeThrough="false"/>
+					</textElement>
+					<text><![CDATA[DNI]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="36" y="44" width="100" height="20" uuid="34e684aa-8a9e-4666-8e93-0197231ed5af"/>
+					<textFieldExpression><![CDATA[$F{DNI}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="186" y="14" width="100" height="20" uuid="e0063c40-b371-487a-943d-e757ccd1d5e9"/>
+					<textElement>
+						<font size="12" isBold="true" isUnderline="true"/>
+					</textElement>
+					<text><![CDATA[NOMBRE]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="186" y="44" width="100" height="20" uuid="39b60570-bb8a-4c22-8075-8e84eaa04a8f"/>
+					<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="332" y="14" width="100" height="20" uuid="d11bcf31-7a93-4fc1-87f9-c18da4ebb97b"/>
+					<textElement>
+						<font size="12" isBold="true" isUnderline="true"/>
+					</textElement>
+					<text><![CDATA[SUELDO]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="332" y="44" width="100" height="20" uuid="3e18074c-42d3-480d-ba32-8ae1b2724927"/>
+					<textFieldExpression><![CDATA[$F{sueldo}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="465" y="14" width="100" height="20" uuid="f30adc64-907a-4c34-a59c-b880f2bbbea7"/>
+					<textElement>
+						<font size="12" isBold="true" isUnderline="true"/>
+					</textElement>
+					<text><![CDATA[MASCOTAS]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="465" y="44" width="100" height="20" uuid="7b13119e-dcb4-4681-adac-e99c9a979ba6"/>
+					<textFieldExpression><![CDATA[$F{num_mascotas}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="68" splitType="Stretch">
+			<textField>
+				<reportElement x="464" y="34" width="80" height="20" uuid="f95de0f2-e2f9-4b55-a710-3d2a7d35762c"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="544" y="34" width="40" height="20" uuid="cfdc91d0-09db-48df-8271-db8cb371f021"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

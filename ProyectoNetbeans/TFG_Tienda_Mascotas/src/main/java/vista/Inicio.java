@@ -8,8 +8,13 @@ import controller.ControladorClientesC;
 import controller.ControladorClientesIBM;
 import controller.ControladorCuentasIBM;
 import controller.ControladorEspecialistasIBM;
+import controller.ControladorInicio;
 import controller.ControladorMascotasIBM;
 import controller.ControladorTenerIBM;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JRException;
 
 /**
  *
@@ -45,6 +50,10 @@ public class Inicio extends javax.swing.JFrame {
         manejarEspecialistasBTN = new javax.swing.JButton();
         manejarCuentasBTN = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        generarInformeDosBTN = new javax.swing.JButton();
+        generarInformeUnoBTN = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -109,6 +118,24 @@ public class Inicio extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe Print", 1, 30)); // NOI18N
         jLabel1.setText("GESTIÓN DE TIENDA DE HIGIENE DE MASCOTAS");
 
+        jLabel2.setText("Generar informe de especialistas");
+
+        jLabel3.setText("Generar informe de especialistas por mascotas");
+
+        generarInformeDosBTN.setText("Generar");
+        generarInformeDosBTN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                generarInformeDosBTNMouseClicked(evt);
+            }
+        });
+
+        generarInformeUnoBTN.setText("Generar");
+        generarInformeUnoBTN.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                generarInformeUnoBTNMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -116,28 +143,11 @@ public class Inicio extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(60, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(manejarClientesBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(manejarTenerBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(83, 83, 83))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(consultarClientesBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addComponent(manejarMascotasIBM, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 41, 41)
-                        .addComponent(manejarEspecialistasBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 41, 41)
-                        .addComponent(manejarCuentasBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(62, 62, 62))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(40, 40, 40))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 40, Short.MAX_VALUE)
                         .addComponent(clientesLBL)
                         .addGap(52, 52, 52)
                         .addComponent(clientesMascotasLBL)
@@ -147,7 +157,37 @@ public class Inicio extends javax.swing.JFrame {
                         .addComponent(especialistasLBL)
                         .addGap(45, 45, 45)
                         .addComponent(cuentasLBL)
-                        .addGap(82, 82, 82))))
+                        .addGap(82, 82, 82))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(manejarClientesBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(manejarTenerBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(83, 83, 83))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(consultarClientesBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(manejarMascotasIBM, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(41, 41, 41)
+                                .addComponent(manejarEspecialistasBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(41, 41, 41)
+                                .addComponent(manejarCuentasBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(62, 62, 62))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(generarInformeUnoBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(generarInformeDosBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -170,7 +210,15 @@ public class Inicio extends javax.swing.JFrame {
                     .addComponent(manejarCuentasBTN))
                 .addGap(39, 39, 39)
                 .addComponent(consultarClientesBTN)
-                .addContainerGap(145, Short.MAX_VALUE))
+                .addGap(53, 53, 53)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(generarInformeUnoBTN))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(generarInformeDosBTN))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         pack();
@@ -200,6 +248,30 @@ public class Inicio extends javax.swing.JFrame {
         ControladorCuentasIBM.iniciar(this);
     }//GEN-LAST:event_manejarCuentasBTNMouseClicked
 
+    private void generarInformeUnoBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_generarInformeUnoBTNMouseClicked
+        try {
+            ControladorInicio.generarPDF("Especialistas.jasper", "Especialistas.pdf");
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (JRException ex) {
+            Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_generarInformeUnoBTNMouseClicked
+
+    private void generarInformeDosBTNMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_generarInformeDosBTNMouseClicked
+        try {
+            ControladorInicio.generarPDF("EspecialistasPorCantidadMascotas.jasper", "EspecialistasPorCantidadMascotas.pdf");
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (JRException ex) {
+            Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_generarInformeDosBTNMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -211,7 +283,11 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JButton consultarClientesBTN;
     private javax.swing.JLabel cuentasLBL;
     private javax.swing.JLabel especialistasLBL;
+    private javax.swing.JButton generarInformeDosBTN;
+    private javax.swing.JButton generarInformeUnoBTN;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JButton manejarClientesBTN;
     private javax.swing.JButton manejarCuentasBTN;
     private javax.swing.JButton manejarEspecialistasBTN;

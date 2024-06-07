@@ -5,7 +5,20 @@
 package controller;
 
 import controller.factory.HibernateUtil;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
 import org.hibernate.Session;
+import reportes.GenerarPDF;
 import vista.Inicio;
 
 /**
@@ -18,8 +31,12 @@ public class ControladorInicio {
     
     
     public static void iniciar() {
-        ventana.setVisible(true);
         ventana.setLocationRelativeTo(null);
-    } 
+        ventana.setVisible(true);
+    }
+    
+    public static void generarPDF(String ruta_reporte, String ruta_destino) throws ClassNotFoundException, JRException, InstantiationException {
+        GenerarPDF.generarPDF(ruta_reporte, ruta_destino);
+    }
     
 }
