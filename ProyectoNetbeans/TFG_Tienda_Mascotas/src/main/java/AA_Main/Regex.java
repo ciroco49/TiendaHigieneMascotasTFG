@@ -52,4 +52,12 @@ public class Regex {
         }
     }
     
+    public static boolean datoTieneNueveCaracteres(String dato) {
+        //Valido si el dato tiene una longitud de nueve caracteres
+        if(dato.length() == 9) {
+            return true;
+        }
+        return false;
+    }
+    
 }
