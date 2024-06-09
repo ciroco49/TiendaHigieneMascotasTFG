@@ -99,8 +99,8 @@ public class ModificarCliente extends AppCompatActivity implements ClientesCallB
     }
 
     public void modificarCliente(View view) {
-        if(!Regex.datoEsEntero(telefono.getText().toString())) {
-            Toast.makeText(this, "Debe proporcionar un teléfono entero, con números", Toast.LENGTH_LONG).show();
+        if(!Regex.datoEsEntero(telefono.getText().toString()) || !Regex.datoTieneNueveCaracteres(telefono.getText().toString())) {
+            Toast.makeText(this, "Debe proporcionar un teléfono entero, con 9 números", Toast.LENGTH_LONG).show();
             return;
         } else if(!Regex.validarCorreo(correo.getText().toString())) {
             Toast.makeText(this, "El correo proporcionado no cumple el formato requerido", Toast.LENGTH_LONG).show();

@@ -48,4 +48,12 @@ public class Regex {
         }
     }
 
+    public static boolean datoTieneNueveCaracteres(String dato) {
+        //Valido si el dato introducido tiene nueve caracteres
+        if(dato.length() == 9) {
+            return true;
+        }
+        return false;
+    }
+
 }
