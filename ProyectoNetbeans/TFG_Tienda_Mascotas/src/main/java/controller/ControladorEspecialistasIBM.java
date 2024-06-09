@@ -48,8 +48,9 @@ public class ControladorEspecialistasIBM {
         } else if(!Regex.validarDNI(ventana.getInsertarDNI().getText())) {
             JOptionPane.showMessageDialog(null, "El dni proporcionado no cumple el formato requerido");
             return;
-        } else if(!Regex.datoEsEntero(ventana.getInsertarTelefono().getText())) {
-            JOptionPane.showMessageDialog(null, "El telefono proporcionado debe estar conformado por números enteros");
+        } else if(!Regex.datoEsEntero(ventana.getInsertarTelefono().getText()) 
+                    || !Regex.datoTieneNueveCaracteres(ventana.getInsertarTelefono().getText())) {
+            JOptionPane.showMessageDialog(null, "El telefono proporcionado debe estar conformado por 9 números enteros");
             return;
         } else if(!Regex.validarCorreo(ventana.getInsertarCorreo().getText())) {
             JOptionPane.showMessageDialog(null, "El correo proporcionado no cumple el formato requerido");
